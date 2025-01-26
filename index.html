@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Auto Dealership</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">LUXURY MOTORS</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#inventory">Inventory</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Experience Luxury</h1>
+            <p>Discover our exclusive collection of premium vehicles</p>
+            <a href="#inventory" class="btn">View Inventory</a>
+        </div>
+    </section>
+
+    <section id="inventory" class="featured-cars">
+        <div class="container">
+            <h2 data-aos="fade-up">Featured Vehicles</h2>
+            
+            <!-- 3D Viewer Section -->
+            <div class="car-viewer-section" data-aos="fade-up">
+                <div id="car-viewer"></div>
+                <div class="viewer-controls">
+                    <button class="view-btn active" data-model-path="/models/mercedes.glb">Mercedes-Benz</button>
+                    <button class="view-btn" data-model-path="/models/porsche.glb">Porsche</button>
+                    <button class="view-btn" data-model-path="/models/range-rover.glb">Range Rover</button>
+                </div>
+                <div class="viewer-instructions">
+                    <p>🖱️ Click and drag to rotate</p>
+                    <p>⚲ Scroll to zoom</p>
+                    <p>👆 Right-click and drag to pan</p>
+                </div>
+            </div>
+
+            <div class="filter-buttons" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="luxury">Luxury</button>
+                <button class="filter-btn" data-filter="sports">Sports</button>
+                <button class="filter-btn" data-filter="suv">SUV</button>
+            </div>
+            <div class="car-grid">
+                <div class="car-card" data-category="luxury" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800" alt="Luxury Car" class="car-image">
+                    <div class="car-info">
+                        <h3>Mercedes-Benz S-Class</h3>
+                        <p>2023 • Luxury Sedan</p>
+                        <span class="price">$110,000</span>
+                    </div>
+                </div>
+                <div class="car-card" data-category="sports" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?auto=format&fit=crop&w=800" alt="Sports Car" class="car-image">
+                    <div class="car-info">
+                        <h3>Porsche 911 GT3</h3>
+                        <p>2023 • Sports Car</p>
+                        <span class="price">$165,000</span>
+                    </div>
+                </div>
+                <div class="car-card" data-category="suv" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800" alt="SUV" class="car-image">
+                    <div class="car-info">
+                        <h3>Range Rover Sport</h3>
+                        <p>2023 • Luxury SUV</p>
+                        <span class="price">$95,000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/3d-viewer.js"></script>
+</body>
+</html>
