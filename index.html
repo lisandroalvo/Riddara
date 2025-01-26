@@ -37,9 +37,7 @@
             <div class="car-viewer-section" data-aos="fade-up">
                 <div id="car-viewer"></div>
                 <div class="viewer-controls">
-                    <button class="view-btn active" data-model-path="/models/mercedes.glb">Mercedes-Benz</button>
-                    <button class="view-btn" data-model-path="/models/porsche.glb">Porsche</button>
-                    <button class="view-btn" data-model-path="/models/range-rover.glb">Range Rover</button>
+                    <button class="view-btn active" data-model-path="./models/canter.obj">View Canter 3D Model</button>
                 </div>
                 <div class="viewer-instructions">
                     <p>🖱️ Click and drag to rotate</p>
@@ -85,7 +83,11 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/MTLLoader.js"></script>
     <script src="./js/main.js"></script>
-    <script src="./js/3d-viewer.js"></script>
+    <script src="./js/car-viewer.js"></script>
 </body>
 </html>
