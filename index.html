@@ -176,6 +176,69 @@
             transform: translateY(-10px);
         }
 
+        /* Color Schemes Section */
+        .color-schemes {
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .car-showcase {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .car-preview {
+            flex: 1;
+            position: relative;
+            height: 400px;
+        }
+
+        .car-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+
+        .color-options {
+            flex: 0 0 200px;
+            padding: 2rem;
+        }
+
+        .color-option {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 1rem 0;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.active {
+            border-color: #007bff;
+        }
+
+        .color-name {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .color-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
@@ -249,6 +312,27 @@
         #fp-nav ul li a.active span {
             background: #007bff;
         }
+
+        /* Animation Classes */
+        .reveal-element {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal-element.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        
+        /* Smooth scroll sensitivity */
+        .fp-watermark {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -271,11 +355,11 @@
         <div class="section hero" data-anchor="home">
             <div class="content-wrapper">
                 <div class="hero-content">
-                    <h1>THE FIRST EV PICKUP IN THAILAND</h1>
-                    <p>100% electric pickup truck, redefining a boundless lifestyle</p>
-                    <a href="#learn-more" class="cta-button">Learn More</a>
+                    <h1 class="reveal-element">THE FIRST EV PICKUP IN THAILAND</h1>
+                    <p class="reveal-element delay-1">100% electric pickup truck, redefining a boundless lifestyle</p>
+                    <a href="#learn-more" class="cta-button reveal-element delay-2">Learn More</a>
                 </div>
-                <div class="scroll-indicator">
+                <div class="scroll-indicator reveal-element delay-3">
                     <span class="mouse"></span>
                     <span class="scroll-text">Scroll to explore</span>
                 </div>
@@ -285,14 +369,14 @@
         <div class="section model-section" data-anchor="rd6-4wd">
             <div class="content-wrapper">
                 <div class="model-content">
-                    <h2>RIDDARA RD6 4WD</h2>
-                    <p>Experience ultimate performance with our flagship 4WD model</p>
+                    <h2 class="reveal-element">RIDDARA RD6 4WD</h2>
+                    <p class="reveal-element delay-1">Experience ultimate performance with our flagship 4WD model</p>
                     <div class="model-specs">
-                        <div class="spec">
+                        <div class="spec reveal-element delay-2">
                             <span class="number">400+</span>
                             <span class="label">KM Range</span>
                         </div>
-                        <div class="spec">
+                        <div class="spec reveal-element delay-3">
                             <span class="number">4.8</span>
                             <span class="label">Sec 0-100 km/h</span>
                         </div>
@@ -304,14 +388,14 @@
         <div class="section model-section" data-anchor="rd6-2wd">
             <div class="content-wrapper">
                 <div class="model-content">
-                    <h2>RIDDARA RD6 2WD</h2>
-                    <p>Efficient and powerful, perfect for everyday adventures</p>
+                    <h2 class="reveal-element">RIDDARA RD6 2WD</h2>
+                    <p class="reveal-element delay-1">Efficient and powerful, perfect for everyday adventures</p>
                     <div class="model-specs">
-                        <div class="spec">
+                        <div class="spec reveal-element delay-2">
                             <span class="number">350+</span>
                             <span class="label">KM Range</span>
                         </div>
-                        <div class="spec">
+                        <div class="spec reveal-element delay-3">
                             <span class="number">5.2</span>
                             <span class="label">Sec 0-100 km/h</span>
                         </div>
@@ -320,21 +404,42 @@
             </div>
         </div>
 
+        <div class="section color-schemes" data-anchor="colors">
+            <div class="content-wrapper">
+                <h2 class="reveal-element">DIVERSIFIED COLOR SCHEMES</h2>
+                <p class="reveal-element delay-1">Personalize your RIDDARA with our premium color options</p>
+                <div class="car-showcase">
+                    <div class="car-preview reveal-element delay-1">
+                        <img src="images/car-white.png" alt="RIDDARA RD6" class="car-image" id="carImage">
+                    </div>
+                    <div class="color-options reveal-element delay-2">
+                        <div class="color-option active" style="background: #FFFFFF" data-color="white" data-name="Crystal White" data-description="Pure elegance with a pristine finish"></div>
+                        <div class="color-option" style="background: #1C1C1C" data-color="black" data-name="Phantom Black" data-description="Bold and sophisticated presence"></div>
+                        <div class="color-option" style="background: #C0C0C0" data-color="silver" data-name="Stellar Silver" data-description="Modern and dynamic appearance"></div>
+                        <div class="color-option" style="background: #00008B" data-color="blue" data-name="Ocean Blue" data-description="Deep and luxurious tone"></div>
+                        <div class="color-option" style="background: #8B0000" data-color="red" data-name="Crimson Red" data-description="Passionate and energetic style"></div>
+                        <div class="color-name">Crystal White</div>
+                        <div class="color-description">Pure elegance with a pristine finish</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="section features-section" data-anchor="manufacturing">
             <div class="content-wrapper">
-                <h2>INTELLIGENT AND ECO-FRIENDLY MANUFACTURING</h2>
+                <h2 class="reveal-element">INTELLIGENT AND ECO-FRIENDLY MANUFACTURING</h2>
                 <div class="features-grid">
-                    <div class="feature">
+                    <div class="feature reveal-element delay-1">
                         <i class="fas fa-cogs fa-3x" style="color: #007bff;"></i>
                         <h3>Customized Workshop</h3>
                         <p>With the agile and intelligent final assembly line, we can meet the diversified and customized needs of consumers.</p>
                     </div>
-                    <div class="feature">
+                    <div class="feature reveal-element delay-2">
                         <i class="fas fa-leaf fa-3x" style="color: #28a745;"></i>
                         <h3>Eco-friendly Workshop</h3>
                         <p>With state-of-art green film pre-treatment technology, we ensure good anti-corrosion performance meeting the highest international standards.</p>
                     </div>
-                    <div class="feature">
+                    <div class="feature reveal-element delay-3">
                         <i class="fas fa-road fa-3x" style="color: #6c757d;"></i>
                         <h3>Comprehensive Test Track</h3>
                         <p>First comprehensive test track integrating passenger vehicle performance testing, 100% electric vehicle intelligent testing, and off-road vehicle attribute testing.</p>
@@ -347,17 +452,49 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
     <script>
         new fullpage('#fullpage', {
-            //options here
+            // Basic settings
             autoScrolling: true,
-            scrollHorizontally: true,
+            scrollingSpeed: 700,
+            easingcss3: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
+            
+            // Navigation
             navigation: true,
             navigationPosition: 'right',
             showActiveTooltip: true,
-            anchors: ['home', 'rd6-4wd', 'rd6-2wd', 'manufacturing'],
-            navigationTooltips: ['Home', 'RD6 4WD', 'RD6 2WD', 'Manufacturing'],
-            css3: true,
-            scrollingSpeed: 700,
+            anchors: ['home', 'rd6-4wd', 'rd6-2wd', 'colors', 'manufacturing'],
+            navigationTooltips: ['Home', 'RD6 4WD', 'RD6 2WD', 'Colors', 'Manufacturing'],
+            
+            // Scrolling behavior
+            fitToSection: false,
+            scrollBar: true,
+            normalScrollElements: '.scrollable',
+            bigSectionsDestination: 'top',
+            
+            // Responsive
+            responsiveWidth: 900,
+            responsiveHeight: 600,
+            
+            // Custom selectors
+            sectionSelector: '.section',
+            
+            // Callbacks
+            afterLoad: function(origin, destination, direction) {
+                // Add active class to all reveal elements in the current section
+                const currentSection = destination.item;
+                const revealElements = currentSection.querySelectorAll('.reveal-element');
+                revealElements.forEach(element => {
+                    element.classList.add('active');
+                });
+            },
+            
             onLeave: function(origin, destination, direction) {
+                // Remove active class from elements in the section we're leaving
+                const leavingSection = origin.item;
+                const revealElements = leavingSection.querySelectorAll('.reveal-element');
+                revealElements.forEach(element => {
+                    element.classList.remove('active');
+                });
+                
                 // Handle navigation visibility
                 const nav = document.querySelector('.main-nav');
                 if (destination.index === 0) {
@@ -374,6 +511,49 @@
                 e.preventDefault();
                 const target = link.getAttribute('href').replace('#', '');
                 fullpage_api.moveTo(target);
+            });
+        });
+
+        // Initialize reveal animations for the first section
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstSection = document.querySelector('.section');
+            const revealElements = firstSection.querySelectorAll('.reveal-element');
+            setTimeout(() => {
+                revealElements.forEach(element => {
+                    element.classList.add('active');
+                });
+            }, 500);
+        });
+
+        // Color selection functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorOptions = document.querySelectorAll('.color-option');
+            const carImage = document.getElementById('carImage');
+            const colorName = document.querySelector('.color-name');
+            const colorDescription = document.querySelector('.color-description');
+
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Update car image
+                    const color = this.dataset.color;
+                    carImage.src = `images/car-${color}.png`;
+                    
+                    // Update color info
+                    colorName.textContent = this.dataset.name;
+                    colorDescription.textContent = this.dataset.description;
+                    
+                    // Add transition effect
+                    carImage.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        carImage.style.transform = 'scale(1)';
+                    }, 200);
+                });
             });
         });
     </script>
