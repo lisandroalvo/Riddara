@@ -792,7 +792,7 @@
         }
 
         .specs-content {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 0 2rem;
             position: relative;
@@ -801,18 +801,29 @@
         .specs-interactive {
             position: relative;
             width: 100%;
-            height: 600px;
+            min-height: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            perspective: 1000px;
+            padding: 2rem;
+        }
+
+        .specs-view {
+            position: relative;
+            width: 48%;
             display: flex;
             justify-content: center;
             align-items: center;
-            perspective: 1000px;
         }
 
         .specs-car-image {
-            width: 80%;
+            width: 100%;
             height: auto;
             position: relative;
             transition: transform 0.5s ease;
+            filter: brightness(1.1) contrast(1.1);
         }
 
         .specs-car-image:hover {
@@ -1086,50 +1097,76 @@
                 <h2 class="specs-header">SPECS & DIMENSIONS</h2>
                 <div class="specs-unit">Unit: mm</div>
                 <div class="specs-interactive">
-                    <img src="images/rd6-side-black.png" alt="RD6 Side View" class="specs-car-image">
-                    
-                    <!-- Height Point -->
-                    <div class="dimension-point" style="top: 25%; left: 20%;">
-                        <div class="dimension-line" style="width: 80px; transform: rotate(90deg);"></div>
-                        <div class="dimension-info top">
-                            <div class="dimension-label">Vehicle Height</div>
-                            <div class="dimension-value">1,865 mm</div>
+                    <!-- Front View -->
+                    <div class="specs-view">
+                        <img src="images/front.png" alt="RD6 Front View" class="specs-car-image">
+                        
+                        <!-- Height Point -->
+                        <div class="dimension-point" style="top: 15%; left: 50%;">
+                            <div class="dimension-line" style="width: 80px; transform: rotate(90deg);"></div>
+                            <div class="dimension-info top">
+                                <div class="dimension-label">Vehicle Height</div>
+                                <div class="dimension-value">1,865 mm</div>
+                            </div>
+                        </div>
+
+                        <!-- Width Point -->
+                        <div class="dimension-point" style="top: 60%; left: 50%;">
+                            <div class="dimension-line" style="width: 120px;"></div>
+                            <div class="dimension-info bottom">
+                                <div class="dimension-label">Vehicle Width</div>
+                                <div class="dimension-value">1,900 mm</div>
+                            </div>
+                        </div>
+
+                        <!-- Track Point -->
+                        <div class="dimension-point" style="top: 85%; left: 50%;">
+                            <div class="dimension-line" style="width: 100px;"></div>
+                            <div class="dimension-info bottom">
+                                <div class="dimension-label">Front/Rear Track</div>
+                                <div class="dimension-value">1,600/1,620 mm</div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Length Point -->
-                    <div class="dimension-point" style="top: 75%; left: 50%;">
-                        <div class="dimension-line" style="width: 120px;"></div>
-                        <div class="dimension-info bottom">
-                            <div class="dimension-label">Vehicle Length</div>
-                            <div class="dimension-value">5,260 mm</div>
+                    <!-- Back View -->
+                    <div class="specs-view">
+                        <img src="images/back.png" alt="RD6 Back View" class="specs-car-image">
+                        
+                        <!-- Length Point -->
+                        <div class="dimension-point" style="top: 75%; left: 50%;">
+                            <div class="dimension-line" style="width: 120px;"></div>
+                            <div class="dimension-info bottom">
+                                <div class="dimension-label">Vehicle Length</div>
+                                <div class="dimension-value">5,260 mm</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Wheelbase Point -->
-                    <div class="dimension-point" style="top: 85%; left: 50%;">
-                        <div class="dimension-line" style="width: 100px; transform: rotate(-15deg);"></div>
-                        <div class="dimension-info bottom">
-                            <div class="dimension-label">Wheelbase</div>
-                            <div class="dimension-value">3,120 mm</div>
+                        <!-- Wheelbase Point -->
+                        <div class="dimension-point" style="top: 85%; left: 50%;">
+                            <div class="dimension-line" style="width: 100px; transform: rotate(-15deg);"></div>
+                            <div class="dimension-info bottom">
+                                <div class="dimension-label">Wheelbase</div>
+                                <div class="dimension-value">3,120 mm</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Ground Clearance Point -->
-                    <div class="dimension-point" style="top: 90%; left: 30%;">
-                        <div class="dimension-line" style="width: 60px; transform: rotate(-90deg);"></div>
-                        <div class="dimension-info left">
-                            <div class="dimension-label">Ground Clearance</div>
-                            <div class="dimension-value">221 mm</div>
+                        <!-- Ground Clearance Point -->
+                        <div class="dimension-point" style="top: 90%; left: 30%;">
+                            <div class="dimension-line" style="width: 60px; transform: rotate(-90deg);"></div>
+                            <div class="dimension-info left">
+                                <div class="dimension-label">Ground Clearance</div>
+                                <div class="dimension-value">221 mm</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Truck Bed Point -->
-                    <div class="dimension-point" style="top: 45%; left: 80%;">
-                        <div class="dimension-line" style="width: 90px; transform: rotate(45deg);"></div>
-                        <div class="dimension-info right">
-                            <div class="dimension-label">Truck Bed Size</div>
-                            <div class="dimension-value">1,525 × 1,450 × 540 mm</div>
+                        <!-- Truck Bed Point -->
+                        <div class="dimension-point" style="top: 45%; left: 80%;">
+                            <div class="dimension-line" style="width: 90px; transform: rotate(45deg);"></div>
+                            <div class="dimension-info right">
+                                <div class="dimension-label">Truck Bed Size</div>
+                                <div class="dimension-value">1,525 × 1,450 × 540 mm</div>
+                            </div>
                         </div>
                     </div>
                 </div>
