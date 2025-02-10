@@ -72,6 +72,9 @@
             background-size: cover;
             background-position: center;
             color: white;
+            position: relative;
+            height: 100vh;
+            padding-bottom: 60px; /* Space for footer */
         }
 
         .section.hero {
@@ -325,12 +328,11 @@
 
         .rd6-corner-logo {
             position: absolute;
-            top: 40px;
+            top: 50%;
             right: 60px;
-            width: 600px;
-            height: auto;
+            width: 400px;
+            transform: translateY(-50%);
             z-index: 3;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
         }
 
@@ -339,28 +341,62 @@
             height: auto;
             opacity: 0.95;
             filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            transform: scale(1.5);
+            transform-origin: center center;
         }
 
         .rd6-corner-logo .cta-button {
             display: inline-flex;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             background: var(--riddara-green);
-            border: 1px solid rgba(255, 255, 255, 0.2);
             color: #fff;
             text-decoration: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(8px);
-            gap: 0.5rem;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(60, 81, 60, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rd6-corner-logo .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            transform: translateX(-100%) skewX(-15deg);
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .rd6-corner-logo .cta-button:hover {
             background: #4a644a;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(60, 81, 60, 0.4);
+        }
+
+        .rd6-corner-logo .cta-button:hover::before {
+            transform: translateX(100%) skewX(-15deg);
+        }
+
+        .rd6-corner-logo .cta-button::after {
+            content: '→';
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .rd6-corner-logo .cta-button:hover::after {
+            transform: translateX(5px);
         }
 
         .rd6-logo {
@@ -494,7 +530,7 @@
 
         .rd6-corner-logo {
             position: absolute;
-            top: 40px;
+            top: 50%;
             right: 60px;
             width: 180px;
             height: auto;
@@ -588,7 +624,7 @@
         }
 
         .footer {
-            position: fixed;
+            position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
@@ -735,6 +771,11 @@
             color: #666;
             line-height: 1.4;
         }
+
+        #fullpage {
+            position: relative;
+            min-height: 100vh;
+        }
     </style>
 </head>
 <body>
@@ -800,7 +841,7 @@
             <div class="diagonal-block"></div>
             <div class="rd6-corner-logo">
                 <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
-                <a href="#configure" class="cta-button">Configure Now →</a>
+                <a href="#configure" class="cta-button">Configure Your RD6</a>
             </div>
             <div class="color-header">
                 <h2>CHOOSE YOUR COLOR</h2>
