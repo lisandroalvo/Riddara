@@ -583,36 +583,87 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
+            background: #3C513C;
             color: #fff;
-            padding: 1.5rem 0;
+            padding: 1rem 2rem;
             z-index: 100;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem;
         }
 
-        .footer-links {
+        .footer-logo {
             display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .footer-logo .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .footer-logo .brand-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-logo .sub-brand {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-center {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-center .scroll-up {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-center .scroll-up:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
             gap: 2rem;
         }
 
-        .footer-links a {
+        .footer-right .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .footer-right .cookie-policy {
+            font-size: 0.9rem;
             color: #fff;
             text-decoration: none;
-            font-size: 0.9rem;
             opacity: 0.8;
             transition: opacity 0.3s ease;
         }
 
-        .footer-links a:hover {
+        .footer-right .cookie-policy:hover {
             opacity: 1;
         }
 
@@ -623,7 +674,6 @@
 
         .social-links a {
             color: #fff;
-            font-size: 1.2rem;
             opacity: 0.8;
             transition: opacity 0.3s ease;
         }
@@ -805,18 +855,25 @@
     </div>
 
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Use</a>
-                <a href="#contact">Contact</a>
+        <div class="footer-logo">
+            <img src="images/riddara-logo.png" alt="RIDDARA">
+            <div class="brand-text">
+                <span class="brand-name">RIDDARA</span>
+                <span class="sub-brand">GEELY AUTO GROUP</span>
             </div>
+        </div>
+        <div class="footer-center">
+            <button class="scroll-up">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+        <div class="footer-right">
+            <div class="copyright"> 2024 Riddara. All Rights Reserved.</div>
             <div class="social-links">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
             </div>
+            <a href="#cookie-policy" class="cookie-policy">Cookie Policy</a>
         </div>
     </footer>
 
