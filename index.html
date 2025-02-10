@@ -277,21 +277,36 @@
         .color-schemes {
             background: #f8f9fa;
             color: #333;
+            overflow: hidden;
         }
 
         .car-showcase {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
         }
 
-        .car-preview {
+        .car-angles {
             flex: 1;
             position: relative;
-            height: 400px;
+            height: 500px;
+            perspective: 1000px;
+        }
+
+        .car-angle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .car-angle.active {
+            opacity: 1;
         }
 
         .car-image {
@@ -301,19 +316,54 @@
             transition: transform 0.5s ease;
         }
 
+        .angle-selector {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .angle-button {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .angle-button:hover {
+            background: #007bff;
+            color: white;
+        }
+
+        .angle-button.active {
+            background: #007bff;
+            color: white;
+        }
+
         .color-options {
-            flex: 0 0 200px;
+            flex: 0 0 250px;
             padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .color-option {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             margin: 1rem 0;
             cursor: pointer;
             border: 3px solid transparent;
             transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .color-option:hover {
@@ -324,16 +374,34 @@
             border-color: #007bff;
         }
 
+        .color-option::after {
+            content: '';
+            position: absolute;
+            left: 70px;
+            width: 150px;
+            font-size: 0.9rem;
+            color: #666;
+            pointer-events: none;
+        }
+
         .color-name {
-            font-size: 1.2rem;
-            margin-top: 1rem;
+            font-size: 1.4rem;
+            margin-top: 2rem;
             font-weight: 500;
         }
 
         .color-description {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #666;
             margin-top: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .color-price {
+            font-size: 1.2rem;
+            color: #007bff;
+            margin-top: 1rem;
+            font-weight: 500;
         }
 
         /* Responsive Design */
@@ -520,17 +588,35 @@
                 <h2 class="reveal-element">DIVERSIFIED COLOR SCHEMES</h2>
                 <p class="reveal-element delay-1">Personalize your RIDDARA with our premium color options</p>
                 <div class="car-showcase">
-                    <div class="car-preview reveal-element delay-1">
-                        <img src="images/car-white.png" alt="RIDDARA RD6" class="car-image" id="carImage">
+                    <div class="car-angles reveal-element delay-1">
+                        <div class="car-angle active" data-angle="front">
+                            <img src="images/car-white-front.png" alt="Front View" class="car-image" id="carImageFront">
+                        </div>
+                        <div class="car-angle" data-angle="side">
+                            <img src="images/car-white-side.png" alt="Side View" class="car-image" id="carImageSide">
+                        </div>
+                        <div class="car-angle" data-angle="back">
+                            <img src="images/car-white-back.png" alt="Back View" class="car-image" id="carImageBack">
+                        </div>
+                        <div class="car-angle" data-angle="top">
+                            <img src="images/car-white-top.png" alt="Top View" class="car-image" id="carImageTop">
+                        </div>
+                        <div class="angle-selector">
+                            <button class="angle-button active" data-angle="front">Front</button>
+                            <button class="angle-button" data-angle="side">Side</button>
+                            <button class="angle-button" data-angle="back">Back</button>
+                            <button class="angle-button" data-angle="top">Top</button>
+                        </div>
                     </div>
                     <div class="color-options reveal-element delay-2">
-                        <div class="color-option active" style="background: #FFFFFF" data-color="white" data-name="Crystal White" data-description="Pure elegance with a pristine finish"></div>
-                        <div class="color-option" style="background: #1C1C1C" data-color="black" data-name="Phantom Black" data-description="Bold and sophisticated presence"></div>
-                        <div class="color-option" style="background: #C0C0C0" data-color="silver" data-name="Stellar Silver" data-description="Modern and dynamic appearance"></div>
-                        <div class="color-option" style="background: #00008B" data-color="blue" data-name="Ocean Blue" data-description="Deep and luxurious tone"></div>
-                        <div class="color-option" style="background: #8B0000" data-color="red" data-name="Crimson Red" data-description="Passionate and energetic style"></div>
+                        <div class="color-option active" style="background: #FFFFFF" data-color="white" data-name="Crystal White" data-description="Pure elegance with a pristine finish" data-price="Standard"></div>
+                        <div class="color-option" style="background: #1C1C1C" data-color="black" data-name="Phantom Black" data-description="Bold and sophisticated presence" data-price="+฿15,000"></div>
+                        <div class="color-option" style="background: #C0C0C0" data-color="silver" data-name="Stellar Silver" data-description="Modern and dynamic appearance" data-price="+฿15,000"></div>
+                        <div class="color-option" style="background: #00008B" data-color="blue" data-name="Ocean Blue" data-description="Deep and luxurious tone" data-price="+฿20,000"></div>
+                        <div class="color-option" style="background: #8B0000" data-color="red" data-name="Crimson Red" data-description="Passionate and energetic style" data-price="+฿20,000"></div>
                         <div class="color-name">Crystal White</div>
                         <div class="color-description">Pure elegance with a pristine finish</div>
+                        <div class="color-price">Standard</div>
                     </div>
                 </div>
             </div>
@@ -694,13 +780,16 @@
             }, 500);
         });
 
-        // Color selection functionality
+        // Enhanced color and angle selection
         document.addEventListener('DOMContentLoaded', function() {
             const colorOptions = document.querySelectorAll('.color-option');
-            const carImage = document.getElementById('carImage');
+            const angleButtons = document.querySelectorAll('.angle-button');
+            const carAngles = document.querySelectorAll('.car-angle');
             const colorName = document.querySelector('.color-name');
             const colorDescription = document.querySelector('.color-description');
+            const colorPrice = document.querySelector('.color-price');
 
+            // Handle color changes
             colorOptions.forEach(option => {
                 option.addEventListener('click', function() {
                     // Remove active class from all options
@@ -709,19 +798,39 @@
                     // Add active class to clicked option
                     this.classList.add('active');
                     
-                    // Update car image
+                    // Update car images for all angles
                     const color = this.dataset.color;
-                    carImage.src = `images/car-${color}.png`;
+                    document.querySelectorAll('.car-image').forEach(img => {
+                        const angle = img.parentElement.dataset.angle;
+                        img.src = `images/car-${color}-${angle}.png`;
+                    });
                     
                     // Update color info
                     colorName.textContent = this.dataset.name;
                     colorDescription.textContent = this.dataset.description;
+                    colorPrice.textContent = this.dataset.price;
                     
                     // Add transition effect
-                    carImage.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        carImage.style.transform = 'scale(1)';
-                    }, 200);
+                    document.querySelectorAll('.car-image').forEach(img => {
+                        img.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            img.style.transform = 'scale(1)';
+                        }, 200);
+                    });
+                });
+            });
+
+            // Handle angle changes
+            angleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons and angles
+                    angleButtons.forEach(btn => btn.classList.remove('active'));
+                    carAngles.forEach(angle => angle.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding angle
+                    this.classList.add('active');
+                    const angleToShow = this.dataset.angle;
+                    document.querySelector(`.car-angle[data-angle="${angleToShow}"]`).classList.add('active');
                 });
             });
         });
