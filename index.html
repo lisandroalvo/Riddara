@@ -780,6 +780,7 @@
             color: white;
             padding: 4rem 0;
             position: relative;
+            overflow: hidden;
         }
 
         .specs-header {
@@ -791,57 +792,167 @@
         }
 
         .specs-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
         }
 
-        .specs-diagram {
+        .specs-interactive {
             position: relative;
             width: 100%;
-            height: 500px;
+            height: 600px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 4rem;
+            perspective: 1000px;
         }
 
-        .specs-image {
-            position: relative;
-            width: 45%;
-        }
-
-        .specs-image img {
-            width: 100%;
+        .specs-car-image {
+            width: 80%;
             height: auto;
+            position: relative;
+            transition: transform 0.5s ease;
         }
 
-        .dimension-label {
+        .specs-car-image:hover {
+            transform: scale(1.02);
+        }
+
+        .dimension-point {
             position: absolute;
-            color: #fff;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #FF6B00;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
         }
 
-        .dimension-label.orange {
-            color: #FF6B00;
+        .dimension-point::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #FF6B00;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: all 0.3s ease;
         }
 
         .dimension-line {
             position: absolute;
             background: #FF6B00;
+            transform-origin: left center;
             height: 2px;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .dimension-point:hover .dimension-line {
+            width: 100%;
+        }
+
+        .dimension-point:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .dimension-info {
+            position: absolute;
+            background: rgba(255, 107, 0, 0.95);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            transform: translateY(10px);
+            pointer-events: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            z-index: 10;
+        }
+
+        .dimension-info::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 107, 0, 0.95);
+            transform: rotate(45deg);
+        }
+
+        .dimension-info.top::before {
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        .dimension-info.bottom::before {
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        .dimension-info.left::before {
+            right: -5px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .dimension-info.right::before {
+            left: -5px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .dimension-point:hover .dimension-info {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dimension-label {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .dimension-value {
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .specs-unit {
             position: absolute;
             top: 2rem;
-            left: 2rem;
+            right: 2rem;
             color: #fff;
             font-size: 0.9rem;
-            opacity: 0.8;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 107, 0, 0.2);
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
         }
     </style>
 </head>
@@ -974,32 +1085,51 @@
             <div class="specs-content">
                 <h2 class="specs-header">SPECS & DIMENSIONS</h2>
                 <div class="specs-unit">Unit: mm</div>
-                <div class="specs-diagram">
-                    <div class="specs-image">
-                        <img src="images/rd6-front.png" alt="RD6 Front View">
-                        <div class="dimension-label orange" style="top: 0; left: 50%; transform: translateX(-50%);">
-                            Vehicle height: 1,865
-                        </div>
-                        <div class="dimension-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">
-                            Vehicle width: 1,900
-                        </div>
-                        <div class="dimension-label" style="bottom: 0; left: 50%; transform: translateX(-50%);">
-                            Front/Rear wheel track: 1,600/1,620
+                <div class="specs-interactive">
+                    <img src="images/rd6-side-black.png" alt="RD6 Side View" class="specs-car-image">
+                    
+                    <!-- Height Point -->
+                    <div class="dimension-point" style="top: 25%; left: 20%;">
+                        <div class="dimension-line" style="width: 80px; transform: rotate(90deg);"></div>
+                        <div class="dimension-info top">
+                            <div class="dimension-label">Vehicle Height</div>
+                            <div class="dimension-value">1,865 mm</div>
                         </div>
                     </div>
-                    <div class="specs-image">
-                        <img src="images/rd6-side.png" alt="RD6 Side View">
-                        <div class="dimension-label" style="top: 70%; left: 0;">
-                            Ground clearance: 221
+
+                    <!-- Length Point -->
+                    <div class="dimension-point" style="top: 75%; left: 50%;">
+                        <div class="dimension-line" style="width: 120px;"></div>
+                        <div class="dimension-info bottom">
+                            <div class="dimension-label">Vehicle Length</div>
+                            <div class="dimension-value">5,260 mm</div>
                         </div>
-                        <div class="dimension-label" style="top: 80%; left: 50%; transform: translateX(-50%);">
-                            Wheelbase: 3,120
+                    </div>
+
+                    <!-- Wheelbase Point -->
+                    <div class="dimension-point" style="top: 85%; left: 50%;">
+                        <div class="dimension-line" style="width: 100px; transform: rotate(-15deg);"></div>
+                        <div class="dimension-info bottom">
+                            <div class="dimension-label">Wheelbase</div>
+                            <div class="dimension-value">3,120 mm</div>
                         </div>
-                        <div class="dimension-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">
-                            Vehicle length: 5,260
+                    </div>
+
+                    <!-- Ground Clearance Point -->
+                    <div class="dimension-point" style="top: 90%; left: 30%;">
+                        <div class="dimension-line" style="width: 60px; transform: rotate(-90deg);"></div>
+                        <div class="dimension-info left">
+                            <div class="dimension-label">Ground Clearance</div>
+                            <div class="dimension-value">221 mm</div>
                         </div>
-                        <div class="dimension-label orange" style="top: 20%; right: 0;">
-                            Truck bed size: 1,525*1,450*540
+                    </div>
+
+                    <!-- Truck Bed Point -->
+                    <div class="dimension-point" style="top: 45%; left: 80%;">
+                        <div class="dimension-line" style="width: 90px; transform: rotate(45deg);"></div>
+                        <div class="dimension-info right">
+                            <div class="dimension-label">Truck Bed Size</div>
+                            <div class="dimension-value">1,525 × 1,450 × 540 mm</div>
                         </div>
                     </div>
                 </div>
