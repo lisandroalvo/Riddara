@@ -327,7 +327,7 @@
             position: absolute;
             top: 40px;
             right: 60px;
-            width: 280px;
+            width: 400px;
             height: auto;
             z-index: 3;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -337,59 +337,25 @@
         .rd6-corner-logo img {
             width: 100%;
             height: auto;
-            opacity: 0.9;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
-            margin-bottom: 1rem;
+            opacity: 0.95;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+            margin-bottom: 1.5rem;
         }
 
         .rd6-corner-logo .cta-button {
             display: inline-flex;
             align-items: center;
-            padding: 0.8rem 1.5rem;
+            padding: 1rem 2rem;
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: #fff;
             text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            font-size: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(8px);
             gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .rd6-corner-logo .cta-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .rd6-corner-logo .cta-button::after {
-            content: '→';
-            transition: transform 0.3s ease;
-        }
-
-        .rd6-corner-logo .cta-button:hover::after {
-            transform: translateX(5px);
-        }
-
-        .explore-more {
-            font-size: 1rem;
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .explore-more::after {
-            content: '→';
-            transition: transform 0.3s ease;
-        }
-
-        .explore-more:hover::after {
-            transform: translateX(5px);
         }
 
         .rd6-logo {
@@ -613,70 +579,102 @@
 
         /* Footer Styles */
         .footer {
-            background: #1a1a1a;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
             color: #fff;
-            padding: 4rem 0;
-            position: relative;
+            padding: 1.5rem 0;
             z-index: 100;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 0 2rem;
         }
 
-        .footer-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
             color: #fff;
-            font-weight: 600;
-        }
-
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section ul li a {
-            color: #999;
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
-        .footer-section ul li a:hover {
-            color: #fff;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 3rem;
-            margin-top: 3rem;
-            border-top: 1px solid #333;
-            color: #999;
+        .footer-links a:hover {
+            opacity: 1;
         }
 
         .social-links {
             display: flex;
             gap: 1rem;
-            margin-top: 1rem;
         }
 
         .social-links a {
-            color: #999;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            color: #fff;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
         .social-links a:hover {
-            color: #fff;
+            opacity: 1;
+        }
+
+        .features-section {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.4;
         }
     </style>
 </head>
@@ -720,24 +718,21 @@
         </div>
 
         <div class="section features-section" data-anchor="features">
-            <div class="content-wrapper">
-                <h2 class="reveal-element">INTELLIGENT AND ECO-FRIENDLY MANUFACTURING</h2>
-                <div class="features-grid">
-                    <div class="feature reveal-element delay-1">
-                        <i class="fas fa-cogs fa-3x" style="color: #007bff;"></i>
-                        <h3>Customized Workshop</h3>
-                        <p>With the agile and intelligent final assembly line, we can meet the diversified and customized needs of consumers.</p>
-                    </div>
-                    <div class="feature reveal-element delay-2">
-                        <i class="fas fa-leaf fa-3x" style="color: #28a745;"></i>
-                        <h3>Eco-friendly Workshop</h3>
-                        <p>With state-of-art green film pre-treatment technology, we ensure good anti-corrosion performance meeting the highest international standards.</p>
-                    </div>
-                    <div class="feature reveal-element delay-3">
-                        <i class="fas fa-road fa-3x" style="color: #6c757d;"></i>
-                        <h3>Comprehensive Test Track</h3>
-                        <p>First comprehensive test track integrating passenger vehicle performance testing, 100% electric vehicle intelligent testing, and off-road vehicle attribute testing.</p>
-                    </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>400+ KM Range</h3>
+                    <p>Go further with advanced battery technology</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <h3>4.8s 0-100</h3>
+                    <p>Experience thrilling acceleration</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mountain"></i>
+                    <h3>All-Terrain</h3>
+                    <p>Conquer any road with confidence</p>
                 </div>
             </div>
         </div>
@@ -746,11 +741,11 @@
             <div class="diagonal-block"></div>
             <div class="rd6-corner-logo">
                 <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
-                <a href="#configure" class="cta-button">Design Your RD6</a>
+                <a href="#configure" class="cta-button">Configure Now →</a>
             </div>
             <div class="color-header">
-                <h2>UNLEASH YOUR STYLE</h2>
-                <p>Choose from our meticulously crafted color palette, each shade designed to complement the RD6's bold character. From striking metallics to sophisticated earth tones, find the perfect expression of your personality.</p>
+                <h2>CHOOSE YOUR COLOR</h2>
+                <p>Express your style with our signature finishes.</p>
             </div>
             <div class="rd6-logo">RD6</div>
             <div class="car-showcase">
@@ -811,50 +806,17 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>About RIDDARA</h3>
-                <ul>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Sustainability</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press</a></li>
-                </ul>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Use</a>
+                <a href="#contact">Contact</a>
             </div>
-            <div class="footer-section">
-                <h3>Vehicles</h3>
-                <ul>
-                    <li><a href="#">RD6 4WD</a></li>
-                    <li><a href="#">RD6 2WD</a></li>
-                    <li><a href="#">Compare Models</a></li>
-                    <li><a href="#">Find a Dealer</a></li>
-                </ul>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
             </div>
-            <div class="footer-section">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Service Centers</a></li>
-                    <li><a href="#">Warranty</a></li>
-                    <li><a href="#">FAQs</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Connect</h3>
-                <ul>
-                    <li><a href="#">Newsletter</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 RIDDARA. All rights reserved.</p>
         </div>
     </footer>
 
