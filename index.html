@@ -275,133 +275,149 @@
 
         /* Color Schemes Section */
         .color-schemes {
-            background: #f8f9fa;
-            color: #333;
+            position: relative;
             overflow: hidden;
+            background: #f8f9fa;
+        }
+
+        .diagonal-block {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background: #3C513C;
+            transform: skewX(-20deg) translateX(20%);
+            z-index: 1;
+        }
+
+        .color-content {
+            position: relative;
+            z-index: 2;
+            padding: 4rem 0;
+            color: #fff;
+        }
+
+        .color-header {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            z-index: 3;
+        }
+
+        .color-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .color-header p {
+            font-size: 1.2rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .color-header p::after {
+            content: '→';
+            font-size: 1.4rem;
+        }
+
+        .rd6-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            font-size: 8rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 5px;
         }
 
         .car-showcase {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
             position: relative;
-        }
-
-        .car-angles {
-            flex: 1;
-            position: relative;
-            height: 500px;
-            perspective: 1000px;
-        }
-
-        .car-angle {
-            position: absolute;
             width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .car-angle.active {
-            opacity: 1;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .car-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: transform 0.5s ease;
+            width: 80%;
+            max-width: 1200px;
+            height: auto;
+            position: relative;
+            z-index: 2;
         }
 
-        .angle-selector {
+        .color-selector {
             position: absolute;
-            bottom: 20px;
+            bottom: 10%;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 1rem;
-            z-index: 10;
-        }
-
-        .angle-button {
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .angle-button:hover {
-            background: #007bff;
-            color: white;
-        }
-
-        .angle-button.active {
-            background: #007bff;
-            color: white;
-        }
-
-        .color-options {
-            flex: 0 0 250px;
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 3;
         }
 
         .color-option {
-            width: 60px;
-            height: 60px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
-            margin: 1rem 0;
             cursor: pointer;
-            border: 3px solid transparent;
+            border: 2px solid transparent;
             transition: all 0.3s ease;
-            position: relative;
-            display: flex;
-            align-items: center;
         }
 
         .color-option:hover {
-            transform: scale(1.1);
+            transform: scale(1.2);
         }
 
         .color-option.active {
-            border-color: #007bff;
+            border-color: #fff;
+            transform: scale(1.2);
         }
 
-        .color-option::after {
-            content: '';
+        /* Color options */
+        .color-green { background: #3C513C; }
+        .color-sand { background: #9B8B6B; }
+        .color-black { background: #000000; }
+        .color-blue { background: #1B3F5E; }
+        .color-silver { background: #808080; }
+        .color-white { background: #FFFFFF; border: 1px solid #ddd; }
+
+        .navigation-arrows {
             position: absolute;
-            left: 70px;
-            width: 150px;
-            font-size: 0.9rem;
-            color: #666;
-            pointer-events: none;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
         }
 
-        .color-name {
-            font-size: 1.4rem;
-            margin-top: 2rem;
-            font-weight: 500;
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
 
-        .color-description {
-            font-size: 1rem;
-            color: #666;
-            margin-top: 0.5rem;
-            line-height: 1.4;
-        }
-
-        .color-price {
-            font-size: 1.2rem;
-            color: #007bff;
-            margin-top: 1rem;
-            font-weight: 500;
+        .nav-arrow:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         /* Responsive Design */
@@ -584,40 +600,25 @@
         </div>
 
         <div class="section color-schemes" data-anchor="colors">
-            <div class="content-wrapper">
-                <h2 class="reveal-element">DIVERSIFIED COLOR SCHEMES</h2>
-                <p class="reveal-element delay-1">Personalize your RIDDARA with our premium color options</p>
-                <div class="car-showcase">
-                    <div class="car-angles reveal-element delay-1">
-                        <div class="car-angle active" data-angle="front">
-                            <img src="images/car-white-front.png" alt="Front View" class="car-image" id="carImageFront">
-                        </div>
-                        <div class="car-angle" data-angle="side">
-                            <img src="images/car-white-side.png" alt="Side View" class="car-image" id="carImageSide">
-                        </div>
-                        <div class="car-angle" data-angle="back">
-                            <img src="images/car-white-back.png" alt="Back View" class="car-image" id="carImageBack">
-                        </div>
-                        <div class="car-angle" data-angle="top">
-                            <img src="images/car-white-top.png" alt="Top View" class="car-image" id="carImageTop">
-                        </div>
-                        <div class="angle-selector">
-                            <button class="angle-button active" data-angle="front">Front</button>
-                            <button class="angle-button" data-angle="side">Side</button>
-                            <button class="angle-button" data-angle="back">Back</button>
-                            <button class="angle-button" data-angle="top">Top</button>
-                        </div>
-                    </div>
-                    <div class="color-options reveal-element delay-2">
-                        <div class="color-option active" style="background: #FFFFFF" data-color="white" data-name="Crystal White" data-description="Pure elegance with a pristine finish" data-price="Standard"></div>
-                        <div class="color-option" style="background: #1C1C1C" data-color="black" data-name="Phantom Black" data-description="Bold and sophisticated presence" data-price="+฿15,000"></div>
-                        <div class="color-option" style="background: #C0C0C0" data-color="silver" data-name="Stellar Silver" data-description="Modern and dynamic appearance" data-price="+฿15,000"></div>
-                        <div class="color-option" style="background: #00008B" data-color="blue" data-name="Ocean Blue" data-description="Deep and luxurious tone" data-price="+฿20,000"></div>
-                        <div class="color-option" style="background: #8B0000" data-color="red" data-name="Crimson Red" data-description="Passionate and energetic style" data-price="+฿20,000"></div>
-                        <div class="color-name">Crystal White</div>
-                        <div class="color-description">Pure elegance with a pristine finish</div>
-                        <div class="color-price">Standard</div>
-                    </div>
+            <div class="diagonal-block"></div>
+            <div class="color-header">
+                <h2>DIVERSIFIED<br>COLOR SCHEMES</h2>
+                <p>Explore More</p>
+            </div>
+            <div class="rd6-logo">RD6</div>
+            <div class="car-showcase">
+                <img src="Img/car-white.png" alt="RIDDARA RD6" class="car-image" id="carImage">
+                <div class="navigation-arrows">
+                    <button class="nav-arrow prev">←</button>
+                    <button class="nav-arrow next">→</button>
+                </div>
+                <div class="color-selector">
+                    <div class="color-option color-green" data-color="green" data-img="Img/car-green.png"></div>
+                    <div class="color-option color-sand" data-color="sand" data-img="Img/car-sand.png"></div>
+                    <div class="color-option color-black" data-color="black" data-img="Img/car-black.png"></div>
+                    <div class="color-option color-blue" data-color="blue" data-img="Img/car-blue.png"></div>
+                    <div class="color-option color-silver" data-color="silver" data-img="Img/car-silver.png"></div>
+                    <div class="color-option color-white active" data-color="white" data-img="Img/car-white.png"></div>
                 </div>
             </div>
         </div>
@@ -833,6 +834,50 @@
                     document.querySelector(`.car-angle[data-angle="${angleToShow}"]`).classList.add('active');
                 });
             });
+        });
+
+        // Color selection functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorOptions = document.querySelectorAll('.color-option');
+            const carImage = document.getElementById('carImage');
+            let currentColorIndex = 5; // Start with white (last color)
+
+            function updateColor(index) {
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                colorOptions[index].classList.add('active');
+                
+                const newImage = colorOptions[index].dataset.img;
+                carImage.style.opacity = '0';
+                
+                setTimeout(() => {
+                    carImage.src = newImage;
+                    carImage.style.opacity = '1';
+                }, 300);
+            }
+
+            colorOptions.forEach((option, index) => {
+                option.addEventListener('click', () => {
+                    currentColorIndex = index;
+                    updateColor(currentColorIndex);
+                });
+            });
+
+            // Navigation arrows functionality
+            const prevButton = document.querySelector('.nav-arrow.prev');
+            const nextButton = document.querySelector('.nav-arrow.next');
+
+            prevButton.addEventListener('click', () => {
+                currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
+                updateColor(currentColorIndex);
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
+                updateColor(currentColorIndex);
+            });
+
+            // Add transition style to car image
+            carImage.style.transition = 'opacity 0.3s ease';
         });
     </script>
 </body>
