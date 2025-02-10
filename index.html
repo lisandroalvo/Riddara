@@ -778,9 +778,7 @@
         .specs-section {
             background: #1C1C1C;
             color: white;
-            padding: 4rem 0;
-            position: relative;
-            overflow: hidden;
+            padding: 2rem 0;
         }
 
         .specs-content {
@@ -792,64 +790,51 @@
         .specs-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 4rem;
-            gap: 4rem;
+            margin-bottom: 2rem;
+            gap: 2rem;
         }
 
         .specs-view {
             position: relative;
             width: 48%;
+            transition: transform 0.3s ease;
+        }
+
+        .specs-view:hover {
+            transform: scale(1.02);
         }
 
         .specs-view.full-width {
             width: 100%;
-        }
-
-        .specs-car-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .dimension-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            margin-top: 1rem;
         }
 
         .dimension-group {
             position: absolute;
             cursor: pointer;
             pointer-events: auto;
+            transition: all 0.3s ease;
         }
 
-        .dimension-group:hover .dimension-dot::before {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-            animation: pulse 2s infinite;
-        }
-
-        .dimension-group:hover .dimension-line {
-            opacity: 1;
-            width: 100%;
-        }
-
-        .dimension-group:hover .dimension-text {
-            opacity: 1;
-            transform: translateY(0);
+        .dimension-group:hover {
+            z-index: 10;
         }
 
         .dimension-dot {
             position: absolute;
-            width: 10px;
-            height: 10px;
+            width: 12px;
+            height: 12px;
             background: #FF6B00;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
+            box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .dimension-group:hover .dimension-dot {
+            background: #FFF;
+            box-shadow: 0 0 0 8px rgba(255, 107, 0, 0.2);
         }
 
         .dimension-dot::before {
@@ -866,6 +851,12 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        .dimension-group:hover .dimension-dot::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            animation: pulse 2s infinite;
+        }
+
         .dimension-line {
             position: absolute;
             background: #FF6B00;
@@ -874,6 +865,12 @@
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             transform-origin: left center;
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.4);
+        }
+
+        .dimension-group:hover .dimension-line {
+            opacity: 1;
+            width: 100%;
         }
 
         .dimension-line.vertical {
@@ -888,17 +885,47 @@
 
         .dimension-text {
             position: absolute;
-            color: #FF6B00;
+            color: #FFF;
             font-size: 14px;
             white-space: nowrap;
-            background: rgba(0, 0, 0, 0.85);
-            padding: 8px 12px;
-            border-radius: 6px;
-            backdrop-filter: blur(8px);
-            transform: translateY(10px);
+            background: rgba(255, 107, 0, 0.95);
+            padding: 10px 16px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transform: translateY(10px) scale(0.9);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 3;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .dimension-text::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 107, 0, 0.95);
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .dimension-text.top::before {
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        .dimension-text.bottom::before {
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        .dimension-group:hover .dimension-text {
+            transform: translateY(0) scale(1);
+            opacity: 1;
         }
 
         @keyframes pulse {
@@ -907,7 +934,7 @@
                 opacity: 0.5;
             }
             50% {
-                transform: translate(-50%, -50%) scale(1.5);
+                transform: translate(-50%, -50%) scale(1.8);
                 opacity: 0.2;
             }
             100% {
@@ -916,19 +943,28 @@
             }
         }
 
-        .specs-view {
-            position: relative;
-            width: 48%;
-        }
-
-        .specs-view.full-width {
-            width: 100%;
-        }
-
         .specs-car-image {
             width: 100%;
             height: auto;
             display: block;
+            transition: filter 0.3s ease;
+        }
+
+        .specs-view:hover .specs-car-image {
+            filter: brightness(1.1) contrast(1.1);
+        }
+
+        .dimension-label {
+            display: block;
+            font-size: 12px;
+            opacity: 0.8;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .dimension-value {
+            font-size: 16px;
+            font-weight: 600;
         }
     </style>
 </head>
