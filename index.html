@@ -377,12 +377,68 @@
             height: auto;
             position: relative;
             z-index: 2;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: driveIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, opacity;
         }
 
-        .car-image.driving-out {
-            animation: driveOut 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        .car-image.drive-in-right {
+            animation: driveInRight 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .car-image.drive-in-left {
+            animation: driveInLeft 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .car-image.drive-out-right {
+            animation: driveOutRight 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .car-image.drive-out-left {
+            animation: driveOutLeft 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes driveInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(120%) scale(0.8) rotate(2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes driveInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-120%) scale(0.8) rotate(-2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes driveOutRight {
+            0% {
+                opacity: 1;
+                transform: translateX(0) scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(120%) scale(0.8) rotate(2deg);
+            }
+        }
+
+        @keyframes driveOutLeft {
+            0% {
+                opacity: 1;
+                transform: translateX(0) scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-120%) scale(0.8) rotate(-2deg);
+            }
         }
 
         .color-selector {
@@ -425,17 +481,18 @@
         .rd6-corner-logo {
             position: absolute;
             top: 40px;
-            right: 40px;
-            width: 120px;
+            right: 60px;
+            width: 180px;
             height: auto;
             z-index: 3;
-            transition: opacity 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .rd6-corner-logo img {
             width: 100%;
             height: auto;
             opacity: 0.9;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
         }
 
         .navigation-arrows {
@@ -475,28 +532,6 @@
 
         .nav-arrow:active {
             transform: scale(0.95);
-        }
-
-        @keyframes driveIn {
-            0% {
-                opacity: 0;
-                transform: translateX(100%) scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-        }
-
-        @keyframes driveOut {
-            0% {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-100%) scale(0.8);
-            }
         }
 
         /* Responsive Design */
@@ -609,8 +644,9 @@
                 <a href="#home"><img src="images/riddara-logo.png" alt="RIDDARA"></a>
             </div>
             <div class="nav-links">
-                <a href="#rd6-4wd">RIDDARA 4WD</a>
-                <a href="#rd6-2wd">RIDDARA 2WD</a>
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#colors">Colors</a>
                 <a href="#about">ABOUT RIDDARA</a>
                 <a href="#newsroom">NEWSROOM</a>
                 <a href="#contact">CONTACT US</a>
@@ -636,6 +672,56 @@
                 <div class="scroll-indicator">
                     <div class="mouse"></div>
                     <div class="scroll-text">Scroll to explore</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section features-section" data-anchor="features">
+            <div class="content-wrapper">
+                <h2 class="reveal-element">INTELLIGENT AND ECO-FRIENDLY MANUFACTURING</h2>
+                <div class="features-grid">
+                    <div class="feature reveal-element delay-1">
+                        <i class="fas fa-cogs fa-3x" style="color: #007bff;"></i>
+                        <h3>Customized Workshop</h3>
+                        <p>With the agile and intelligent final assembly line, we can meet the diversified and customized needs of consumers.</p>
+                    </div>
+                    <div class="feature reveal-element delay-2">
+                        <i class="fas fa-leaf fa-3x" style="color: #28a745;"></i>
+                        <h3>Eco-friendly Workshop</h3>
+                        <p>With state-of-art green film pre-treatment technology, we ensure good anti-corrosion performance meeting the highest international standards.</p>
+                    </div>
+                    <div class="feature reveal-element delay-3">
+                        <i class="fas fa-road fa-3x" style="color: #6c757d;"></i>
+                        <h3>Comprehensive Test Track</h3>
+                        <p>First comprehensive test track integrating passenger vehicle performance testing, 100% electric vehicle intelligent testing, and off-road vehicle attribute testing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section color-schemes" data-anchor="colors">
+            <div class="diagonal-block"></div>
+            <div class="rd6-corner-logo">
+                <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
+            </div>
+            <div class="color-header">
+                <h2>DIVERSIFIED<br>COLOR SCHEMES</h2>
+                <p>Explore More</p>
+            </div>
+            <div class="rd6-logo">RD6</div>
+            <div class="car-showcase">
+                <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image" id="carImage">
+                <div class="navigation-arrows">
+                    <button class="nav-arrow prev">←</button>
+                    <button class="nav-arrow next">→</button>
+                </div>
+                <div class="color-selector">
+                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
+                    <div class="color-option color-sand" data-color="sand" data-img="images/Yellow EV Pickup 1.png" data-bg="#9B8B6B"></div>
+                    <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
+                    <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
+                    <div class="color-option color-grey" data-color="grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
+                    <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
                 </div>
             </div>
         </div>
@@ -673,56 +759,6 @@
                             <span class="number">5.2</span>
                             <span class="label">Sec 0-100 km/h</span>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section color-schemes" data-anchor="colors">
-            <div class="diagonal-block"></div>
-            <div class="rd6-corner-logo">
-                <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
-            </div>
-            <div class="color-header">
-                <h2>DIVERSIFIED<br>COLOR SCHEMES</h2>
-                <p>Explore More</p>
-            </div>
-            <div class="rd6-logo">RD6</div>
-            <div class="car-showcase">
-                <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image" id="carImage">
-                <div class="navigation-arrows">
-                    <button class="nav-arrow prev">←</button>
-                    <button class="nav-arrow next">→</button>
-                </div>
-                <div class="color-selector">
-                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
-                    <div class="color-option color-sand" data-color="sand" data-img="images/Yellow EV Pickup 1.png" data-bg="#9B8B6B"></div>
-                    <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
-                    <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
-                    <div class="color-option color-grey" data-color="grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
-                    <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section features-section" data-anchor="manufacturing">
-            <div class="content-wrapper">
-                <h2 class="reveal-element">INTELLIGENT AND ECO-FRIENDLY MANUFACTURING</h2>
-                <div class="features-grid">
-                    <div class="feature reveal-element delay-1">
-                        <i class="fas fa-cogs fa-3x" style="color: #007bff;"></i>
-                        <h3>Customized Workshop</h3>
-                        <p>With the agile and intelligent final assembly line, we can meet the diversified and customized needs of consumers.</p>
-                    </div>
-                    <div class="feature reveal-element delay-2">
-                        <i class="fas fa-leaf fa-3x" style="color: #28a745;"></i>
-                        <h3>Eco-friendly Workshop</h3>
-                        <p>With state-of-art green film pre-treatment technology, we ensure good anti-corrosion performance meeting the highest international standards.</p>
-                    </div>
-                    <div class="feature reveal-element delay-3">
-                        <i class="fas fa-road fa-3x" style="color: #6c757d;"></i>
-                        <h3>Comprehensive Test Track</h3>
-                        <p>First comprehensive test track integrating passenger vehicle performance testing, 100% electric vehicle intelligent testing, and off-road vehicle attribute testing.</p>
                     </div>
                 </div>
             </div>
@@ -781,65 +817,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
     <script>
         new fullpage('#fullpage', {
-            // Basic settings
             autoScrolling: true,
-            scrollingSpeed: 700,
-            easingcss3: 'cubic-bezier(0.645, 0.045, 0.355, 1.000)',
-            
-            // Navigation
+            scrollHorizontally: true,
             navigation: true,
-            navigationPosition: 'right',
-            showActiveTooltip: true,
-            anchors: ['home', 'rd6-4wd', 'rd6-2wd', 'colors', 'manufacturing'],
-            navigationTooltips: ['Home', 'RD6 4WD', 'RD6 2WD', 'Colors', 'Manufacturing'],
-            
-            // Scrolling behavior
-            fitToSection: false,
-            scrollBar: true,
-            normalScrollElements: '.scrollable',
-            bigSectionsDestination: 'top',
-            
-            // Responsive
-            responsiveWidth: 900,
-            responsiveHeight: 600,
-            
-            // Custom selectors
-            sectionSelector: '.section',
-            
-            // Callbacks
-            afterLoad: function(origin, destination, direction) {
-                // Add active class to all reveal elements in the current section
-                const currentSection = destination.item;
-                const revealElements = currentSection.querySelectorAll('.reveal-element');
-                revealElements.forEach(element => {
-                    element.classList.add('active');
-                });
-                
-                if (destination.item.classList.contains('color-schemes')) {
-                    destination.item.classList.add('active');
-                }
-            },
-            
-            onLeave: function(origin, destination, direction) {
-                // Remove active class from elements in the section we're leaving
-                const leavingSection = origin.item;
-                const revealElements = leavingSection.querySelectorAll('.reveal-element');
-                revealElements.forEach(element => {
-                    element.classList.remove('active');
-                });
-                
-                if (origin.item.classList.contains('color-schemes')) {
-                    origin.item.classList.remove('active');
-                }
-                
-                // Handle navigation visibility
-                const nav = document.querySelector('.main-nav');
-                if (destination.index === 0) {
-                    nav.style.background = 'rgba(255, 255, 255, 0.95)';
-                } else {
-                    nav.style.background = 'rgba(255, 255, 255, 1)';
-                }
-            }
+            anchors: ['home', 'features', 'colors', 'rd6-4wd', 'rd6-2wd'],
+            navigationTooltips: ['Home', 'Features', 'Colors', 'RD6 4WD', 'RD6 2WD']
         });
 
         // Handle navigation clicks
@@ -905,36 +887,40 @@
                 const newBg = colorOptions[index].dataset.bg;
                 const newColor = colorOptions[index].dataset.color;
                 
-                // Update corner logo
+                // Update corner logo with scale effect
+                cornerLogo.style.transform = 'scale(0.9)';
                 cornerLogo.style.opacity = '0';
                 setTimeout(() => {
                     cornerLogo.src = `images/${logoMap[newColor]}`;
+                    cornerLogo.style.transform = 'scale(1)';
                     cornerLogo.style.opacity = '1';
                 }, 300);
 
-                // Add driving out animation
-                carImage.style.animation = '';
-                carImage.classList.add('driving-out');
+                // Remove any existing animation classes
+                carImage.className = 'car-image';
+                
+                // Add the appropriate exit animation class based on direction
+                carImage.classList.add(direction === 'right' ? 'drive-out-left' : 'drive-out-right');
                 
                 setTimeout(() => {
                     // Update image and background
                     carImage.src = newImage;
                     diagonalBlock.style.background = newBg;
                     
-                    // Reset animation
-                    carImage.classList.remove('driving-out');
-                    carImage.style.animation = 'driveIn 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                    // Remove exit animation and add entrance animation
+                    carImage.className = 'car-image';
+                    carImage.classList.add(direction === 'right' ? 'drive-in-right' : 'drive-in-left');
                     
                     setTimeout(() => {
                         isAnimating = false;
-                    }, 800);
-                }, 800);
+                    }, 1000);
+                }, 1000);
             }
 
             // Add click handlers to color options
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', () => {
-                    if (currentColorIndex === index) return;
+                    if (currentColorIndex === index || isAnimating) return;
                     const direction = index > currentColorIndex ? 'right' : 'left';
                     currentColorIndex = index;
                     updateColor(currentColorIndex, direction);
