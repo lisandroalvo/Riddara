@@ -803,7 +803,6 @@
 
         .specs-view.full-width {
             width: 100%;
-            margin-top: 2rem;
         }
 
         .specs-car-image {
@@ -814,45 +813,50 @@
 
         .dimension-container {
             position: absolute;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
-        .specs-view:hover .dimension-container {
+        .dimension-group {
+            position: absolute;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .dimension-group:hover .dimension-dot::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            animation: pulse 2s infinite;
+        }
+
+        .dimension-group:hover .dimension-line {
+            opacity: 1;
+            width: 100%;
+        }
+
+        .dimension-group:hover .dimension-text {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .dimension-line {
-            position: absolute;
-            background: #FF6B00;
-            height: 2px;
-            width: 0;
-            opacity: 0;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .specs-view:hover .dimension-line {
-            opacity: 0.8;
-            width: 100%;
-        }
-
         .dimension-dot {
             position: absolute;
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             background: #FF6B00;
             border-radius: 50%;
-            transform: scale(0);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translate(-50%, -50%);
+            z-index: 2;
         }
 
         .dimension-dot::before {
             content: '';
             position: absolute;
-            width: 16px;
-            height: 16px;
+            width: 24px;
+            height: 24px;
             border: 2px solid #FF6B00;
             border-radius: 50%;
             top: 50%;
@@ -862,14 +866,24 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .specs-view:hover .dimension-dot {
-            transform: scale(1);
+        .dimension-line {
+            position: absolute;
+            background: #FF6B00;
+            height: 2px;
+            width: 0;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: left center;
         }
 
-        .specs-view:hover .dimension-dot::before {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-            animation: pulse 2s infinite;
+        .dimension-line.vertical {
+            width: 2px !important;
+            height: 0;
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dimension-group:hover .dimension-line.vertical {
+            height: 100%;
         }
 
         .dimension-text {
@@ -877,18 +891,14 @@
             color: #FF6B00;
             font-size: 14px;
             white-space: nowrap;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 6px 12px;
-            border-radius: 4px;
-            backdrop-filter: blur(4px);
+            background: rgba(0, 0, 0, 0.85);
+            padding: 8px 12px;
+            border-radius: 6px;
+            backdrop-filter: blur(8px);
             transform: translateY(10px);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .specs-view:hover .dimension-text {
-            transform: translateY(0);
-            opacity: 1;
+            z-index: 3;
         }
 
         @keyframes pulse {
@@ -906,14 +916,19 @@
             }
         }
 
-        .dimension-vertical {
-            height: 0;
-            width: 2px !important;
-            transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        .specs-view {
+            position: relative;
+            width: 48%;
         }
 
-        .specs-view:hover .dimension-vertical {
-            height: 100%;
+        .specs-view.full-width {
+            width: 100%;
+        }
+
+        .specs-car-image {
+            width: 100%;
+            height: auto;
+            display: block;
         }
     </style>
 </head>
@@ -1052,20 +1067,26 @@
                     <div class="specs-view">
                         <img src="images/front.png" alt="RD6 Front View" class="specs-car-image">
                         <div class="dimension-container">
-                            <!-- Vehicle Height -->
-                            <div class="dimension-dot" style="left: 15%; top: 25%;"></div>
-                            <div class="dimension-line dimension-vertical" style="left: 15%; top: 25%;"></div>
-                            <div class="dimension-text" style="left: 5%; top: 45%; transform: rotate(-90deg);">Vehicle height: 1,865</div>
-                            
-                            <!-- Vehicle Width -->
-                            <div class="dimension-dot" style="left: 25%; bottom: 35%;"></div>
-                            <div class="dimension-line" style="width: 200px; left: 25%; bottom: 35%;"></div>
-                            <div class="dimension-text" style="left: 30%; bottom: 40%;">Vehicle width: 1,900</div>
-                            
-                            <!-- Front/Rear Track -->
-                            <div class="dimension-dot" style="left: 25%; bottom: 15%;"></div>
-                            <div class="dimension-line" style="width: 160px; left: 25%; bottom: 15%;"></div>
-                            <div class="dimension-text" style="left: 25%; bottom: 20%;">Front/Rear wheel track: 1,600/1,620</div>
+                            <!-- Height (at the roof) -->
+                            <div class="dimension-group" style="top: 20%; left: 50%; width: 60px; height: 160px;">
+                                <div class="dimension-dot"></div>
+                                <div class="dimension-line vertical"></div>
+                                <div class="dimension-text" style="left: -120px; top: 50%;">Height: 1,865</div>
+                            </div>
+
+                            <!-- Width (at the wheels) -->
+                            <div class="dimension-group" style="bottom: 35%; left: 20%; width: 200px; height: 30px;">
+                                <div class="dimension-dot"></div>
+                                <div class="dimension-line"></div>
+                                <div class="dimension-text" style="left: 50%; bottom: 100%;">Width: 1,900</div>
+                            </div>
+
+                            <!-- Track (at the wheels) -->
+                            <div class="dimension-group" style="bottom: 25%; left: 25%; width: 180px; height: 30px;">
+                                <div class="dimension-dot"></div>
+                                <div class="dimension-line"></div>
+                                <div class="dimension-text" style="left: 50%; top: 100%;">Track: 1,600/1,620</div>
+                            </div>
                         </div>
                     </div>
 
@@ -1073,20 +1094,26 @@
                     <div class="specs-view">
                         <img src="images/back.png" alt="RD6 Back View" class="specs-car-image">
                         <div class="dimension-container">
-                            <!-- Vehicle Height -->
-                            <div class="dimension-dot" style="left: 15%; top: 25%;"></div>
-                            <div class="dimension-line dimension-vertical" style="left: 15%; top: 25%;"></div>
-                            <div class="dimension-text" style="left: 5%; top: 45%; transform: rotate(-90deg);">Vehicle height: 1,865</div>
-                            
-                            <!-- Vehicle Width -->
-                            <div class="dimension-dot" style="left: 25%; bottom: 35%;"></div>
-                            <div class="dimension-line" style="width: 200px; left: 25%; bottom: 35%;"></div>
-                            <div class="dimension-text" style="left: 30%; bottom: 40%;">Vehicle width: 1,900</div>
-                            
-                            <!-- Front/Rear Track -->
-                            <div class="dimension-dot" style="left: 25%; bottom: 15%;"></div>
-                            <div class="dimension-line" style="width: 160px; left: 25%; bottom: 15%;"></div>
-                            <div class="dimension-text" style="left: 25%; bottom: 20%;">Front/Rear wheel track: 1,600/1,620</div>
+                            <!-- Height (at the roof) -->
+                            <div class="dimension-group" style="top: 20%; left: 50%; width: 60px; height: 160px;">
+                                <div class="dimension-dot"></div>
+                                <div class="dimension-line vertical"></div>
+                                <div class="dimension-text" style="left: -120px; top: 50%;">Height: 1,865</div>
+                            </div>
+
+                            <!-- Width (at the wheels) -->
+                            <div class="dimension-group" style="bottom: 35%; left: 20%; width: 200px; height: 30px;">
+                                <div class="dimension-dot"></div>
+                                <div class="dimension-line"></div>
+                                <div class="dimension-text" style="left: 50%; bottom: 100%;">Width: 1,900</div>
+                            </div>
+
+                            <!-- Track (at the wheels) -->
+                            <div class="dimension-group" style="bottom: 25%; left: 25%; width: 180px; height: 30px;">
+                                <div class="dimension-dot"></div>
+                                <div class="dimension-line"></div>
+                                <div class="dimension-text" style="left: 50%; top: 100%;">Track: 1,600/1,620</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1096,25 +1123,33 @@
                     <div class="specs-view full-width">
                         <img src="images/Side.png" alt="RD6 Side View" class="specs-car-image">
                         <div class="dimension-container">
-                            <!-- Vehicle Length -->
-                            <div class="dimension-dot" style="left: 20%; bottom: 25%;"></div>
-                            <div class="dimension-line" style="width: 400px; left: 20%; bottom: 25%;"></div>
-                            <div class="dimension-text" style="left: 35%; bottom: 30%;">Vehicle length: 5,260</div>
-                            
-                            <!-- Wheelbase -->
-                            <div class="dimension-dot" style="left: 30%; bottom: 15%;"></div>
-                            <div class="dimension-line" style="width: 250px; left: 30%; bottom: 15%;"></div>
-                            <div class="dimension-text" style="left: 35%; bottom: 20%;">Wheelbase: 3,120</div>
-                            
+                            <!-- Length (full vehicle) -->
+                            <div class="dimension-group" style="bottom: 30%; left: 10%; width: 80%; height: 30px;">
+                                <div class="dimension-dot"></div>
+                                <div class="dimension-line"></div>
+                                <div class="dimension-text" style="left: 50%; bottom: 100%;">Length: 5,260</div>
+                            </div>
+
+                            <!-- Wheelbase (between wheels) -->
+                            <div class="dimension-group" style="bottom: 20%; left: 25%; width: 50%; height: 30px;">
+                                <div class="dimension-dot"></div>
+                                <div class="dimension-line"></div>
+                                <div class="dimension-text" style="left: 50%; top: 100%;">Wheelbase: 3,120</div>
+                            </div>
+
                             <!-- Ground Clearance -->
-                            <div class="dimension-dot" style="left: 35%; bottom: 5%;"></div>
-                            <div class="dimension-line dimension-vertical" style="left: 35%; bottom: 5%; height: 40px;"></div>
-                            <div class="dimension-text" style="left: 37%; bottom: 8%;">Ground clearance: 221</div>
-                            
-                            <!-- Truck Bed Size -->
-                            <div class="dimension-dot" style="right: 15%; top: 40%;"></div>
-                            <div class="dimension-line" style="width: 150px; right: 15%; top: 40%;"></div>
-                            <div class="dimension-text" style="right: 10%; top: 35%;">Truck bed size: 1,525×1,450×540</div>
+                            <div class="dimension-group" style="bottom: 15%; left: 40%; width: 30px; height: 60px;">
+                                <div class="dimension-dot"></div>
+                                <div class="dimension-line vertical"></div>
+                                <div class="dimension-text" style="left: 120%; top: 50%;">Ground: 221</div>
+                            </div>
+
+                            <!-- Truck Bed -->
+                            <div class="dimension-group" style="top: 45%; right: 15%; width: 140px; height: 30px;">
+                                <div class="dimension-dot"></div>
+                                <div class="dimension-line"></div>
+                                <div class="dimension-text" style="right: 0; top: -30px;">Bed: 1,525×1,450×540</div>
+                            </div>
                         </div>
                     </div>
                 </div>
