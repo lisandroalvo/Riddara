@@ -3,91 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Auto Dealership</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/main.css">
+    <title>RIDDARA - EV Pickup Leader</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">LUXURY MOTORS</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#inventory">Inventory</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="/"><img src="images/riddara-logo.png" alt="RIDDARA"></a>
+            </div>
+            <div class="nav-links">
+                <a href="#rd6-4wd">RIDDARA 4WD</a>
+                <a href="#rd6-2wd">RIDDARA 2WD</a>
+                <a href="#about">ABOUT RIDDARA</a>
+                <a href="#newsroom">NEWSROOM</a>
+                <a href="#contact">CONTACT US</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Experience Luxury</h1>
-            <p>Discover our exclusive collection of premium vehicles</p>
-            <a href="#inventory" class="btn">View Inventory</a>
-        </div>
-    </section>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>THE FIRST EV PICKUP IN THAILAND</h1>
+                <p>100% electric pickup truck, redefining a boundless lifestyle</p>
+                <a href="#learn-more" class="cta-button">Learn More</a>
+            </div>
+        </section>
 
-    <section id="inventory" class="featured-cars">
-        <div class="container">
-            <h2 data-aos="fade-up">Featured Vehicles</h2>
-            
-            <!-- 3D Viewer Section -->
-            <div class="car-viewer-section" data-aos="fade-up">
-                <div id="car-viewer"></div>
-                <div class="viewer-controls">
-                    <button class="view-btn active" data-model-path="./models/canter.obj">View Canter 3D Model</button>
+        <section class="manufacturing">
+            <h2>INTELLIGENT AND ECO-FRIENDLY MANUFACTURING</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>Customized Workshop</h3>
+                    <p>With the agile and intelligent final assembly line, we can meet the diversified and customized needs of consumers.</p>
                 </div>
-                <div class="viewer-instructions">
-                    <p>🖱️ Click and drag to rotate</p>
-                    <p>⚲ Scroll to zoom</p>
-                    <p>👆 Right-click and drag to pan</p>
+                <div class="feature">
+                    <h3>Eco-friendly Workshop</h3>
+                    <p>With state-of-art green film pre-treatment technology, we ensure good anti-corrosion performance meeting the highest international standards.</p>
+                </div>
+                <div class="feature">
+                    <h3>Comprehensive Test Track</h3>
+                    <p>First comprehensive test track integrating passenger vehicle performance testing, 100% electric vehicle intelligent testing, and off-road vehicle attribute testing.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="filter-buttons" data-aos="fade-up">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="luxury">Luxury</button>
-                <button class="filter-btn" data-filter="sports">Sports</button>
-                <button class="filter-btn" data-filter="suv">SUV</button>
+        <section class="latest-news">
+            <h2>Latest News</h2>
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="images/news1.jpg" alt="RIDDARA RD6 Launch">
+                    </div>
+                    <div class="news-content">
+                        <h3>RIDDARA launches RIDDARA RD6</h3>
+                        <p class="date">09 July 2024</p>
+                        <p>The first EV pickup in Thailand - 100% electric pickup truck, redefining a boundless lifestyle.</p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+                <!-- Add more news cards as needed -->
             </div>
-            <div class="car-grid">
-                <div class="car-card" data-category="luxury" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=800" alt="Luxury Car" class="car-image">
-                    <div class="car-info">
-                        <h3>Mercedes-Benz S-Class</h3>
-                        <p>2023 • Luxury Sedan</p>
-                        <span class="price">$110,000</span>
-                    </div>
-                </div>
-                <div class="car-card" data-category="sports" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?auto=format&fit=crop&w=800" alt="Sports Car" class="car-image">
-                    <div class="car-info">
-                        <h3>Porsche 911 GT3</h3>
-                        <p>2023 • Sports Car</p>
-                        <span class="price">$165,000</span>
-                    </div>
-                </div>
-                <div class="car-card" data-category="suv" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800" alt="SUV" class="car-image">
-                    <div class="car-info">
-                        <h3>Range Rover Sport</h3>
-                        <p>2023 • Luxury SUV</p>
-                        <span class="price">$95,000</span>
-                    </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#rd6-4wd">RIDDARA 4WD</a></li>
+                    <li><a href="#rd6-2wd">RIDDARA 2WD</a></li>
+                    <li><a href="#about">About RIDDARA</a></li>
+                    <li><a href="#newsroom">Newsroom</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#cookies">Cookie Policy</a></li>
+                    <li><a href="#terms">Terms of Use</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="footer-bottom">
+            <p>&copy; 2024 RIDDARA. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/MTLLoader.js"></script>
-    <script src="./js/main.js"></script>
-    <script src="./js/car-viewer.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
