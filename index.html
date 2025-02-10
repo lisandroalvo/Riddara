@@ -378,6 +378,11 @@
             position: relative;
             z-index: 2;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: driveIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .car-image.driving-out {
+            animation: driveOut 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .color-selector {
@@ -417,6 +422,22 @@
         .color-grey { background: #808080; }
         .color-silver { background: #C0C0C0; }
 
+        .rd6-corner-logo {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 120px;
+            height: auto;
+            z-index: 3;
+            transition: opacity 0.3s ease;
+        }
+
+        .rd6-corner-logo img {
+            width: 100%;
+            height: auto;
+            opacity: 0.9;
+        }
+
         .navigation-arrows {
             position: absolute;
             width: 100%;
@@ -425,28 +446,57 @@
             z-index: 3;
             display: flex;
             justify-content: space-between;
-            padding: 0 2rem;
+            padding: 0 4rem;
             pointer-events: none;
         }
 
         .nav-arrow {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
-            border: none;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #fff;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
+            font-size: 1.8rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .nav-arrow:hover {
             background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        .nav-arrow:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes driveIn {
+            0% {
+                opacity: 0;
+                transform: translateX(100%) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes driveOut {
+            0% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-100%) scale(0.8);
+            }
         }
 
         /* Responsive Design */
@@ -630,6 +680,9 @@
 
         <div class="section color-schemes" data-anchor="colors">
             <div class="diagonal-block"></div>
+            <div class="rd6-corner-logo">
+                <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
+            </div>
             <div class="color-header">
                 <h2>DIVERSIFIED<br>COLOR SCHEMES</h2>
                 <p>Explore More</p>
@@ -823,9 +876,24 @@
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.getElementById('carImage');
             const diagonalBlock = document.querySelector('.diagonal-block');
+            const cornerLogo = document.getElementById('cornerLogo');
             let currentColorIndex = 2; // Start with black
+            let isAnimating = false;
 
-            function updateColor(index) {
+            const logoMap = {
+                'green': 'Green.png',
+                'sand': 'Yellow.png',
+                'black': 'Black.png',
+                'blue': 'Blue.png',
+                'grey': 'Grey.png',
+                'silver': 'light grey.png',
+                'white': 'White.png'
+            };
+
+            function updateColor(index, direction = 'right') {
+                if (isAnimating) return;
+                isAnimating = true;
+
                 // Remove active class from all options
                 colorOptions.forEach(opt => opt.classList.remove('active'));
                 
@@ -835,25 +903,41 @@
                 // Get new image and background color
                 const newImage = colorOptions[index].dataset.img;
                 const newBg = colorOptions[index].dataset.bg;
+                const newColor = colorOptions[index].dataset.color;
                 
-                // Fade out
-                carImage.style.opacity = '0';
+                // Update corner logo
+                cornerLogo.style.opacity = '0';
+                setTimeout(() => {
+                    cornerLogo.src = `images/${logoMap[newColor]}`;
+                    cornerLogo.style.opacity = '1';
+                }, 300);
+
+                // Add driving out animation
+                carImage.style.animation = '';
+                carImage.classList.add('driving-out');
                 
                 setTimeout(() => {
                     // Update image and background
                     carImage.src = newImage;
                     diagonalBlock.style.background = newBg;
                     
-                    // Fade in
-                    carImage.style.opacity = '1';
-                }, 300);
+                    // Reset animation
+                    carImage.classList.remove('driving-out');
+                    carImage.style.animation = 'driveIn 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                    
+                    setTimeout(() => {
+                        isAnimating = false;
+                    }, 800);
+                }, 800);
             }
 
             // Add click handlers to color options
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', () => {
+                    if (currentColorIndex === index) return;
+                    const direction = index > currentColorIndex ? 'right' : 'left';
                     currentColorIndex = index;
-                    updateColor(currentColorIndex);
+                    updateColor(currentColorIndex, direction);
                 });
             });
 
@@ -862,13 +946,15 @@
             const nextButton = document.querySelector('.nav-arrow.next');
 
             prevButton.addEventListener('click', () => {
+                if (isAnimating) return;
                 currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
-                updateColor(currentColorIndex);
+                updateColor(currentColorIndex, 'left');
             });
 
             nextButton.addEventListener('click', () => {
+                if (isAnimating) return;
                 currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
-                updateColor(currentColorIndex);
+                updateColor(currentColorIndex, 'right');
             });
 
             // Initialize with first color
