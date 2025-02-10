@@ -90,10 +90,18 @@
             transform: translateY(-50%);
         }
 
-        h1 {
-            font-size: 3.5rem;
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
         }
 
         .section p {
@@ -242,39 +250,40 @@
         /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 30px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            cursor: pointer;
         }
 
         .mouse {
             width: 30px;
             height: 50px;
-            border: 2px solid white;
+            border: 2px solid #fff;
             border-radius: 15px;
             position: relative;
+            margin-bottom: 10px;
         }
 
-        .mouse:after {
+        .mouse::before {
             content: '';
             width: 4px;
             height: 8px;
-            background: white;
+            background: #fff;
             position: absolute;
-            top: 8px;
             left: 50%;
             transform: translateX(-50%);
+            top: 8px;
             border-radius: 2px;
             animation: scroll 2s infinite;
         }
 
         .scroll-text {
+            color: #fff;
             font-size: 0.9rem;
-            color: white;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
@@ -333,6 +342,74 @@
         .fp-watermark {
             display: none;
         }
+
+        /* Footer Styles */
+        .footer {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 4rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: #999;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -355,7 +432,7 @@
         <div class="section hero" data-anchor="home">
             <div class="content-wrapper">
                 <div class="hero-content">
-                    <h1 class="reveal-element">THE FIRST EV PICKUP IN THAILAND</h1>
+                    <h1 class="reveal-element">THE FIRST<br>PICKUP IN THAILAND</h1>
                     <p class="reveal-element delay-1">100% electric pickup truck, redefining a boundless lifestyle</p>
                     <a href="#learn-more" class="cta-button reveal-element delay-2">Learn More</a>
                 </div>
@@ -448,6 +525,55 @@
             </div>
         </div>
     </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About RIDDARA</h3>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Vehicles</h3>
+                <ul>
+                    <li><a href="#">RD6 4WD</a></li>
+                    <li><a href="#">RD6 2WD</a></li>
+                    <li><a href="#">Compare Models</a></li>
+                    <li><a href="#">Find a Dealer</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Service Centers</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">Newsletter</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 RIDDARA. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
     <script>
