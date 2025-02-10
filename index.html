@@ -303,31 +303,74 @@
             top: 15%;
             left: 8%;
             z-index: 3;
-            max-width: 450px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .color-schemes.active .color-header {
-            opacity: 1;
-            transform: translateY(0);
+            max-width: 500px;
         }
 
         .color-header h2 {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
             color: #fff;
-            letter-spacing: 0.02em;
+            letter-spacing: -0.02em;
         }
 
         .color-header p {
-            font-size: 1rem;
+            font-size: 1.2rem;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .rd6-corner-logo {
+            position: absolute;
+            top: 40px;
+            right: 60px;
+            width: 280px;
+            height: auto;
+            z-index: 3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+        }
+
+        .rd6-corner-logo img {
+            width: 100%;
+            height: auto;
+            opacity: 0.9;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+            margin-bottom: 1rem;
+        }
+
+        .rd6-corner-logo .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .rd6-corner-logo .cta-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .rd6-corner-logo .cta-button::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .rd6-corner-logo .cta-button:hover::after {
+            transform: translateX(5px);
         }
 
         .explore-more {
@@ -703,10 +746,11 @@
             <div class="diagonal-block"></div>
             <div class="rd6-corner-logo">
                 <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
+                <a href="#configure" class="cta-button">Design Your RD6</a>
             </div>
             <div class="color-header">
-                <h2>DIVERSIFIED<br>COLOR SCHEMES</h2>
-                <p>Explore More</p>
+                <h2>UNLEASH YOUR STYLE</h2>
+                <p>Choose from our meticulously crafted color palette, each shade designed to complement the RD6's bold character. From striking metallics to sophisticated earth tones, find the perfect expression of your personality.</p>
             </div>
             <div class="rd6-logo">RD6</div>
             <div class="car-showcase">
@@ -817,11 +861,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
     <script>
         new fullpage('#fullpage', {
+            licenseKey: 'YOUR_KEY_HERE',
             autoScrolling: true,
-            scrollHorizontally: true,
+            scrollingSpeed: 1000,
             navigation: true,
-            anchors: ['home', 'features', 'colors', 'rd6-4wd', 'rd6-2wd'],
-            navigationTooltips: ['Home', 'Features', 'Colors', 'RD6 4WD', 'RD6 2WD']
+            navigationPosition: 'right',
+            anchors: ['home', 'features', 'colors'],
+            navigationTooltips: ['Home', 'Features', 'Colors'],
+            scrollOverflow: true,
+            normalScrollElements: '.scrollable',
+            afterLoad: function(origin, destination, direction) {
+                if (destination.anchor === 'colors') {
+                    document.querySelector('.color-schemes').classList.add('active');
+                }
+            },
+            onLeave: function(origin, destination, direction) {
+                if (origin.anchor === 'colors') {
+                    document.querySelector('.color-schemes').classList.remove('active');
+                }
+            }
         });
 
         // Handle navigation clicks
