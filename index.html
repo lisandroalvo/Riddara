@@ -328,7 +328,7 @@
 
         .rd6-corner-logo {
             position: absolute;
-            top: 50%;
+            top: 35%;
             right: 60px;
             width: 400px;
             transform: translateY(-50%);
@@ -530,7 +530,7 @@
 
         .rd6-corner-logo {
             position: absolute;
-            top: 50%;
+            top: 35%;
             right: 60px;
             width: 180px;
             height: auto;
@@ -624,9 +624,7 @@
         }
 
         .footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
+            position: relative;
             width: 100%;
             background: var(--riddara-green);
             color: #fff;
@@ -776,6 +774,75 @@
             position: relative;
             min-height: 100vh;
         }
+
+        .specs-section {
+            background: #1C1C1C;
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .specs-header {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: 0.05em;
+        }
+
+        .specs-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .specs-diagram {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .specs-image {
+            position: relative;
+            width: 45%;
+        }
+
+        .specs-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .dimension-label {
+            position: absolute;
+            color: #fff;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dimension-label.orange {
+            color: #FF6B00;
+        }
+
+        .dimension-line {
+            position: absolute;
+            background: #FF6B00;
+            height: 2px;
+        }
+
+        .specs-unit {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            color: #fff;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
@@ -897,6 +964,42 @@
                         <div class="spec reveal-element delay-3">
                             <span class="number">5.2</span>
                             <span class="label">Sec 0-100 km/h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section specs-section" data-anchor="specs">
+            <div class="specs-content">
+                <h2 class="specs-header">SPECS & DIMENSIONS</h2>
+                <div class="specs-unit">Unit: mm</div>
+                <div class="specs-diagram">
+                    <div class="specs-image">
+                        <img src="images/rd6-front.png" alt="RD6 Front View">
+                        <div class="dimension-label orange" style="top: 0; left: 50%; transform: translateX(-50%);">
+                            Vehicle height: 1,865
+                        </div>
+                        <div class="dimension-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">
+                            Vehicle width: 1,900
+                        </div>
+                        <div class="dimension-label" style="bottom: 0; left: 50%; transform: translateX(-50%);">
+                            Front/Rear wheel track: 1,600/1,620
+                        </div>
+                    </div>
+                    <div class="specs-image">
+                        <img src="images/rd6-side.png" alt="RD6 Side View">
+                        <div class="dimension-label" style="top: 70%; left: 0;">
+                            Ground clearance: 221
+                        </div>
+                        <div class="dimension-label" style="top: 80%; left: 50%; transform: translateX(-50%);">
+                            Wheelbase: 3,120
+                        </div>
+                        <div class="dimension-label" style="bottom: 10%; left: 50%; transform: translateX(-50%);">
+                            Vehicle length: 5,260
+                        </div>
+                        <div class="dimension-label orange" style="top: 20%; right: 0;">
+                            Truck bed size: 1,525*1,450*540
                         </div>
                     </div>
                 </div>
