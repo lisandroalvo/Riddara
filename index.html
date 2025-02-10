@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav class="main-nav">
+    <nav class="main-nav">
+        <div class="nav-content">
             <div class="logo">
-                <a href="/"><img src="images/riddara-logo.png" alt="RIDDARA"></a>
+                <a href="#home"><img src="images/riddara-logo.png" alt="RIDDARA"></a>
             </div>
             <div class="nav-links">
                 <a href="#rd6-4wd">RIDDARA 4WD</a>
@@ -20,59 +20,95 @@
                 <a href="#newsroom">NEWSROOM</a>
                 <a href="#contact">CONTACT US</a>
             </div>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <main>
-        <section class="hero">
+    <div class="fullpage-wrapper">
+        <section id="home" class="fullpage-section">
             <div class="hero-content">
                 <h1>THE FIRST EV PICKUP IN THAILAND</h1>
                 <p>100% electric pickup truck, redefining a boundless lifestyle</p>
                 <a href="#learn-more" class="cta-button">Learn More</a>
             </div>
+            <div class="scroll-indicator">
+                <span class="mouse"></span>
+                <span class="scroll-text">Scroll to explore</span>
+            </div>
         </section>
 
-        <section class="manufacturing">
-            <h2>INTELLIGENT AND ECO-FRIENDLY MANUFACTURING</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <h3>Customized Workshop</h3>
-                    <p>With the agile and intelligent final assembly line, we can meet the diversified and customized needs of consumers.</p>
-                </div>
-                <div class="feature">
-                    <h3>Eco-friendly Workshop</h3>
-                    <p>With state-of-art green film pre-treatment technology, we ensure good anti-corrosion performance meeting the highest international standards.</p>
-                </div>
-                <div class="feature">
-                    <h3>Comprehensive Test Track</h3>
-                    <p>First comprehensive test track integrating passenger vehicle performance testing, 100% electric vehicle intelligent testing, and off-road vehicle attribute testing.</p>
+        <section id="rd6-4wd" class="fullpage-section">
+            <div class="model-content">
+                <h2>RIDDARA RD6 4WD</h2>
+                <p>Experience ultimate performance with our flagship 4WD model</p>
+                <div class="model-specs">
+                    <div class="spec">
+                        <span class="number">400+</span>
+                        <span class="label">KM Range</span>
+                    </div>
+                    <div class="spec">
+                        <span class="number">4.8</span>
+                        <span class="label">Sec 0-100 km/h</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="latest-news">
-            <h2>Latest News</h2>
-            <div class="news-grid">
-                <article class="news-card">
-                    <div class="news-image">
-                        <img src="images/news1.jpg" alt="RIDDARA RD6 Launch">
+        <section id="rd6-2wd" class="fullpage-section">
+            <div class="model-content">
+                <h2>RIDDARA RD6 2WD</h2>
+                <p>Efficient and powerful, perfect for everyday adventures</p>
+                <div class="model-specs">
+                    <div class="spec">
+                        <span class="number">350+</span>
+                        <span class="label">KM Range</span>
                     </div>
-                    <div class="news-content">
-                        <h3>RIDDARA launches RIDDARA RD6</h3>
-                        <p class="date">09 July 2024</p>
-                        <p>The first EV pickup in Thailand - 100% electric pickup truck, redefining a boundless lifestyle.</p>
-                        <a href="#" class="read-more">Read More</a>
+                    <div class="spec">
+                        <span class="number">5.2</span>
+                        <span class="label">Sec 0-100 km/h</span>
                     </div>
-                </article>
-                <!-- Add more news cards as needed -->
+                </div>
             </div>
         </section>
-    </main>
+
+        <section id="manufacturing" class="fullpage-section">
+            <div class="section-content">
+                <h2>INTELLIGENT AND ECO-FRIENDLY MANUFACTURING</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <h3>Customized Workshop</h3>
+                        <p>With the agile and intelligent final assembly line, we can meet the diversified and customized needs of consumers.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Eco-friendly Workshop</h3>
+                        <p>With state-of-art green film pre-treatment technology, we ensure good anti-corrosion performance meeting the highest international standards.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Comprehensive Test Track</h3>
+                        <p>First comprehensive test track integrating passenger vehicle performance testing, 100% electric vehicle intelligent testing, and off-road vehicle attribute testing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="newsroom" class="fullpage-section">
+            <div class="section-content">
+                <h2>Latest News</h2>
+                <div class="news-grid">
+                    <article class="news-card">
+                        <div class="news-image">
+                            <img src="images/news1.jpg" alt="RIDDARA RD6 Launch">
+                        </div>
+                        <div class="news-content">
+                            <h3>RIDDARA launches RIDDARA RD6</h3>
+                            <p class="date">09 July 2024</p>
+                            <p>The first EV pickup in Thailand - 100% electric pickup truck, redefining a boundless lifestyle.</p>
+                            <a href="#" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <footer>
         <div class="footer-content">
@@ -109,6 +145,7 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
