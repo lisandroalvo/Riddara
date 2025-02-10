@@ -327,7 +327,7 @@
             position: absolute;
             top: 40px;
             right: 60px;
-            width: 400px;
+            width: 600px;
             height: auto;
             z-index: 3;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -346,8 +346,8 @@
             display: inline-flex;
             align-items: center;
             padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: var(--riddara-green);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: #fff;
             text-decoration: none;
             border-radius: 6px;
@@ -356,6 +356,11 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(8px);
             gap: 0.5rem;
+        }
+
+        .rd6-corner-logo .cta-button:hover {
+            background: #4a644a;
+            transform: translateY(-2px);
         }
 
         .rd6-logo {
@@ -578,15 +583,19 @@
         }
 
         /* Footer Styles */
+        :root {
+            --riddara-green: #3C513C;
+        }
+
         .footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: #3C513C;
+            background: var(--riddara-green);
             color: #fff;
             padding: 1rem 2rem;
-            z-index: 100;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -879,6 +888,12 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
     <script>
+        // Add scroll to top functionality
+        document.querySelector('.scroll-up').addEventListener('click', function() {
+            fullpage_api.moveTo(1);
+        });
+
+        // Initialize fullPage.js with simpler configuration
         new fullpage('#fullpage', {
             licenseKey: 'YOUR_KEY_HERE',
             autoScrolling: true,
