@@ -1597,7 +1597,7 @@
     </footer>
 
     <script>
-        // Initialize fullPage.js
+        // Initialize fullPage.js with scrollOverflow enabled
         new fullpage('#fullpage', {
             autoScrolling: true,
             scrollHorizontally: true,
@@ -1606,9 +1606,9 @@
             showActiveTooltip: true,
             anchors: ['home', 'colors', 'specs', 'features'],
             navigationTooltips: ['Home', 'Colors', 'Specifications', 'Features'],
-            onLeave: function(origin, destination, direction) {
-                // Add any section transition animations here
-            }
+            scrollOverflow: true,
+            normalScrollElements: '.scrollable',
+            licenseKey: 'gplv3-license'
         });
 
         // Color selector functionality
@@ -1644,14 +1644,14 @@
                 const newBg = selectedOption.dataset.bg;
                 const newColor = selectedOption.dataset.color;
                 
-                // Update corner logo
+                // Update corner logo with fade
                 cornerLogo.style.opacity = '0';
-                cornerLogo.src = `images/${logoMap[newColor]}`;
                 setTimeout(() => {
+                    cornerLogo.src = `images/${logoMap[newColor]}`;
                     cornerLogo.style.opacity = '1';
                 }, 200);
 
-                // Update car image
+                // Update car image with fade
                 carImage.style.opacity = '0';
                 setTimeout(() => {
                     carImage.src = newImage;
