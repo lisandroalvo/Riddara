@@ -1026,7 +1026,6 @@
 
         .social-icon:hover {
             background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
         }
 
         .social-icon svg {
@@ -1342,6 +1341,98 @@
             fill: white;
             transform: rotate(-90deg);
         }
+
+        .color-section {
+            background: #1C1C1C;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .color-selector {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .color-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .color-btn.active {
+            opacity: 1;
+        }
+
+        .color-btn:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        .color-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .color-btn.active .color-circle {
+            border-color: #FF6B00;
+            transform: scale(1.1);
+        }
+
+        .color-name {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .color-preview {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            overflow: hidden;
+            border-radius: 20px;
+            background: #2A2A2A;
+        }
+
+        .color-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            transform: scale(0.95);
+        }
+
+        .color-image.active {
+            opacity: 1;
+            transform: scale(1);
+        }
     </style>
 </head>
 <body>
@@ -1381,6 +1472,45 @@
             </div>
         </div>
 
+        <div class="section color-section" data-anchor="colors">
+            <div class="color-selector">
+                <div class="color-options">
+                    <button class="color-btn active" data-color="white">
+                        <span class="color-circle" style="background-color: #FFFFFF; border: 2px solid rgba(0, 0, 0, 0.2);"></span>
+                        <span class="color-name">Pearl White</span>
+                    </button>
+                    <button class="color-btn" data-color="black">
+                        <span class="color-circle" style="background-color: #1C1C1C;"></span>
+                        <span class="color-name">Onyx Black</span>
+                    </button>
+                    <button class="color-btn" data-color="silver">
+                        <span class="color-circle" style="background-color: #C0C0C0;"></span>
+                        <span class="color-name">Metallic Silver</span>
+                    </button>
+                    <button class="color-btn" data-color="blue">
+                        <span class="color-circle" style="background-color: #1E3F66;"></span>
+                        <span class="color-name">Ocean Blue</span>
+                    </button>
+                    <button class="color-btn" data-color="green">
+                        <span class="color-circle" style="background-color: #3C513C;"></span>
+                        <span class="color-name">Forest Green</span>
+                    </button>
+                    <button class="color-btn" data-color="sand">
+                        <span class="color-circle" style="background-color: #9B8B6B;"></span>
+                        <span class="color-name">Desert Sand</span>
+                    </button>
+                </div>
+                <div class="color-preview">
+                    <img src="images/Riddara EV Pickup Car 1 White 1.png" alt="RD6 in Pearl White" class="color-image active" data-color="white">
+                    <img src="images/Black EV Pickup 1.png" alt="RD6 in Onyx Black" class="color-image" data-color="black">
+                    <img src="images/Silver EV Pickup 1.png" alt="RD6 in Metallic Silver" class="color-image" data-color="silver">
+                    <img src="images/Blue EV Pickup 2.png" alt="RD6 in Ocean Blue" class="color-image" data-color="blue">
+                    <img src="images/Green EV Pickup 1.png" alt="RD6 in Forest Green" class="color-image" data-color="green">
+                    <img src="images/Yellow EV Pickup 1.png" alt="RD6 in Desert Sand" class="color-image" data-color="sand">
+                </div>
+            </div>
+        </div>
+
         <div class="section features-section" data-anchor="features">
             <div class="features-grid">
                 <div class="feature-card">
@@ -1397,34 +1527,6 @@
                     <i class="fas fa-mountain"></i>
                     <h3>All-Terrain</h3>
                     <p>Conquer any road with confidence</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section color-schemes" data-anchor="colors">
-            <div class="diagonal-block"></div>
-            <div class="rd6-corner-logo">
-                <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
-                <a href="#configure" class="cta-button">Configure Your RD6</a>
-            </div>
-            <div class="color-header">
-                <h2>CHOOSE YOUR COLOR</h2>
-                <p>Express your style with our signature finishes.</p>
-            </div>
-            <div class="rd6-logo">RD6</div>
-            <div class="car-showcase">
-                <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image" id="carImage">
-                <div class="navigation-arrows">
-                    <button class="nav-arrow prev">←</button>
-                    <button class="nav-arrow next">→</button>
-                </div>
-                <div class="color-selector">
-                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
-                    <div class="color-option color-sand" data-color="sand" data-img="images/Yellow EV Pickup 1.png" data-bg="#9B8B6B"></div>
-                    <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
-                    <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
-                    <div class="color-option color-grey" data-color="grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
-                    <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
                 </div>
             </div>
         </div>
@@ -1575,12 +1677,12 @@
                 </div>
                 
                 <nav class="footer-nav">
-                    <a href="#riddara-4wd">RIDDARA 4WD</a>
-                    <a href="#riddara-2wd">RIDDARA 2WD</a>
-                    <a href="#about-riddara">ABOUT RIDDARA</a>
-                    <a href="#newsroom">NEWSROOM</a>
-                    <a href="#contact-us">CONTACT US</a>
-                    <a href="#specifications">SPECIFICATIONS</a>
+                    <a href="#home">HOME</a>
+                    <a href="#colors">COLORS</a>
+                    <a href="#specs">SPECIFICATIONS</a>
+                    <a href="#features">FEATURES</a>
+                    <a href="#about">ABOUT</a>
+                    <a href="#contact">CONTACT</a>
                 </nav>
 
                 <div class="footer-social">
@@ -1672,96 +1774,26 @@
 
         // Enhanced color selection with smoother transitions and text updates
         document.addEventListener('DOMContentLoaded', function() {
-            const colorOptions = document.querySelectorAll('.color-option');
-            const carImage = document.getElementById('carImage');
-            const diagonalBlock = document.querySelector('.diagonal-block');
-            const cornerLogo = document.getElementById('cornerLogo');
-            let currentColorIndex = 2; // Start with black
-            let isAnimating = false;
+            const colorBtns = document.querySelectorAll('.color-btn');
+            const colorImages = document.querySelectorAll('.color-image');
 
-            const logoMap = {
-                'green': 'Green.png',
-                'sand': 'Yellow.png',
-                'black': 'Black.png',
-                'blue': 'Blue.png',
-                'grey': 'Grey.png',
-                'silver': 'light grey.png',
-                'white': 'White.png'
-            };
-
-            function updateColor(index, direction = 'right') {
-                if (isAnimating) return;
-                isAnimating = true;
-
-                // Remove active class from all options
-                colorOptions.forEach(opt => opt.classList.remove('active'));
-                
-                // Add active class to selected option
-                colorOptions[index].classList.add('active');
-                
-                // Get new image and background color
-                const newImage = colorOptions[index].dataset.img;
-                const newBg = colorOptions[index].dataset.bg;
-                const newColor = colorOptions[index].dataset.color;
-                
-                // Update corner logo with scale effect
-                cornerLogo.style.transform = 'scale(0.9)';
-                cornerLogo.style.opacity = '0';
-                setTimeout(() => {
-                    cornerLogo.src = `images/${logoMap[newColor]}`;
-                    cornerLogo.style.transform = 'scale(1)';
-                    cornerLogo.style.opacity = '1';
-                }, 300);
-
-                // Remove any existing animation classes
-                carImage.className = 'car-image';
-                
-                // Add the appropriate exit animation class based on direction
-                carImage.classList.add(direction === 'right' ? 'drive-out-left' : 'drive-out-right');
-                
-                setTimeout(() => {
-                    // Update image and background
-                    carImage.src = newImage;
-                    diagonalBlock.style.background = newBg;
+            colorBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const color = btn.dataset.color;
                     
-                    // Remove exit animation and add entrance animation
-                    carImage.className = 'car-image';
-                    carImage.classList.add(direction === 'right' ? 'drive-in-right' : 'drive-in-left');
+                    // Update buttons
+                    colorBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
                     
-                    setTimeout(() => {
-                        isAnimating = false;
-                    }, 1000);
-                }, 1000);
-            }
-
-            // Add click handlers to color options
-            colorOptions.forEach((option, index) => {
-                option.addEventListener('click', () => {
-                    if (currentColorIndex === index || isAnimating) return;
-                    const direction = index > currentColorIndex ? 'right' : 'left';
-                    currentColorIndex = index;
-                    updateColor(currentColorIndex, direction);
+                    // Update images
+                    colorImages.forEach(img => {
+                        img.classList.remove('active');
+                        if (img.dataset.color === color) {
+                            img.classList.add('active');
+                        }
+                    });
                 });
             });
-
-            // Navigation arrows
-            const prevButton = document.querySelector('.nav-arrow.prev');
-            const nextButton = document.querySelector('.nav-arrow.next');
-
-            prevButton.addEventListener('click', () => {
-                if (isAnimating) return;
-                currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
-                updateColor(currentColorIndex, 'left');
-            });
-
-            nextButton.addEventListener('click', () => {
-                if (isAnimating) return;
-                currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
-                updateColor(currentColorIndex, 'right');
-            });
-
-            // Initialize with first color
-            updateColor(currentColorIndex);
         });
     </script>
 </body>
