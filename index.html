@@ -279,137 +279,65 @@
         /* Color Schemes Section */
         .color-schemes {
             position: relative;
-            overflow: hidden;
+            width: 100%;
             height: 100vh;
-            background: #f8f9fa;
+            overflow: hidden;
+            background: #1C1C1C;
         }
 
         .diagonal-block {
             position: absolute;
             top: 0;
             left: 0;
-            width: 50%;
-            height: 120%;
-            background: #3C513C;
-            transform: skewX(20deg) translateX(-50%);
-            transform-origin: top;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
-        }
-
-        .color-schemes.active .diagonal-block {
-            transform: skewX(20deg) translateX(-10%);
-        }
-
-        .color-header {
-            position: absolute;
-            top: 15%;
-            left: 8%;
-            z-index: 3;
-            max-width: 500px;
-        }
-
-        .color-header h2 {
-            font-size: 4rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: #fff;
-            letter-spacing: -0.02em;
-        }
-
-        .color-header p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            font-weight: 400;
+            width: 100%;
+            height: 100%;
+            background: #1C1C1C;
+            transition: background 1s ease;
         }
 
         .rd6-corner-logo {
             position: absolute;
-            top: 35%;
-            right: 60px;
-            width: 400px;
-            transform: translateY(-50%);
-            z-index: 3;
-            text-align: center;
+            top: 40px;
+            right: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 20px;
+            z-index: 2;
         }
 
         .rd6-corner-logo img {
-            width: 100%;
-            height: auto;
-            opacity: 0.95;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
-            margin-bottom: 2rem;
-            transform: scale(1.5);
-            transform-origin: center center;
+            width: 200px;
+            transition: all 0.3s ease;
         }
 
-        .rd6-corner-logo .cta-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 1.2rem 2.5rem;
-            background: var(--riddara-green);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(60, 81, 60, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .rd6-corner-logo .cta-button::before {
-            content: '';
+        .color-header {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                45deg,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0.2) 50%,
-                rgba(255, 255, 255, 0.1) 100%
-            );
-            transform: translateX(-100%) skewX(-15deg);
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            top: 40px;
+            left: 40px;
+            color: white;
+            z-index: 2;
         }
 
-        .rd6-corner-logo .cta-button:hover {
-            background: #4a644a;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(60, 81, 60, 0.4);
+        .color-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
-        .rd6-corner-logo .cta-button:hover::before {
-            transform: translateX(100%) skewX(-15deg);
-        }
-
-        .rd6-corner-logo .cta-button::after {
-            content: '→';
-            margin-left: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .rd6-corner-logo .cta-button:hover::after {
-            transform: translateX(5px);
+        .color-header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
         }
 
         .rd6-logo {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 12rem;
+            bottom: 40px;
+            left: 40px;
+            font-size: 8rem;
             font-weight: 900;
-            color: #fff;
-            z-index: 2;
-            letter-spacing: -0.05em;
-            opacity: 0.15;
+            color: rgba(255, 255, 255, 0.1);
+            z-index: 1;
         }
 
         .car-showcase {
@@ -419,108 +347,91 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 2;
         }
 
         .car-image {
-            width: 80%;
-            max-width: 1000px;
-            height: auto;
-            position: relative;
-            z-index: 2;
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: transform, opacity;
+            max-width: 90%;
+            max-height: 70vh;
+            object-fit: contain;
+            transition: transform 0.5s ease;
         }
 
-        .car-image.drive-in-right {
-            animation: driveInRight 1s cubic-bezier(0.4, 0, 0.2, 1);
+        .navigation-arrows {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 20px;
+            z-index: 3;
         }
 
-        .car-image.drive-in-left {
-            animation: driveInLeft 1s cubic-bezier(0.4, 0, 0.2, 1);
+        .nav-arrow {
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            background: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .car-image.drive-out-right {
-            animation: driveOutRight 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .car-image.drive-out-left {
-            animation: driveOutLeft 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes driveInRight {
-            0% {
-                opacity: 0;
-                transform: translateX(120%) scale(0.8) rotate(2deg);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0) scale(1) rotate(0deg);
-            }
-        }
-
-        @keyframes driveInLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-120%) scale(0.8) rotate(-2deg);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0) scale(1) rotate(0deg);
-            }
-        }
-
-        @keyframes driveOutRight {
-            0% {
-                opacity: 1;
-                transform: translateX(0) scale(1) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(120%) scale(0.8) rotate(2deg);
-            }
-        }
-
-        @keyframes driveOutLeft {
-            0% {
-                opacity: 1;
-                transform: translateX(0) scale(1) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-120%) scale(0.8) rotate(-2deg);
-            }
+        .nav-arrow:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         .color-selector {
             position: absolute;
-            bottom: 10%;
+            bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 1rem;
+            gap: 20px;
             z-index: 3;
         }
 
         .color-option {
-            width: 24px;
-            height: 24px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
-            border: 2px solid rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .color-option:hover {
             transform: scale(1.1);
-            border-color: rgba(255, 255, 255, 0.8);
         }
 
         .color-option.active {
-            border-color: #fff;
-            transform: scale(1.1);
+            border-color: #FF6B00;
+            transform: scale(1.2);
         }
 
-        /* Color options */
+        .color-option::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 2px solid #FF6B00;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .color-option.active::after {
+            opacity: 1;
+        }
+
         .color-green { background: #3C513C; }
         .color-sand { background: #9B8B6B; }
         .color-black { background: #1C1C1C; }
@@ -528,60 +439,64 @@
         .color-grey { background: #808080; }
         .color-silver { background: #C0C0C0; }
 
-        .rd6-corner-logo {
-            position: absolute;
-            top: 35%;
-            right: 60px;
-            width: 180px;
-            height: auto;
-            z-index: 3;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .drive-out-left {
+            animation: driveOutLeft 1s ease forwards;
         }
 
-        .rd6-corner-logo img {
-            width: 100%;
-            height: auto;
-            opacity: 0.9;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.1));
+        .drive-in-right {
+            animation: driveInRight 1s ease forwards;
         }
 
-        .navigation-arrows {
-            position: absolute;
-            width: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 3;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 4rem;
-            pointer-events: none;
+        .drive-out-right {
+            animation: driveOutRight 1s ease forwards;
         }
 
-        .nav-arrow {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1.8rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: auto;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        .drive-in-left {
+            animation: driveInLeft 1s ease forwards;
         }
 
-        .nav-arrow:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
+        @keyframes driveOutLeft {
+            from {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(-10%) scale(0.9);
+            }
         }
 
-        .nav-arrow:active {
-            transform: scale(0.95);
+        @keyframes driveInRight {
+            from {
+                opacity: 0;
+                transform: translateX(10%) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes driveOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(10%) scale(0.9);
+            }
+        }
+
+        @keyframes driveInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-10%) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
         }
 
         /* Responsive Design */
@@ -1472,41 +1387,30 @@
             </div>
         </div>
 
-        <div class="section color-section" data-anchor="colors">
-            <div class="color-selector">
-                <div class="color-options">
-                    <button class="color-btn active" data-color="white">
-                        <span class="color-circle" style="background-color: #FFFFFF; border: 2px solid rgba(0, 0, 0, 0.2);"></span>
-                        <span class="color-name">Pearl White</span>
-                    </button>
-                    <button class="color-btn" data-color="black">
-                        <span class="color-circle" style="background-color: #1C1C1C;"></span>
-                        <span class="color-name">Onyx Black</span>
-                    </button>
-                    <button class="color-btn" data-color="silver">
-                        <span class="color-circle" style="background-color: #C0C0C0;"></span>
-                        <span class="color-name">Metallic Silver</span>
-                    </button>
-                    <button class="color-btn" data-color="blue">
-                        <span class="color-circle" style="background-color: #1E3F66;"></span>
-                        <span class="color-name">Ocean Blue</span>
-                    </button>
-                    <button class="color-btn" data-color="green">
-                        <span class="color-circle" style="background-color: #3C513C;"></span>
-                        <span class="color-name">Forest Green</span>
-                    </button>
-                    <button class="color-btn" data-color="sand">
-                        <span class="color-circle" style="background-color: #9B8B6B;"></span>
-                        <span class="color-name">Desert Sand</span>
-                    </button>
+        <div class="section color-schemes" data-anchor="colors">
+            <div class="diagonal-block"></div>
+            <div class="rd6-corner-logo">
+                <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
+                <a href="#configure" class="cta-button">Configure Your RD6</a>
+            </div>
+            <div class="color-header">
+                <h2>CHOOSE YOUR COLOR</h2>
+                <p>Express your style with our signature finishes.</p>
+            </div>
+            <div class="rd6-logo">RD6</div>
+            <div class="car-showcase">
+                <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image" id="carImage">
+                <div class="navigation-arrows">
+                    <button class="nav-arrow prev">←</button>
+                    <button class="nav-arrow next">→</button>
                 </div>
-                <div class="color-preview">
-                    <img src="images/Riddara EV Pickup Car 1 White 1.png" alt="RD6 in Pearl White" class="color-image active" data-color="white">
-                    <img src="images/Black EV Pickup 1.png" alt="RD6 in Onyx Black" class="color-image" data-color="black">
-                    <img src="images/Silver EV Pickup 1.png" alt="RD6 in Metallic Silver" class="color-image" data-color="silver">
-                    <img src="images/Blue EV Pickup 2.png" alt="RD6 in Ocean Blue" class="color-image" data-color="blue">
-                    <img src="images/Green EV Pickup 1.png" alt="RD6 in Forest Green" class="color-image" data-color="green">
-                    <img src="images/Yellow EV Pickup 1.png" alt="RD6 in Desert Sand" class="color-image" data-color="sand">
+                <div class="color-selector">
+                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
+                    <div class="color-option color-sand" data-color="sand" data-img="images/Yellow EV Pickup 1.png" data-bg="#9B8B6B"></div>
+                    <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
+                    <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
+                    <div class="color-option color-grey" data-color="grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
+                    <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
                 </div>
             </div>
         </div>
@@ -1794,6 +1698,99 @@
                     });
                 });
             });
+        });
+
+        // Enhanced color selection with smoother transitions and text updates
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorOptions = document.querySelectorAll('.color-option');
+            const carImage = document.getElementById('carImage');
+            const diagonalBlock = document.querySelector('.diagonal-block');
+            const cornerLogo = document.getElementById('cornerLogo');
+            let currentColorIndex = 2; // Start with black
+            let isAnimating = false;
+
+            const logoMap = {
+                'green': 'Green.png',
+                'sand': 'Yellow.png',
+                'black': 'Black.png',
+                'blue': 'Blue.png',
+                'grey': 'Grey.png',
+                'silver': 'light grey.png'
+            };
+
+            function updateColor(index, direction = 'right') {
+                if (isAnimating) return;
+                isAnimating = true;
+
+                // Remove active class from all options
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                
+                // Add active class to selected option
+                colorOptions[index].classList.add('active');
+                
+                // Get new image and background color
+                const newImage = colorOptions[index].dataset.img;
+                const newBg = colorOptions[index].dataset.bg;
+                const newColor = colorOptions[index].dataset.color;
+                
+                // Update corner logo with scale effect
+                cornerLogo.style.transform = 'scale(0.9)';
+                cornerLogo.style.opacity = '0';
+                setTimeout(() => {
+                    cornerLogo.src = `images/${logoMap[newColor]}`;
+                    cornerLogo.style.transform = 'scale(1)';
+                    cornerLogo.style.opacity = '1';
+                }, 300);
+
+                // Remove any existing animation classes
+                carImage.className = 'car-image';
+                
+                // Add the appropriate exit animation class based on direction
+                carImage.classList.add(direction === 'right' ? 'drive-out-left' : 'drive-out-right');
+                
+                setTimeout(() => {
+                    // Update image and background
+                    carImage.src = newImage;
+                    diagonalBlock.style.background = newBg;
+                    
+                    // Remove exit animation and add entrance animation
+                    carImage.className = 'car-image';
+                    carImage.classList.add(direction === 'right' ? 'drive-in-right' : 'drive-in-left');
+                    
+                    setTimeout(() => {
+                        isAnimating = false;
+                    }, 1000);
+                }, 1000);
+            }
+
+            // Add click handlers to color options
+            colorOptions.forEach((option, index) => {
+                option.addEventListener('click', () => {
+                    if (currentColorIndex === index || isAnimating) return;
+                    const direction = index > currentColorIndex ? 'right' : 'left';
+                    currentColorIndex = index;
+                    updateColor(currentColorIndex, direction);
+                });
+            });
+
+            // Navigation arrows
+            const prevButton = document.querySelector('.nav-arrow.prev');
+            const nextButton = document.querySelector('.nav-arrow.next');
+
+            prevButton.addEventListener('click', () => {
+                if (isAnimating) return;
+                currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
+                updateColor(currentColorIndex, 'left');
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (isAnimating) return;
+                currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
+                updateColor(currentColorIndex, 'right');
+            });
+
+            // Initialize with first color
+            updateColor(currentColorIndex);
         });
     </script>
 </body>
