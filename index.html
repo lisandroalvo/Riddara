@@ -1069,6 +1069,279 @@
             fill: white;
             transform: rotate(-90deg);
         }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #1C1C1C;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            color: white;
+            text-align: center;
+            padding: 0 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            line-height: 1.6;
+            animation: fadeInDown 1s ease-out 0.2s both;
+        }
+
+        .hero-cta {
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            color: white;
+            background: #FF6B00;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.4);
+            background: #FF7D1A;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .mouse {
+            width: 30px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 15px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .mouse::before {
+            content: '';
+            width: 4px;
+            height: 8px;
+            background: white;
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            animation: scrollMouse 2s infinite;
+        }
+
+        .scroll-text {
+            color: white;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        @keyframes scrollMouse {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+        }
+
+        .footer {
+            background-color: #2F4733;
+            padding: 4rem 0 2rem;
+            position: relative;
+            color: white;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            width: 180px;
+            height: auto;
+        }
+
+        .footer-nav {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .footer-nav a:hover {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #FF6B00;
+            transform: translateY(-3px);
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .copyright {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .cookie-policy {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .cookie-policy:hover {
+            color: white;
+        }
+
+        .scroll-top {
+            width: 44px;
+            height: 44px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .scroll-top:hover {
+            background: #FF6B00;
+            border-color: #FF6B00;
+            transform: translateY(-3px);
+        }
+
+        .scroll-top svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+            transform: rotate(-90deg);
+        }
     </style>
 </head>
 <body>
@@ -1089,24 +1362,22 @@
     </nav>
 
     <div id="fullpage">
-        <div class="section hero" data-anchor="home">
-            <div class="content-wrapper">
-                <div class="hero-content">
-                    <div class="text-reveal reveal-element">
-                        <h1><span>THE FIRST</span></h1>
-                    </div>
-                    <div class="text-reveal reveal-element delay-1">
-                        <h1><span>PICKUP IN THAILAND</span></h1>
-                    </div>
-                    <div class="text-reveal reveal-element delay-2">
-                        <p><span>100% electric pickup truck, redefining a boundless lifestyle</span></p>
-                    </div>
-                    <a href="#learn-more" class="cta-button reveal-element delay-3">Learn More</a>
-                </div>
-                <div class="scroll-indicator">
-                    <div class="mouse"></div>
-                    <div class="scroll-text">Scroll to explore</div>
-                </div>
+        <div class="section hero-section" data-anchor="home">
+            <div class="video-background">
+                <video autoplay muted loop playsinline>
+                    <source src="videos/hero.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="video-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">The First Pickup in Thailand</h1>
+                <p class="hero-subtitle">100% electric pickup truck, redefining a boundless lifestyle</p>
+                <button class="hero-cta">Configure Your RD6</button>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+                <span class="scroll-text">Scroll to explore</span>
             </div>
         </div>
 
@@ -1298,40 +1569,45 @@
 
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-logo">
-                <img src="images/footer.png" alt="Riddara Logo" class="footer-logo">
-            </div>
-            
-            <nav class="footer-nav">
-                <a href="#riddara-4wd">RIDDARA 4WD</a>
-                <a href="#riddara-2wd">RIDDARA 2WD</a>
-                <a href="#about-riddara">ABOUT RIDDARA</a>
-                <a href="#newsroom">NEWSROOM</a>
-                <a href="#contact-us">CONTACT US</a>
-            </nav>
+            <div class="footer-main">
+                <div class="footer-logo-wrapper">
+                    <img src="images/footer.png" alt="Riddara Logo" class="footer-logo">
+                </div>
+                
+                <nav class="footer-nav">
+                    <a href="#riddara-4wd">RIDDARA 4WD</a>
+                    <a href="#riddara-2wd">RIDDARA 2WD</a>
+                    <a href="#about-riddara">ABOUT RIDDARA</a>
+                    <a href="#newsroom">NEWSROOM</a>
+                    <a href="#contact-us">CONTACT US</a>
+                    <a href="#specifications">SPECIFICATIONS</a>
+                </nav>
 
-            <div class="footer-social">
-                <a href="#" class="social-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/>
-                    </svg>
-                </a>
-                <a href="#" class="social-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                    </svg>
-                </a>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <div class="footer-content footer-bottom">
-            <div class="copyright"> 2024 Riddara. All Rights Reserved.</div>
-            <a href="#" class="cookie-policy">Cookie Policy</a>
-            <button class="scroll-top" onclick="fullpage_api.moveTo(1)">
-                <svg viewBox="0 0 24 24">
-                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                </svg>
-            </button>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <span> 2024 Riddara. All Rights Reserved.</span>
+                    <a href="#" class="cookie-policy">Cookie Policy</a>
+                </div>
+                <button class="scroll-top" onclick="fullpage_api.moveTo(1)" aria-label="Scroll to top">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+                    </svg>
+                </button>
+            </div>
         </div>
     </footer>
 
