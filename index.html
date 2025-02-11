@@ -292,11 +292,12 @@
             position: absolute;
             top: -10%;
             left: -10%;
-            width: 60%;
+            width: 65%;
             height: 120%;
             background: #1C1C1C;
             transform: skewX(-20deg) translateX(-10%);
-            transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: background 1s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+            z-index: 1;
         }
 
         .car-showcase {
@@ -307,57 +308,52 @@
             align-items: center;
             justify-content: center;
             z-index: 2;
-            padding: 0 5%;
         }
 
         .car-image {
-            max-width: 85%;
-            max-height: 65vh;
+            max-width: 95%;
+            max-height: 75vh;
             object-fit: contain;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1.000);
             transform-origin: center center;
+            filter: none;
         }
 
         .car-image.transitioning {
-            transform: scale(0.95);
+            transform: scale(0.98) translateX(-2%);
             opacity: 0;
         }
 
         .color-selector {
             position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
-            gap: 25px;
+            flex-direction: column;
+            gap: 20px;
             z-index: 3;
-            padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 50px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
 
         .color-option {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: 3px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1.000);
             position: relative;
         }
 
         .color-option:hover {
             transform: scale(1.1);
             border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
 
         .color-option.active {
             transform: scale(1.2);
             border-color: #fff;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
         }
 
         .color-option::after {
@@ -375,8 +371,8 @@
         }
 
         .color-option.active::after {
-            width: 10px;
-            height: 10px;
+            width: 8px;
+            height: 8px;
             opacity: 1;
         }
 
@@ -392,13 +388,12 @@
             top: 5%;
             right: 5%;
             z-index: 3;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1.000);
         }
 
         .rd6-corner-logo img {
-            width: 160px;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
+            width: 180px;
+            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1.000);
         }
 
         .color-header {
@@ -410,20 +405,15 @@
         }
 
         .color-header h2 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 15px;
             font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            transform: translateY(0);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: -1px;
         }
 
         .color-header p {
             font-size: 1.2rem;
             opacity: 0.8;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transform: translateY(0);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .navigation-arrows {
@@ -440,57 +430,101 @@
             height: 50px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
             color: white;
             font-size: 24px;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1.000);
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(10px);
         }
 
         .nav-arrow:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 255, 255, 0.6);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .nav-arrow:active {
             transform: translateY(0);
         }
 
-        /* Smooth Animation Classes */
-        @keyframes fadeScale {
-            0% {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
+        /* Smooth fade for text */
+        .text-reveal {
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
         }
 
-        @keyframes slideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .text-reveal span {
+            display: block;
+            transform: translateY(100%);
+            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1.000);
         }
 
-        .fade-scale {
-            animation: fadeScale 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        .text-reveal.active span {
+            transform: translateY(0);
         }
 
-        .slide-up {
-            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Model Sections */
+        .model-section {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .model-content {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .model-specs {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .spec {
+            text-align: center;
+        }
+
+        .spec .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            color: #007bff;
+        }
+
+        .spec .label {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Features Section */
+        .features-section {
+            background-color: white;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
         }
 
         /* Responsive Design */
@@ -1633,7 +1667,6 @@
             const carImage = document.getElementById('carImage');
             const diagonalBlock = document.querySelector('.diagonal-block');
             const cornerLogo = document.getElementById('cornerLogo');
-            const colorHeader = document.querySelector('.color-header');
             let currentColorIndex = 0;
             let isAnimating = false;
 
@@ -1661,41 +1694,31 @@
                 const newBg = selectedOption.dataset.bg;
                 const newColor = selectedOption.dataset.color;
                 
-                // Add transitioning class
+                // Add transitioning class for smooth exit
                 carImage.classList.add('transitioning');
                 
-                // Update corner logo with smooth fade
+                // Fade out logo
                 cornerLogo.style.opacity = '0';
-                cornerLogo.style.transform = 'translateY(-10px)';
+                cornerLogo.style.transform = 'scale(0.95)';
                 
                 // Update diagonal block with smooth transition
                 diagonalBlock.style.background = newBg;
-                
-                // Animate header
-                colorHeader.querySelector('h2').style.transform = 'translateY(-10px)';
-                colorHeader.querySelector('h2').style.opacity = '0';
-                colorHeader.querySelector('p').style.transform = 'translateY(-10px)';
-                colorHeader.querySelector('p').style.opacity = '0';
 
                 setTimeout(() => {
                     // Update images
                     carImage.src = newImage;
                     cornerLogo.src = `images/${logoMap[newColor]}`;
                     
-                    // Reset animations
-                    carImage.classList.remove('transitioning');
-                    cornerLogo.style.opacity = '1';
-                    cornerLogo.style.transform = 'translateY(0)';
-                    
-                    // Reset header
-                    colorHeader.querySelector('h2').style.transform = 'translateY(0)';
-                    colorHeader.querySelector('h2').style.opacity = '1';
-                    colorHeader.querySelector('p').style.transform = 'translateY(0)';
-                    colorHeader.querySelector('p').style.opacity = '1';
-                    
+                    // Reset animations after a brief delay
                     setTimeout(() => {
-                        isAnimating = false;
-                    }, 300);
+                        carImage.classList.remove('transitioning');
+                        cornerLogo.style.opacity = '1';
+                        cornerLogo.style.transform = 'scale(1)';
+                        
+                        setTimeout(() => {
+                            isAnimating = false;
+                        }, 200);
+                    }, 50);
                 }, 400);
             }
 
