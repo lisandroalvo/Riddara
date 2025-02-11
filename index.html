@@ -998,6 +998,7 @@
             left: 0;
             width: 100%;
             height: 100%;
+            overflow: hidden;
             z-index: 1;
         }
 
@@ -1009,7 +1010,7 @@
             min-height: 100%;
             width: auto;
             height: auto;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%) translateY(-50%);
             object-fit: cover;
         }
 
@@ -1019,7 +1020,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+            background: rgba(0, 0, 0, 0.5);
             z-index: 2;
         }
 
@@ -1371,19 +1372,21 @@
         <div class="section hero-section" data-anchor="home">
             <div class="video-background">
                 <video autoplay muted loop playsinline>
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-driving-through-a-city-at-night-1728-large.mp4" type="video/mp4">
+                    <source src="videos/hero.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
             <div class="video-overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title">The First Pickup in Thailand</h1>
-                <p class="hero-subtitle">100% electric pickup truck, redefining a boundless lifestyle</p>
-                <button class="hero-cta">Configure Your RD6</button>
+                <h1>RIDDARA RD6</h1>
+                <p>The Future of Electric Mobility</p>
+                <a href="#colors" class="cta-button">Explore Colors</a>
             </div>
             <div class="scroll-indicator">
-                <div class="mouse"></div>
-                <span class="scroll-text">Scroll to explore</span>
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="arrow">↓</div>
             </div>
         </div>
 
@@ -1391,7 +1394,6 @@
             <div class="diagonal-block"></div>
             <div class="rd6-corner-logo">
                 <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
-                <a href="#configure" class="cta-button">Configure Your RD6</a>
             </div>
             <div class="color-header">
                 <h2>CHOOSE YOUR COLOR</h2>
@@ -1405,12 +1407,12 @@
                     <button class="nav-arrow next">→</button>
                 </div>
                 <div class="color-selector">
-                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
-                    <div class="color-option color-sand" data-color="sand" data-img="images/Yellow EV Pickup 1.png" data-bg="#9B8B6B"></div>
                     <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
                     <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
+                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
                     <div class="color-option color-grey" data-color="grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
                     <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
+                    <div class="color-option color-sand" data-color="sand" data-img="images/Yellow EV Pickup 1.png" data-bg="#9B8B6B"></div>
                 </div>
             </div>
         </div>
@@ -1706,34 +1708,36 @@
             const carImage = document.getElementById('carImage');
             const diagonalBlock = document.querySelector('.diagonal-block');
             const cornerLogo = document.getElementById('cornerLogo');
-            let currentColorIndex = 2; // Start with black
+            let currentColorIndex = 0;
             let isAnimating = false;
 
             const logoMap = {
-                'green': 'Green.png',
-                'sand': 'Yellow.png',
                 'black': 'Black.png',
                 'blue': 'Blue.png',
+                'green': 'Green.png',
                 'grey': 'Grey.png',
-                'silver': 'light grey.png'
+                'silver': 'light grey.png',
+                'sand': 'Yellow.png'
             };
 
             function updateColor(index, direction = 'right') {
                 if (isAnimating) return;
                 isAnimating = true;
 
+                const selectedOption = colorOptions[index];
+                
                 // Remove active class from all options
                 colorOptions.forEach(opt => opt.classList.remove('active'));
                 
                 // Add active class to selected option
-                colorOptions[index].classList.add('active');
+                selectedOption.classList.add('active');
                 
                 // Get new image and background color
-                const newImage = colorOptions[index].dataset.img;
-                const newBg = colorOptions[index].dataset.bg;
-                const newColor = colorOptions[index].dataset.color;
+                const newImage = selectedOption.dataset.img;
+                const newBg = selectedOption.dataset.bg;
+                const newColor = selectedOption.dataset.color;
                 
-                // Update corner logo with scale effect
+                // Update corner logo
                 cornerLogo.style.transform = 'scale(0.9)';
                 cornerLogo.style.opacity = '0';
                 setTimeout(() => {
@@ -1742,18 +1746,14 @@
                     cornerLogo.style.opacity = '1';
                 }, 300);
 
-                // Remove any existing animation classes
+                // Update car image with animation
                 carImage.className = 'car-image';
-                
-                // Add the appropriate exit animation class based on direction
                 carImage.classList.add(direction === 'right' ? 'drive-out-left' : 'drive-out-right');
                 
                 setTimeout(() => {
-                    // Update image and background
                     carImage.src = newImage;
                     diagonalBlock.style.background = newBg;
                     
-                    // Remove exit animation and add entrance animation
                     carImage.className = 'car-image';
                     carImage.classList.add(direction === 'right' ? 'drive-in-right' : 'drive-in-left');
                     
@@ -1789,7 +1789,7 @@
                 updateColor(currentColorIndex, 'right');
             });
 
-            // Initialize with first color
+            // Initialize first color
             updateColor(currentColorIndex);
         });
     </script>
