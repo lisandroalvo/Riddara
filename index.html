@@ -289,55 +289,11 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 50%;
+            height: 120%;
             background: #1C1C1C;
-            transition: background 1s ease;
-        }
-
-        .rd6-corner-logo {
-            position: absolute;
-            top: 40px;
-            right: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 20px;
-            z-index: 2;
-        }
-
-        .rd6-corner-logo img {
-            width: 200px;
-            transition: all 0.3s ease;
-        }
-
-        .color-header {
-            position: absolute;
-            top: 40px;
-            left: 40px;
-            color: white;
-            z-index: 2;
-        }
-
-        .color-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        .color-header p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-
-        .rd6-logo {
-            position: absolute;
-            bottom: 40px;
-            left: 40px;
-            font-size: 8rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.1);
-            z-index: 1;
+            transform: skewX(-20deg) translateX(-20%);
+            transition: all 0.5s ease;
         }
 
         .car-showcase {
@@ -355,6 +311,75 @@
             max-height: 70vh;
             object-fit: contain;
             transition: transform 0.5s ease;
+        }
+
+        .color-selector {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 30px;
+            z-index: 3;
+        }
+
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .color-option.active {
+            transform: scale(1.2);
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .color-black { background: #1C1C1C; }
+        .color-blue { background: #1B3F5E; }
+        .color-green { background: #3C513C; }
+        .color-grey { background: #808080; }
+        .color-silver { background: #C0C0C0; }
+        .color-sand { background: #9B8B6B; }
+
+        .rd6-corner-logo {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            z-index: 3;
+        }
+
+        .rd6-corner-logo img {
+            width: 180px;
+            transition: all 0.3s ease;
+        }
+
+        .color-header {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            color: white;
+            z-index: 3;
+        }
+
+        .color-header h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .color-header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
         }
 
         .navigation-arrows {
@@ -383,117 +408,70 @@
 
         .nav-arrow:hover {
             background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-2px);
         }
 
-        .color-selector {
-            position: absolute;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 20px;
-            z-index: 3;
+        .nav-arrow:active {
+            transform: translateY(0);
         }
 
-        .color-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .color-option:hover {
-            transform: scale(1.1);
-        }
-
-        .color-option.active {
-            border-color: #FF6B00;
-            transform: scale(1.2);
-        }
-
-        .color-option::after {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            right: -8px;
-            bottom: -8px;
-            border: 2px solid #FF6B00;
-            border-radius: 50%;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .color-option.active::after {
-            opacity: 1;
-        }
-
-        .color-green { background: #3C513C; }
-        .color-sand { background: #9B8B6B; }
-        .color-black { background: #1C1C1C; }
-        .color-blue { background: #1B3F5E; }
-        .color-grey { background: #808080; }
-        .color-silver { background: #C0C0C0; }
-
+        /* Animation Classes */
         .drive-out-left {
-            animation: driveOutLeft 1s ease forwards;
+            animation: driveOutLeft 0.7s ease forwards;
         }
 
         .drive-in-right {
-            animation: driveInRight 1s ease forwards;
+            animation: driveInRight 0.7s ease forwards;
         }
 
         .drive-out-right {
-            animation: driveOutRight 1s ease forwards;
+            animation: driveOutRight 0.7s ease forwards;
         }
 
         .drive-in-left {
-            animation: driveInLeft 1s ease forwards;
+            animation: driveInLeft 0.7s ease forwards;
         }
 
         @keyframes driveOutLeft {
-            from {
+            0% {
                 opacity: 1;
                 transform: translateX(0) scale(1);
             }
-            to {
+            100% {
                 opacity: 0;
-                transform: translateX(-10%) scale(0.9);
+                transform: translateX(-5%) scale(0.98);
             }
         }
 
         @keyframes driveInRight {
-            from {
+            0% {
                 opacity: 0;
-                transform: translateX(10%) scale(0.9);
+                transform: translateX(5%) scale(0.98);
             }
-            to {
+            100% {
                 opacity: 1;
                 transform: translateX(0) scale(1);
             }
         }
 
         @keyframes driveOutRight {
-            from {
+            0% {
                 opacity: 1;
                 transform: translateX(0) scale(1);
             }
-            to {
+            100% {
                 opacity: 0;
-                transform: translateX(10%) scale(0.9);
+                transform: translateX(5%) scale(0.98);
             }
         }
 
         @keyframes driveInLeft {
-            from {
+            0% {
                 opacity: 0;
-                transform: translateX(-10%) scale(0.9);
+                transform: translateX(-5%) scale(0.98);
             }
-            to {
+            100% {
                 opacity: 1;
                 transform: translateX(0) scale(1);
             }
@@ -1392,20 +1370,15 @@
 
         <div class="section color-schemes" data-anchor="colors">
             <div class="diagonal-block"></div>
-            <div class="rd6-corner-logo">
-                <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
-            </div>
             <div class="color-header">
                 <h2>CHOOSE YOUR COLOR</h2>
                 <p>Express your style with our signature finishes.</p>
             </div>
-            <div class="rd6-logo">RD6</div>
+            <div class="rd6-corner-logo">
+                <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
+            </div>
             <div class="car-showcase">
                 <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image" id="carImage">
-                <div class="navigation-arrows">
-                    <button class="nav-arrow prev">←</button>
-                    <button class="nav-arrow next">→</button>
-                </div>
                 <div class="color-selector">
                     <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
                     <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
@@ -1413,6 +1386,10 @@
                     <div class="color-option color-grey" data-color="grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
                     <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
                     <div class="color-option color-sand" data-color="sand" data-img="images/Yellow EV Pickup 1.png" data-bg="#9B8B6B"></div>
+                </div>
+                <div class="navigation-arrows">
+                    <button class="nav-arrow prev">←</button>
+                    <button class="nav-arrow next">→</button>
                 </div>
             </div>
         </div>
@@ -1726,10 +1703,8 @@
 
                 const selectedOption = colorOptions[index];
                 
-                // Remove active class from all options
+                // Update active state
                 colorOptions.forEach(opt => opt.classList.remove('active'));
-                
-                // Add active class to selected option
                 selectedOption.classList.add('active');
                 
                 // Get new image and background color
@@ -1738,29 +1713,27 @@
                 const newColor = selectedOption.dataset.color;
                 
                 // Update corner logo
-                cornerLogo.style.transform = 'scale(0.9)';
                 cornerLogo.style.opacity = '0';
                 setTimeout(() => {
                     cornerLogo.src = `images/${logoMap[newColor]}`;
-                    cornerLogo.style.transform = 'scale(1)';
                     cornerLogo.style.opacity = '1';
-                }, 300);
+                }, 200);
 
                 // Update car image with animation
-                carImage.className = 'car-image';
                 carImage.classList.add(direction === 'right' ? 'drive-out-left' : 'drive-out-right');
                 
                 setTimeout(() => {
                     carImage.src = newImage;
                     diagonalBlock.style.background = newBg;
                     
-                    carImage.className = 'car-image';
+                    carImage.classList.remove('drive-out-left', 'drive-out-right');
                     carImage.classList.add(direction === 'right' ? 'drive-in-right' : 'drive-in-left');
                     
                     setTimeout(() => {
+                        carImage.classList.remove('drive-in-right', 'drive-in-left');
                         isAnimating = false;
-                    }, 1000);
-                }, 1000);
+                    }, 500);
+                }, 500);
             }
 
             // Add click handlers to color options
