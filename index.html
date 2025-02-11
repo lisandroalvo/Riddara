@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIDDARA - EV Pickup Leader</title>
+    <title>RIDDARA RD6</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -1596,90 +1596,22 @@
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
     <script>
-        // Add scroll to top functionality
-        document.querySelector('.scroll-up').addEventListener('click', function() {
-            fullpage_api.moveTo(1);
-        });
-
-        // Initialize fullPage.js with simpler configuration
+        // Initialize fullPage.js
         new fullpage('#fullpage', {
-            licenseKey: 'YOUR_KEY_HERE',
             autoScrolling: true,
-            scrollingSpeed: 1000,
+            scrollHorizontally: true,
             navigation: true,
             navigationPosition: 'right',
-            anchors: ['home', 'features', 'colors'],
-            navigationTooltips: ['Home', 'Features', 'Colors'],
-            scrollOverflow: true,
-            normalScrollElements: '.scrollable',
-            afterLoad: function(origin, destination, direction) {
-                if (destination.anchor === 'colors') {
-                    document.querySelector('.color-schemes').classList.add('active');
-                }
-            },
+            showActiveTooltip: true,
+            anchors: ['home', 'colors', 'specs', 'features'],
+            navigationTooltips: ['Home', 'Colors', 'Specifications', 'Features'],
             onLeave: function(origin, destination, direction) {
-                if (origin.anchor === 'colors') {
-                    document.querySelector('.color-schemes').classList.remove('active');
-                }
+                // Add any section transition animations here
             }
         });
 
-        // Handle navigation clicks
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = link.getAttribute('href').replace('#', '');
-                fullpage_api.moveTo(target);
-            });
-        });
-
-        // Initialize reveal animations for the first section
-        document.addEventListener('DOMContentLoaded', function() {
-            const firstSection = document.querySelector('.section');
-            const revealElements = firstSection.querySelectorAll('.reveal-element');
-            setTimeout(() => {
-                revealElements.forEach(element => {
-                    element.classList.add('active');
-                });
-            }, 500);
-        });
-
-        // Enhanced text reveal animation
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => {
-                document.querySelectorAll('.text-reveal').forEach(element => {
-                    element.classList.add('active');
-                });
-            }, 500);
-        });
-
-        // Enhanced color selection with smoother transitions and text updates
-        document.addEventListener('DOMContentLoaded', function() {
-            const colorBtns = document.querySelectorAll('.color-btn');
-            const colorImages = document.querySelectorAll('.color-image');
-
-            colorBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const color = btn.dataset.color;
-                    
-                    // Update buttons
-                    colorBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    // Update images
-                    colorImages.forEach(img => {
-                        img.classList.remove('active');
-                        if (img.dataset.color === color) {
-                            img.classList.add('active');
-                        }
-                    });
-                });
-            });
-        });
-
-        // Enhanced color selection with smoother transitions and text updates
+        // Color selector functionality
         document.addEventListener('DOMContentLoaded', function() {
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.getElementById('carImage');
@@ -1697,7 +1629,7 @@
                 'sand': 'Yellow.png'
             };
 
-            function updateColor(index, direction = 'right') {
+            function updateColor(index) {
                 if (isAnimating) return;
                 isAnimating = true;
 
@@ -1714,35 +1646,29 @@
                 
                 // Update corner logo
                 cornerLogo.style.opacity = '0';
+                cornerLogo.src = `images/${logoMap[newColor]}`;
                 setTimeout(() => {
-                    cornerLogo.src = `images/${logoMap[newColor]}`;
                     cornerLogo.style.opacity = '1';
                 }, 200);
 
-                // Update car image with animation
-                carImage.classList.add(direction === 'right' ? 'drive-out-left' : 'drive-out-right');
-                
+                // Update car image
+                carImage.style.opacity = '0';
                 setTimeout(() => {
                     carImage.src = newImage;
                     diagonalBlock.style.background = newBg;
-                    
-                    carImage.classList.remove('drive-out-left', 'drive-out-right');
-                    carImage.classList.add(direction === 'right' ? 'drive-in-right' : 'drive-in-left');
-                    
+                    carImage.style.opacity = '1';
                     setTimeout(() => {
-                        carImage.classList.remove('drive-in-right', 'drive-in-left');
                         isAnimating = false;
-                    }, 500);
-                }, 500);
+                    }, 300);
+                }, 300);
             }
 
             // Add click handlers to color options
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', () => {
                     if (currentColorIndex === index || isAnimating) return;
-                    const direction = index > currentColorIndex ? 'right' : 'left';
                     currentColorIndex = index;
-                    updateColor(currentColorIndex, direction);
+                    updateColor(currentColorIndex);
                 });
             });
 
@@ -1753,13 +1679,13 @@
             prevButton.addEventListener('click', () => {
                 if (isAnimating) return;
                 currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
-                updateColor(currentColorIndex, 'left');
+                updateColor(currentColorIndex);
             });
 
             nextButton.addEventListener('click', () => {
                 if (isAnimating) return;
                 currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
-                updateColor(currentColorIndex, 'right');
+                updateColor(currentColorIndex);
             });
 
             // Initialize first color
