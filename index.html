@@ -1374,6 +1374,104 @@
             opacity: 1;
             transform: scale(1);
         }
+
+        /* Features Section Styles */
+        .features-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #1C1C1C;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .feature-item img {
+            width: 80%;
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        /* Car Views Grid */
+        .car-views {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .car-view {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 60%;
+            overflow: hidden;
+            background: #000;
+            border-radius: 8px;
+        }
+
+        .car-view img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .section-title {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            z-index: 2;
+        }
+
+        .section-subtitle {
+            position: absolute;
+            top: calc(5% + 3.5rem);
+            left: 5%;
+            font-size: 1rem;
+            opacity: 0.8;
+            margin: 0;
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
@@ -1442,21 +1540,33 @@
         </div>
 
         <div class="section features-section" data-anchor="features">
+            <h2 class="section-title">EXPLORE RD6</h2>
+            <p class="section-subtitle">View the RD6 from every angle</p>
+            
+            <div class="car-views">
+                <div class="car-view">
+                    <img src="images/Green EV Pickup 1.png" alt="Front View">
+                </div>
+                <div class="car-view">
+                    <img src="images/Green EV Pickup 2.png" alt="Rear View">
+                </div>
+                <div class="car-view">
+                    <img src="images/Green EV Pickup 3.png" alt="Side View">
+                </div>
+            </div>
+
             <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>400+ KM Range</h3>
-                    <p>Go further with advanced battery technology</p>
+                <div class="feature-item">
+                    <h3>Electric Performance</h3>
+                    <p>400+ mile range with rapid charging capability</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <h3>4.8s 0-100</h3>
-                    <p>Experience thrilling acceleration</p>
+                <div class="feature-item">
+                    <h3>Advanced Safety</h3>
+                    <p>Comprehensive suite of driver assistance features</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-mountain"></i>
-                    <h3>All-Terrain</h3>
-                    <p>Conquer any road with confidence</p>
+                <div class="feature-item">
+                    <h3>Premium Interior</h3>
+                    <p>Luxurious materials and cutting-edge technology</p>
                 </div>
             </div>
         </div>
