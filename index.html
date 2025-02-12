@@ -692,6 +692,133 @@
             color: #4CAF50;
             font-weight: 500;
         }
+
+        /* News Section */
+        .news-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #1C1C1C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .news-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .news-card.featured {
+            grid-column: 1 / 3;
+        }
+
+        .news-image {
+            position: relative;
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .promo-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #FF6B00;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .news-content {
+            padding: 1rem;
+        }
+
+        .news-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-date {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .news-cta {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #FF6B00;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .news-cta:hover {
+            background: #FF8533;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        }
+
+        /* Improved Inventory Section */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .specs-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .specs-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .specs-content {
+            padding: 1rem;
+        }
+
+        .spec-item {
+            margin-bottom: 1rem;
+        }
+
+        .spec-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-item p {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-detail {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
@@ -705,6 +832,7 @@
                 <a href="#inventory">Inventory</a>
                 <a href="#services">Services</a>
                 <a href="#colors">Colors</a>
+                <a href="#news">News</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -714,7 +842,7 @@
         <!-- Hero Section -->
         <div class="section hero-section" data-anchor="home">
             <div class="video-background">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline id="heroVideo">
                     <source src="videos/hero.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -755,37 +883,96 @@
             </div>
         </div>
 
+        <!-- News & Promotions Section -->
+        <div class="section news-section" data-anchor="news">
+            <div class="section-header">
+                <h2>Latest News & Promotions</h2>
+                <p>Stay Updated with Riddara Chonburi</p>
+            </div>
+            <div class="news-grid">
+                <div class="news-card featured">
+                    <div class="news-image">
+                        <div class="promo-badge">Limited Time</div>
+                        <img src="images/Black EV Pickup 1.png" alt="Lunar New Year Promotion">
+                    </div>
+                    <div class="news-content">
+                        <h3>Lunar New Year Special Offer</h3>
+                        <p class="news-date">Valid until February 29, 2025</p>
+                        <p>Celebrate Lunar New Year with 0% interest for 48 months and complimentary home charging installation.</p>
+                        <a href="#contact" class="news-cta">Learn More</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="images/Blue EV Pickup 2.png" alt="Test Drive Event">
+                    </div>
+                    <div class="news-content">
+                        <h3>Weekend Test Drive Event</h3>
+                        <p class="news-date">Every Saturday & Sunday</p>
+                        <p>Experience the RD6 with our exclusive weekend test drive program. Book your slot now!</p>
+                        <a href="#test-drive" class="news-cta">Reserve Now</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <div class="promo-badge">New</div>
+                        <img src="images/Green EV Pickup 1.png" alt="Service Package">
+                    </div>
+                    <div class="news-content">
+                        <h3>Premium Care Package</h3>
+                        <p class="news-date">New Service Launch</p>
+                        <p>5-year maintenance package with 24/7 roadside assistance included with every new RD6.</p>
+                        <a href="#services" class="news-cta">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Inventory Section -->
         <div class="section inventory-section" data-anchor="inventory">
             <div class="section-header">
-                <h2>Available Models</h2>
-                <p>Browse Our Premium Electric Vehicle Selection</p>
+                <h2>RD6 Specifications</h2>
+                <p>Choose Your Perfect Configuration</p>
             </div>
-            <div class="inventory-grid">
-                <div class="model-card">
-                    <img src="images/Black EV Pickup 1.png" alt="RD6 Standard">
-                    <div class="model-info">
-                        <h3>RD6 Standard Range</h3>
-                        <p class="price">From ฿1,390,000</p>
-                        <ul class="specs">
-                            <li>350+ km Range</li>
-                            <li>Dual Motor AWD</li>
-                            <li>5.2s 0-100 km/h</li>
-                        </ul>
-                        <a href="#configure" class="model-cta">Configure</a>
+            <div class="specs-grid">
+                <div class="specs-card">
+                    <h3>100% Electric</h3>
+                    <div class="specs-content">
+                        <div class="spec-item">
+                            <h4>Drive Energy Variation</h4>
+                            <p>Extreme Acceleration</p>
+                            <p class="spec-detail">0 to 100 km/h acceleration in 7.3 seconds, for a quicker start.</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Smart Control</h4>
+                            <p>Advanced Driving Experience</p>
+                            <p class="spec-detail">Smooth smart control system delivers the driving experience like a 100% electric SUV.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="model-card">
-                    <img src="images/Blue EV Pickup 2.png" alt="RD6 Long Range">
-                    <div class="model-info">
-                        <h3>RD6 Long Range</h3>
-                        <p class="price">From ฿1,590,000</p>
-                        <ul class="specs">
-                            <li>400+ km Range</li>
-                            <li>Dual Motor AWD</li>
-                            <li>4.8s 0-100 km/h</li>
-                        </ul>
-                        <a href="#configure" class="model-cta">Configure</a>
+                <div class="specs-card">
+                    <h3>Core Function Highlights</h3>
+                    <div class="specs-content">
+                        <div class="spec-item">
+                            <h4>Intelligent Discharge</h4>
+                            <p>6kW/220V discharge in all scenarios</p>
+                            <p class="spec-detail">Staying ahead in the same price range for pickup truck and SUV, allowing use of electric functions anytime and anywhere.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="specs-card">
+                    <h3>All-purpose Pickup Truck</h3>
+                    <div class="specs-content">
+                        <div class="spec-item">
+                            <h4>Comfort & Safety</h4>
+                            <p>Refined Styling and Interior Comfort</p>
+                            <p class="spec-detail">Immerse yourself in a spacious, modern cabin packed with advanced technology features and entertainment.</p>
+                        </div>
+                        <div class="spec-item">
+                            <h4>Engineered for Safety</h4>
+                            <p>Multidimensional Protection</p>
+                            <p class="spec-detail">Advanced safety systems providing you with peace of mind.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -894,32 +1081,34 @@
     </div>
 
     <script>
-        // Initialize fullPage.js with proper configuration
-        new fullpage('#fullpage', {
-            autoScrolling: true,
-            scrollHorizontally: true,
-            navigation: true,
-            navigationPosition: 'right',
-            showActiveTooltip: true,
-            anchors: ['home', 'inventory', 'services', 'colors', 'contact'],
-            navigationTooltips: ['Home', 'Inventory', 'Services', 'Colors', 'Contact'],
-            scrollOverflow: false,
-            fitToSection: true,
-            css3: true,
-            scrollingSpeed: 1000,
-            onLeave: function(origin, destination, direction) {
-                // Handle section transitions if needed
-            },
-            afterLoad: function(origin, destination, direction) {
-                // Initialize any section-specific animations
-                if (destination.anchor === 'colors') {
-                    // Any color section specific initialization
-                }
-            }
-        });
-
-        // Color selector functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Video looping fix
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo) {
+                heroVideo.play().catch(function(error) {
+                    console.log("Video autoplay failed:", error);
+                });
+                
+                heroVideo.addEventListener('ended', function() {
+                    heroVideo.currentTime = 0;
+                    heroVideo.play();
+                });
+            }
+
+            // Initialize fullPage.js
+            new fullpage('#fullpage', {
+                navigation: true,
+                navigationPosition: 'right',
+                showActiveTooltip: true,
+                anchors: ['home', 'news', 'inventory', 'services', 'colors', 'contact'],
+                navigationTooltips: ['Home', 'News', 'Inventory', 'Services', 'Colors', 'Contact'],
+                scrollOverflow: false,
+                fitToSection: true,
+                css3: true,
+                // ... rest of the configuration
+            });
+
+            // Color selector functionality
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.getElementById('carImage');
             const diagonalBlock = document.querySelector('.diagonal-block');
