@@ -425,6 +425,273 @@
         .nav-arrow:hover {
             opacity: 1;
         }
+
+        /* Inventory Section */
+        .inventory-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #1C1C1C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-header {
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            z-index: 2;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .model-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .model-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .model-info {
+            padding: 1rem;
+        }
+
+        .model-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .model-info .price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .model-info .specs {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .model-info .specs li {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .model-cta {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #FF6B00;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .model-cta:hover {
+            background: #FF8533;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        }
+
+        /* Services Section */
+        .services-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #1C1C1C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-cta {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #FF6B00;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .service-cta:hover {
+            background: #FF8533;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #1C1C1C;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+        }
+
+        .info-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-item p {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input, .contact-form select, .contact-form textarea {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+            border-color: #FF6B00;
+            outline: none;
+        }
+
+        .contact-form .submit-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #FF6B00;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .contact-form .submit-btn:hover {
+            background: #FF8533;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .availability {
+            font-size: 1rem;
+            color: #4CAF50;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -435,12 +702,16 @@
             </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
+                <a href="#inventory">Inventory</a>
+                <a href="#services">Services</a>
                 <a href="#colors">Colors</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
     <div id="fullpage">
+        <!-- Hero Section -->
         <div class="section hero-section" data-anchor="home">
             <div class="video-background">
                 <video autoplay muted loop playsinline>
@@ -454,38 +725,112 @@
                     <img src="images/footer.png" alt="Riddara Logo" class="hero-logo">
                     <p class="location">Official Dealership in Chonburi, Thailand</p>
                 </div>
-                <p class="hero-subtitle">Experience the Future of Electric Mobility</p>
-                <p class="hero-description">Powerful. Sustainable. Revolutionary.</p>
+                <p class="hero-subtitle">Your Premier Riddara Electric Vehicle Dealership</p>
+                <p class="hero-description">Experience Luxury Electric Vehicles with Exceptional Service</p>
                 <div class="cta-group">
-                    <a href="#colors" class="cta-button primary">Customize Yours</a>
-                    <span class="price-tag">Starting at $39,900*</span>
+                    <div class="cta-buttons">
+                        <a href="#inventory" class="cta-button primary">View Inventory</a>
+                        <a href="#test-drive" class="cta-button secondary">Schedule Test Drive</a>
+                    </div>
+                    <span class="availability">Available for Immediate Delivery</span>
                 </div>
                 <div class="key-features">
                     <div class="feature">
-                        <span class="feature-number">400+</span>
-                        <span class="feature-label">km Range</span>
+                        <span class="feature-number">24/7</span>
+                        <span class="feature-label">Service Support</span>
                     </div>
                     <div class="feature">
-                        <span class="feature-number">4.8s</span>
-                        <span class="feature-label">0-100 km/h</span>
+                        <span class="feature-number">5★</span>
+                        <span class="feature-label">Customer Rating</span>
                     </div>
                     <div class="feature">
-                        <span class="feature-number">1,525L</span>
-                        <span class="feature-label">Cargo Space</span>
+                        <span class="feature-number">0%</span>
+                        <span class="feature-label">Financing Available</span>
                     </div>
                 </div>
             </div>
             <div class="scroll-indicator">
                 <span></span>
-                <p>Scroll to explore colors</p>
+                <p>Explore Our Services</p>
             </div>
         </div>
 
+        <!-- Inventory Section -->
+        <div class="section inventory-section" data-anchor="inventory">
+            <div class="section-header">
+                <h2>Available Models</h2>
+                <p>Browse Our Premium Electric Vehicle Selection</p>
+            </div>
+            <div class="inventory-grid">
+                <div class="model-card">
+                    <img src="images/Black EV Pickup 1.png" alt="RD6 Standard">
+                    <div class="model-info">
+                        <h3>RD6 Standard Range</h3>
+                        <p class="price">From ฿1,390,000</p>
+                        <ul class="specs">
+                            <li>350+ km Range</li>
+                            <li>Dual Motor AWD</li>
+                            <li>5.2s 0-100 km/h</li>
+                        </ul>
+                        <a href="#configure" class="model-cta">Configure</a>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <img src="images/Blue EV Pickup 2.png" alt="RD6 Long Range">
+                    <div class="model-info">
+                        <h3>RD6 Long Range</h3>
+                        <p class="price">From ฿1,590,000</p>
+                        <ul class="specs">
+                            <li>400+ km Range</li>
+                            <li>Dual Motor AWD</li>
+                            <li>4.8s 0-100 km/h</li>
+                        </ul>
+                        <a href="#configure" class="model-cta">Configure</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="section services-section" data-anchor="services">
+            <div class="section-header">
+                <h2>Premium Services</h2>
+                <p>Experience Excellence at Every Step</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Test Drive</h3>
+                    <p>Schedule a personalized test drive experience</p>
+                    <a href="#test-drive" class="service-cta">Book Now</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💰</div>
+                    <h3>Financing</h3>
+                    <p>Flexible financing options with competitive rates</p>
+                    <a href="#finance" class="service-cta">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Service Center</h3>
+                    <p>Factory-certified maintenance and repairs</p>
+                    <a href="#service" class="service-cta">Schedule Service</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔌</div>
+                    <h3>Charging</h3>
+                    <p>Complimentary charging station installation</p>
+                    <a href="#charging" class="service-cta">Details</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colors Section -->
         <div class="section color-schemes" data-anchor="colors">
             <div class="diagonal-block"></div>
             <div class="color-header">
-                <h2>CHOOSE YOUR COLOR</h2>
-                <p>Express your style with our signature finishes.</p>
+                <h2>CUSTOMIZE YOUR RD6</h2>
+                <p>Choose from our signature finishes</p>
             </div>
             <div class="rd6-corner-logo">
                 <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
@@ -506,6 +851,46 @@
                 <button class="nav-arrow next">→</button>
             </div>
         </div>
+
+        <!-- Contact Section -->
+        <div class="section contact-section" data-anchor="contact">
+            <div class="section-header">
+                <h2>Visit Our Showroom</h2>
+                <p>Experience the Future of Electric Mobility</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <h3>Location</h3>
+                        <p>123 Sukhumvit Road<br>Chonburi, Thailand 20150</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Hours</h3>
+                        <p>Mon-Sat: 9:00 AM - 6:00 PM<br>Sunday: 10:00 AM - 4:00 PM</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Contact</h3>
+                        <p>Sales: +66 2 123 4567<br>Service: +66 2 123 4568</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Schedule a Visit</h3>
+                    <form id="visit-form">
+                        <input type="text" placeholder="Name" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="tel" placeholder="Phone" required>
+                        <select required>
+                            <option value="">Select Service</option>
+                            <option value="test-drive">Test Drive</option>
+                            <option value="sales">Sales Inquiry</option>
+                            <option value="service">Service Appointment</option>
+                        </select>
+                        <textarea placeholder="Message" rows="4"></textarea>
+                        <button type="submit" class="submit-btn">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -516,8 +901,8 @@
             navigation: true,
             navigationPosition: 'right',
             showActiveTooltip: true,
-            anchors: ['home', 'colors'],
-            navigationTooltips: ['Home', 'Colors'],
+            anchors: ['home', 'inventory', 'services', 'colors', 'contact'],
+            navigationTooltips: ['Home', 'Inventory', 'Services', 'Colors', 'Contact'],
             scrollOverflow: false,
             fitToSection: true,
             css3: true,
