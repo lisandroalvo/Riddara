@@ -7,35 +7,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
     <style>
+        /* Essential Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
 
-        /* Navigation Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            background: #000;
+        }
+
+        /* Navigation */
         .main-nav {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
+            width: 100%;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
             padding: 1rem 2rem;
-            transition: all 0.3s ease;
         }
 
         .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .logo img {
-            height: 40px;
+            height: 30px;
         }
 
         .nav-links {
@@ -44,252 +48,108 @@
         }
 
         .nav-links a {
+            color: white;
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero-section {
             position: relative;
-        }
-
-        .nav-links a:after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #007bff;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
-
-        /* Section Styles */
-        .section {
-            position: relative;
-            width: 100%;
             height: 100vh;
             overflow: hidden;
         }
 
-        .section.hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
-            color: #fff;
-            position: relative;
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
 
-        .content-wrapper {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .video-background video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .hero-content {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
+            padding-top: 35vh;
         }
 
         .hero-content h1 {
-            font-size: 5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            line-height: 1.2;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
 
         .hero-content p {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
+            opacity: 0.8;
             margin-bottom: 2rem;
-            font-weight: 300;
-            color: #fff;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
-        /* Centered Scroll Indicator */
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         .scroll-indicator {
             position: absolute;
-            bottom: 60px;
+            bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            width: 100%;
             text-align: center;
         }
 
-        /* Riddara-style animations */
-        .reveal-element {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        }
-
-        .reveal-element.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Staggered delays for Riddara-style motion */
-        .delay-1 { 
-            transition-delay: 0.3s;
-            transition-duration: 1s;
-        }
-        .delay-2 { 
-            transition-delay: 0.6s;
-            transition-duration: 1.2s;
-        }
-        .delay-3 { 
-            transition-delay: 0.9s;
-            transition-duration: 1.4s;
-        }
-
-        /* Smooth fade for text */
-        .text-reveal {
-            display: inline-block;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .text-reveal span {
+        .scroll-indicator span {
             display: block;
-            transform: translateY(100%);
-            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        }
-
-        .text-reveal.active span {
-            transform: translateY(0);
-        }
-
-        /* Mouse scroll animation */
-        .mouse {
             width: 30px;
             height: 50px;
-            border: 2px solid #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 15px;
+            margin: 0 auto 1rem;
             position: relative;
-            margin: 0 auto 10px;
         }
 
-        .mouse::before {
+        .scroll-indicator span::before {
             content: '';
-            width: 4px;
-            height: 8px;
-            background: #fff;
             position: absolute;
+            top: 6px;
             left: 50%;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
             transform: translateX(-50%);
-            top: 8px;
-            border-radius: 2px;
             animation: scroll 2s infinite;
         }
 
-        .scroll-text {
-            color: #fff;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-            margin-top: 10px;
-        }
-
         @keyframes scroll {
-            0% { transform: translate(-50%, 0); opacity: 0; }
-            40% { opacity: 1; }
-            80% { transform: translate(-50%, 20px); opacity: 0; }
-            100% { opacity: 0; }
+            0% { transform: translate(-50%, 0); opacity: 1; }
+            100% { transform: translate(-50%, 20px); opacity: 0; }
         }
 
-        /* Model Sections */
-        .model-section {
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        .model-content {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .model-specs {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin-top: 2rem;
-        }
-
-        .spec {
-            text-align: center;
-        }
-
-        .spec .number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            display: block;
-            color: #007bff;
-        }
-
-        .spec .label {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        /* Features Section */
-        .features-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: #1C1C1C;
-            color: white;
-            overflow: hidden;
-            padding: 2rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            width: 90%;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .feature-item {
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .feature-item h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-item p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin: 0;
-            line-height: 1.4;
-        }
-
-        /* Color Schemes Section */
+        /* Color Section */
         .color-schemes {
             position: relative;
             width: 100%;
@@ -313,6 +173,37 @@
             z-index: 1;
         }
 
+        .color-header {
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            z-index: 2;
+        }
+
+        .color-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .color-header p {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .rd6-corner-logo {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            z-index: 2;
+        }
+
+        .rd6-corner-logo img {
+            height: 40px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+        }
+
         .car-showcase {
             position: relative;
             width: 100%;
@@ -332,11 +223,6 @@
             filter: none;
         }
 
-        .car-image.transitioning {
-            transform: scale(0.98) translateX(-2%);
-            opacity: 0;
-        }
-
         .color-selector {
             position: absolute;
             left: 5%;
@@ -344,49 +230,26 @@
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            z-index: 3;
+            gap: 1rem;
+            z-index: 2;
         }
 
         .color-option {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            position: relative;
+            transition: transform 0.3s;
+            border: 2px solid transparent;
         }
 
         .color-option:hover {
             transform: scale(1.1);
-            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .color-option.active {
-            transform: scale(1.2);
-            border-color: #fff;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-        }
-
-        .color-option::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: white;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .color-option.active::after {
-            width: 8px;
-            height: 8px;
-            opacity: 1;
+            border-color: white;
+            transform: scale(1.1);
         }
 
         .color-black { background: #1C1C1C; }
@@ -396,1103 +259,28 @@
         .color-silver { background: #C0C0C0; }
         .color-sand { background: #9B8B6B; }
 
-        .rd6-corner-logo {
-            position: absolute;
-            top: 5%;
-            right: 5%;
-            z-index: 3;
-            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        }
-
-        .rd6-corner-logo img {
-            width: 180px;
-            transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        }
-
-        .color-header {
-            position: absolute;
-            top: 5%;
-            left: 5%;
-            color: white;
-            z-index: 3;
-        }
-
-        .color-header h2 {
-            font-size: 4rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .color-header p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-
         .navigation-arrows {
             position: absolute;
-            bottom: 5%;
-            right: 5%;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            gap: 15px;
-            z-index: 3;
+            gap: 2rem;
+            z-index: 2;
         }
 
         .nav-arrow {
-            width: 50px;
-            height: 50px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-arrow:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .nav-arrow:active {
-            transform: translateY(0);
-        }
-
-        /* Smooth fade for text */
-        .text-reveal {
-            display: inline-block;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .text-reveal span {
-            display: block;
-            transform: translateY(100%);
-            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-        }
-
-        .text-reveal.active span {
-            transform: translateY(0);
-        }
-
-        /* Model Sections */
-        .model-section {
-            background-color: #f8f9fa;
-            color: #333;
-        }
-
-        .model-content {
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .model-specs {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            margin-top: 2rem;
-        }
-
-        .spec {
-            text-align: center;
-        }
-
-        .spec .number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            display: block;
-            color: #007bff;
-        }
-
-        .spec .label {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .model-specs {
-                flex-direction: column;
-                gap: 2rem;
-            }
-        }
-
-        /* fullPage.js Navigation Bullets */
-        #fp-nav ul li a span {
-            background: white;
-        }
-
-        #fp-nav ul li a.active span {
-            background: #007bff;
-        }
-
-        /* Animation Classes */
-        .fp-watermark {
-            display: none;
-        }
-
-        /* Footer Styles */
-        :root {
-            --riddara-green: #3C513C;
-        }
-
-        .footer {
-            position: relative;
-            width: 100%;
-            background: var(--riddara-green);
-            color: #fff;
-            padding: 1rem 2rem;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-logo img {
-            height: 40px;
-            width: auto;
-        }
-
-        .footer-logo .brand-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.2;
-        }
-
-        .footer-logo .brand-name {
-            font-size: 1.4rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-        }
-
-        .footer-logo .sub-brand {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .footer-center {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-center .scroll-up {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .footer-center .scroll-up:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .footer-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .footer-right .copyright {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .footer-right .cookie-policy {
-            font-size: 0.9rem;
-            color: #fff;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-right .cookie-policy:hover {
-            opacity: 1;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            color: #fff;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .social-links a:hover {
-            opacity: 1;
-        }
-
-        .features-section {
-            background: #f8f9fa;
-            padding: 4rem 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .feature-card {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #333;
-        }
-
-        .feature-card p {
-            font-size: 1rem;
-            color: #666;
-            line-height: 1.4;
-        }
-
-        #fullpage {
-            position: relative;
-            min-height: 100vh;
-        }
-
-        .specs-section {
-            background: #1C1C1C;
-            color: white;
-            padding: 2rem 0;
-        }
-
-        .specs-content {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .specs-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            gap: 2rem;
-        }
-
-        .specs-view {
-            position: relative;
-            width: 48%;
-            transition: transform 0.3s ease;
-        }
-
-        .specs-view:hover {
-            transform: scale(1.02);
-        }
-
-        .specs-view.full-width {
-            width: 100%;
-            margin-top: 1rem;
-        }
-
-        .dimension-group {
-            position: absolute;
-            cursor: pointer;
-            pointer-events: auto;
-            transition: all 0.3s ease;
-        }
-
-        .dimension-group:hover {
-            z-index: 10;
-        }
-
-        .dimension-dot {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #FF6B00;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-            box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .dimension-group:hover .dimension-dot {
-            background: #FFF;
-            box-shadow: 0 0 0 8px rgba(255, 107, 0, 0.2);
-        }
-
-        .dimension-dot::before {
-            content: '';
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            border: 2px solid #FF6B00;
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .dimension-group:hover .dimension-dot::before {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-            animation: pulse 2s infinite;
-        }
-
-        .dimension-line {
-            position: absolute;
-            background: #FF6B00;
-            height: 2px;
-            width: 0;
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: left center;
-            box-shadow: 0 0 10px rgba(255, 107, 0, 0.4);
-        }
-
-        .dimension-group:hover .dimension-line {
-            opacity: 1;
-            width: 100%;
-        }
-
-        .dimension-line.vertical {
-            width: 2px !important;
-            height: 0;
-            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .dimension-group:hover .dimension-line.vertical {
-            height: 100%;
-        }
-
-        .dimension-text {
-            position: absolute;
-            color: #FFF;
-            font-size: 14px;
-            white-space: nowrap;
-            background: rgba(255, 107, 0, 0.95);
-            padding: 10px 16px;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            transform: translateY(10px) scale(0.9);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 3;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .dimension-text::before {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 107, 0, 0.95);
-            transform: rotate(45deg);
-            z-index: -1;
-        }
-
-        .dimension-text.top::before {
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-        }
-
-        .dimension-text.bottom::before {
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%) rotate(45deg);
-        }
-
-        .dimension-group:hover .dimension-text {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.5;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.8);
-                opacity: 0.2;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.5;
-            }
-        }
-
-        .specs-car-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: filter 0.3s ease;
-        }
-
-        .specs-view:hover .specs-car-image {
-            filter: brightness(1.1) contrast(1.1);
-        }
-
-        .dimension-label {
-            display: block;
-            font-size: 12px;
-            opacity: 0.8;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-        }
-
-        .dimension-value {
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .footer {
-            background-color: #2F4733;
-            padding: 2rem 0;
-            position: relative;
-            color: white;
-        }
-
-        .footer-content {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-logo {
-            width: 200px;
-            height: auto;
-        }
-
-        .footer-nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .footer-nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            transition: opacity 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .footer-nav a:hover {
-            opacity: 0.8;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .social-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .social-icon svg {
-            width: 16px;
-            height: 16px;
-            fill: white;
-        }
-
-        .footer-bottom {
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .scroll-top {
-            width: 40px;
-            height: 40px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .scroll-top:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .scroll-top svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
-            transform: rotate(-90deg);
-        }
-
-        .hero-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background-color: #1C1C1C;
-        }
-
-        .video-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .video-background video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translateX(-50%) translateY(-50%);
-            object-fit: cover;
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            color: white;
-            text-align: center;
-            padding: 0 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            text-transform: uppercase;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            line-height: 1.6;
-            animation: fadeInDown 1s ease-out 0.2s both;
-        }
-
-        .hero-cta {
-            padding: 1.2rem 3rem;
-            font-size: 1.2rem;
-            color: white;
-            background: #FF6B00;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        .hero-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.4);
-            background: #FF7D1A;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 3;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: fadeInUp 1s ease-out 1s both;
-        }
-
-        .mouse {
-            width: 30px;
-            height: 50px;
-            border: 2px solid white;
-            border-radius: 15px;
-            position: relative;
-            margin-bottom: 10px;
-        }
-
-        .mouse::before {
-            content: '';
-            width: 4px;
-            height: 8px;
-            background: white;
-            position: absolute;
-            top: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
-            animation: scrollMouse 2s infinite;
-        }
-
-        .scroll-text {
-            color: white;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.8;
-        }
-
-        @keyframes scrollMouse {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, 0);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, 20px);
-            }
-        }
-
-        .footer {
-            background-color: #2F4733;
-            padding: 4rem 0 2rem;
-            position: relative;
-            color: white;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .footer-main {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 4rem;
-            align-items: start;
-            margin-bottom: 3rem;
-        }
-
-        .footer-logo {
-            width: 180px;
-            height: auto;
-        }
-
-        .footer-nav {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .footer-nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.8;
-        }
-
-        .footer-nav a:hover {
-            opacity: 1;
-            transform: translateX(5px);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            background: #FF6B00;
-            transform: translateY(-3px);
-        }
-
-        .social-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .copyright {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .cookie-policy {
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .cookie-policy:hover {
-            color: white;
-        }
-
-        .scroll-top {
-            width: 44px;
-            height: 44px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: transparent;
-        }
-
-        .scroll-top:hover {
-            background: #FF6B00;
-            border-color: #FF6B00;
-            transform: translateY(-3px);
-        }
-
-        .scroll-top svg {
-            width: 24px;
-            height: 24px;
-            fill: white;
-            transform: rotate(-90deg);
-        }
-
-        .color-section {
-            background: #1C1C1C;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .color-selector {
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .color-options {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .color-btn {
             background: none;
             border: none;
             color: white;
+            font-size: 2rem;
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            opacity: 0.6;
+            opacity: 0.5;
+            transition: opacity 0.3s;
         }
 
-        .color-btn.active {
+        .nav-arrow:hover {
             opacity: 1;
-        }
-
-        .color-btn:hover {
-            opacity: 1;
-            transform: translateY(-2px);
-        }
-
-        .color-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .color-btn.active .color-circle {
-            border-color: #FF6B00;
-            transform: scale(1.1);
-        }
-
-        .color-name {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .color-preview {
-            position: relative;
-            width: 100%;
-            height: 60vh;
-            overflow: hidden;
-            border-radius: 20px;
-            background: #2A2A2A;
-        }
-
-        .color-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            transform: scale(0.95);
-        }
-
-        .color-image.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Features Section Styles */
-        .features-section {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background: #1C1C1C;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .feature-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 1.5rem;
-        }
-
-        .feature-item img {
-            width: 80%;
-            max-width: 300px;
-            height: auto;
-            margin-bottom: 1rem;
-        }
-
-        .feature-item h3 {
-            font-size: 1.2rem;
-            margin: 0.5rem 0;
-        }
-
-        .feature-item p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin: 0;
-        }
-
-        /* Car Views Grid */
-        .car-views-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 40vh 30vh;
-            gap: 0.5rem;
-            width: 100%;
-            height: 100vh;
-            padding: 1rem;
-            align-items: center;
-            justify-items: center;
-            background: #1C1C1C;
-        }
-
-        .car-view-item {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .car-view-item img {
-            max-width: 70%;
-            max-height: 25vh;
-            object-fit: contain;
-        }
-
-        .car-view-item.side {
-            grid-column: 1 / -1;
-        }
-
-        .car-view-item.side img {
-            max-width: 80%;
-            max-height: 20vh;
-        }
-
-        /* Section 7 Styles */
-        .section-7 {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background: #1C1C1C;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .section-7 .car-images {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2vh;
-            height: 70vh;
-        }
-
-        .section-7 .top-images {
-            display: flex;
-            justify-content: center;
-            gap: 2vw;
-        }
-
-        .section-7 .car-image {
-            max-width: 250px;
-            max-height: 15vh;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .section-7 .bottom-image {
-            max-width: 350px;
-            max-height: 12vh;
-            width: auto;
-            height: auto;
-            object-fit: contain;
         }
     </style>
 </head>
@@ -1504,11 +292,7 @@
             </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#features">Features</a>
                 <a href="#colors">Colors</a>
-                <a href="#about">ABOUT RIDDARA</a>
-                <a href="#newsroom">NEWSROOM</a>
-                <a href="#contact">CONTACT US</a>
             </div>
         </div>
     </nav>
@@ -1517,21 +301,18 @@
         <div class="section hero-section" data-anchor="home">
             <div class="video-background">
                 <video autoplay muted loop playsinline>
-                    <source src="videos/hero.mp4" type="video/mp4">
+                    <source src="https://player.vimeo.com/progressive_redirect/playback/908090205/rendition/1080p/file.mp4?loc=external&signature=0d38d09c7f5c4fc5c6e2c8d6e3c0e2c5" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
-            <div class="video-overlay"></div>
             <div class="hero-content">
                 <h1>RIDDARA RD6</h1>
-                <p>The Future of Electric Mobility</p>
+                <p>The Future of Electric Pickups</p>
                 <a href="#colors" class="cta-button">Explore Colors</a>
             </div>
             <div class="scroll-indicator">
-                <div class="mouse">
-                    <div class="wheel"></div>
-                </div>
-                <div class="arrow">↓</div>
+                <span></span>
+                <p>Scroll to explore</p>
             </div>
         </div>
 
@@ -1546,246 +327,21 @@
             </div>
             <div class="car-showcase">
                 <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image" id="carImage">
-                <div class="color-selector">
-                    <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
-                    <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
-                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
-                    <div class="color-option color-grey" data-color="grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
-                    <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
-                    <div class="color-option color-sand" data-color="sand" data-img="images/Yellow EV Pickup 1.png" data-bg="#9B8B6B"></div>
-                </div>
-                <div class="navigation-arrows">
-                    <button class="nav-arrow prev">←</button>
-                    <button class="nav-arrow next">→</button>
-                </div>
             </div>
-        </div>
-
-        <div class="section car-views-section" data-anchor="views">
-            <div class="car-views-grid">
-                <div class="car-view-item">
-                    <img src="images/Green EV Pickup 1.png" alt="Front View">
-                </div>
-                <div class="car-view-item">
-                    <img src="images/Green EV Pickup 2.png" alt="Rear View">
-                </div>
-                <div class="car-view-item side">
-                    <img src="images/Green EV Pickup 3.png" alt="Side View">
-                </div>
+            <div class="color-selector">
+                <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
+                <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
+                <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
+                <div class="color-option color-grey" data-color="grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
+                <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
+                <div class="color-option color-sand" data-color="sand" data-img="images/Yellow EV Pickup 1.png" data-bg="#9B8B6B"></div>
             </div>
-        </div>
-
-        <div class="section features-section" data-anchor="features">
-            <h2>Key Features</h2>
-            <div class="features-grid">
-                <div class="feature-item">
-                    <h3>Electric Performance</h3>
-                    <p>400+ mile range with rapid charging capability</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Advanced Safety</h3>
-                    <p>Comprehensive suite of driver assistance features</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Premium Interior</h3>
-                    <p>Luxurious materials and cutting-edge technology</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section model-section" data-anchor="rd6-4wd">
-            <div class="content-wrapper">
-                <div class="model-content">
-                    <h2 class="reveal-element">RIDDARA RD6 4WD</h2>
-                    <p class="reveal-element delay-1">Experience ultimate performance with our flagship 4WD model</p>
-                    <div class="model-specs">
-                        <div class="spec reveal-element delay-2">
-                            <span class="number">400+</span>
-                            <span class="label">KM Range</span>
-                        </div>
-                        <div class="spec reveal-element delay-3">
-                            <span class="number">4.8</span>
-                            <span class="label">Sec 0-100 km/h</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section model-section" data-anchor="rd6-2wd">
-            <div class="content-wrapper">
-                <div class="model-content">
-                    <h2 class="reveal-element">RIDDARA RD6 2WD</h2>
-                    <p class="reveal-element delay-1">Efficient and powerful, perfect for everyday adventures</p>
-                    <div class="model-specs">
-                        <div class="spec reveal-element delay-2">
-                            <span class="number">350+</span>
-                            <span class="label">KM Range</span>
-                        </div>
-                        <div class="spec reveal-element delay-3">
-                            <span class="number">5.2</span>
-                            <span class="label">Sec 0-100 km/h</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section specs-section" data-anchor="specs">
-            <div class="specs-content">
-                <div class="specs-unit">Unit: mm</div>
-                
-                <!-- Front and Back Views Row -->
-                <div class="specs-row">
-                    <!-- Front View -->
-                    <div class="specs-view">
-                        <img src="images/front.png" alt="RD6 Front View" class="specs-car-image">
-                        <div class="dimension-container">
-                            <!-- Height (at the roof) -->
-                            <div class="dimension-group" style="top: 20%; left: 50%; width: 60px; height: 160px;">
-                                <div class="dimension-dot"></div>
-                                <div class="dimension-line vertical"></div>
-                                <div class="dimension-text" style="left: -120px; top: 50%;">Height: 1,865</div>
-                            </div>
-
-                            <!-- Width (at the wheels) -->
-                            <div class="dimension-group" style="bottom: 35%; left: 20%; width: 200px; height: 30px;">
-                                <div class="dimension-dot"></div>
-                                <div class="dimension-line"></div>
-                                <div class="dimension-text" style="left: 50%; bottom: 100%;">Width: 1,900</div>
-                            </div>
-
-                            <!-- Track (at the wheels) -->
-                            <div class="dimension-group" style="bottom: 25%; left: 25%; width: 180px; height: 30px;">
-                                <div class="dimension-dot"></div>
-                                <div class="dimension-line"></div>
-                                <div class="dimension-text" style="left: 50%; top: 100%;">Track: 1,600/1,620</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Back View -->
-                    <div class="specs-view">
-                        <img src="images/back.png" alt="RD6 Back View" class="specs-car-image">
-                        <div class="dimension-container">
-                            <!-- Height (at the roof) -->
-                            <div class="dimension-group" style="top: 20%; left: 50%; width: 60px; height: 160px;">
-                                <div class="dimension-dot"></div>
-                                <div class="dimension-line vertical"></div>
-                                <div class="dimension-text" style="left: -120px; top: 50%;">Height: 1,865</div>
-                            </div>
-
-                            <!-- Width (at the wheels) -->
-                            <div class="dimension-group" style="bottom: 35%; left: 20%; width: 200px; height: 30px;">
-                                <div class="dimension-dot"></div>
-                                <div class="dimension-line"></div>
-                                <div class="dimension-text" style="left: 50%; bottom: 100%;">Width: 1,900</div>
-                            </div>
-
-                            <!-- Track (at the wheels) -->
-                            <div class="dimension-group" style="bottom: 25%; left: 25%; width: 180px; height: 30px;">
-                                <div class="dimension-dot"></div>
-                                <div class="dimension-line"></div>
-                                <div class="dimension-text" style="left: 50%; top: 100%;">Track: 1,600/1,620</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Side View Row -->
-                <div class="specs-row">
-                    <div class="specs-view full-width">
-                        <img src="images/Side.png" alt="RD6 Side View" class="specs-car-image">
-                        <div class="dimension-container">
-                            <!-- Length (full vehicle) -->
-                            <div class="dimension-group" style="bottom: 30%; left: 10%; width: 80%; height: 30px;">
-                                <div class="dimension-dot"></div>
-                                <div class="dimension-line"></div>
-                                <div class="dimension-text" style="left: 50%; bottom: 100%;">Length: 5,260</div>
-                            </div>
-
-                            <!-- Wheelbase (between wheels) -->
-                            <div class="dimension-group" style="bottom: 20%; left: 25%; width: 50%; height: 30px;">
-                                <div class="dimension-dot"></div>
-                                <div class="dimension-line"></div>
-                                <div class="dimension-text" style="left: 50%; top: 100%;">Wheelbase: 3,120</div>
-                            </div>
-
-                            <!-- Ground Clearance -->
-                            <div class="dimension-group" style="bottom: 15%; left: 40%; width: 30px; height: 60px;">
-                                <div class="dimension-dot"></div>
-                                <div class="dimension-line vertical"></div>
-                                <div class="dimension-text" style="left: 120%; top: 50%;">Ground: 221</div>
-                            </div>
-
-                            <!-- Truck Bed -->
-                            <div class="dimension-group" style="top: 45%; right: 15%; width: 140px; height: 30px;">
-                                <div class="dimension-dot"></div>
-                                <div class="dimension-line"></div>
-                                <div class="dimension-text" style="right: 0; top: -30px;">Bed: 1,525×1,450×540</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section section-7" data-anchor="views">
-            <div class="car-images">
-                <div class="top-images">
-                    <img src="images/Green EV Pickup 1.png" alt="Front View" class="car-image">
-                    <img src="images/Green EV Pickup 2.png" alt="Back View" class="car-image">
-                </div>
-                <div class="bottom-image-container">
-                    <img src="images/Green EV Pickup 3.png" alt="Side View" class="bottom-image">
-                </div>
+            <div class="navigation-arrows">
+                <button class="nav-arrow prev">←</button>
+                <button class="nav-arrow next">→</button>
             </div>
         </div>
     </div>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-main">
-                <div class="footer-logo-wrapper">
-                    <img src="images/footer.png" alt="Riddara Logo" class="footer-logo">
-                </div>
-                
-                <nav class="footer-nav">
-                    <a href="#home">HOME</a>
-                    <a href="#colors">COLORS</a>
-                    <a href="#specs">SPECIFICATIONS</a>
-                    <a href="#features">FEATURES</a>
-                    <a href="#about">ABOUT</a>
-                    <a href="#contact">CONTACT</a>
-                </nav>
-
-                <div class="footer-social">
-                    <a href="#" class="social-icon" aria-label="Facebook">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-icon" aria-label="LinkedIn">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="copyright">
-                    <span> 2024 Riddara. All Rights Reserved.</span>
-                    <a href="#" class="cookie-policy">Cookie Policy</a>
-                </div>
-                <button class="scroll-top" onclick="fullpage_api.moveTo(1)" aria-label="Scroll to top">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </footer>
 
     <script>
         // Initialize fullPage.js with proper configuration
@@ -1795,8 +351,8 @@
             navigation: true,
             navigationPosition: 'right',
             showActiveTooltip: true,
-            anchors: ['home', 'colors', 'specs', 'features'],
-            navigationTooltips: ['Home', 'Colors', 'Specifications', 'Features'],
+            anchors: ['home', 'colors'],
+            navigationTooltips: ['Home', 'Colors'],
             scrollOverflow: false,
             fitToSection: true,
             css3: true,
