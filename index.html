@@ -107,13 +107,41 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-title {
-            font-size: 5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
             animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero-logo {
+            height: 60px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        .location {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #fff;
+            opacity: 0.9;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .location::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: #FF6B00;
         }
 
         .hero-subtitle {
@@ -416,13 +444,16 @@
         <div class="section hero-section" data-anchor="home">
             <div class="video-background">
                 <video autoplay muted loop playsinline>
-                    <source src="https://player.vimeo.com/progressive_redirect/playback/908090205/rendition/1080p/file.mp4?loc=external&signature=0d38d09c7f5c4fc5c6e2c8d6e3c0e2c5" type="video/mp4">
+                    <source src="videos/hero.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <div class="video-overlay"></div>
             </div>
             <div class="hero-content">
-                <h1 class="hero-title">RIDDARA RD6</h1>
+                <div class="logo-container">
+                    <img src="images/footer.png" alt="Riddara Logo" class="hero-logo">
+                    <p class="location">Official Dealership in Chonburi, Thailand</p>
+                </div>
                 <p class="hero-subtitle">Experience the Future of Electric Mobility</p>
                 <p class="hero-description">Powerful. Sustainable. Revolutionary.</p>
                 <div class="cta-group">
