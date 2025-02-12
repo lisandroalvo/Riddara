@@ -64,6 +64,7 @@
             position: relative;
             height: 100vh;
             overflow: hidden;
+            background: #000;
         }
 
         .video-background {
@@ -78,24 +79,64 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            filter: brightness(0.8);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.7) 0%,
+                rgba(0, 0, 0, 0.5) 50%,
+                rgba(0, 0, 0, 0.7) 100%
+            );
+            z-index: 2;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             text-align: center;
-            padding-top: 35vh;
+            padding-top: 25vh;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-content h1 {
-            font-size: 4rem;
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInDown 0.8s ease-out;
         }
 
-        .hero-content p {
-            font-size: 1.5rem;
+        .hero-subtitle {
+            font-size: 2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            animation: fadeInDown 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
             opacity: 0.8;
             margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out 0.4s backwards;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
         }
 
         .cta-button {
@@ -109,8 +150,59 @@
             transition: all 0.3s;
         }
 
+        .cta-button.primary {
+            background: #FF6B00;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button.primary:hover {
+            background: #FF8533;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        }
+
         .cta-button:hover {
             background: rgba(255, 255, 255, 0.2);
+        }
+
+        .price-tag {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .key-features {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.8s backwards;
+        }
+
+        .feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FF6B00;
+        }
+
+        .feature-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .scroll-indicator {
@@ -119,6 +211,7 @@
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
+            z-index: 3;
         }
 
         .scroll-indicator span {
@@ -147,6 +240,28 @@
         @keyframes scroll {
             0% { transform: translate(-50%, 0); opacity: 1; }
             100% { transform: translate(-50%, 20px); opacity: 0; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Color Section */
@@ -304,15 +419,34 @@
                     <source src="https://player.vimeo.com/progressive_redirect/playback/908090205/rendition/1080p/file.mp4?loc=external&signature=0d38d09c7f5c4fc5c6e2c8d6e3c0e2c5" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+                <div class="video-overlay"></div>
             </div>
             <div class="hero-content">
-                <h1>RIDDARA RD6</h1>
-                <p>The Future of Electric Pickups</p>
-                <a href="#colors" class="cta-button">Explore Colors</a>
+                <h1 class="hero-title">RIDDARA RD6</h1>
+                <p class="hero-subtitle">Experience the Future of Electric Mobility</p>
+                <p class="hero-description">Powerful. Sustainable. Revolutionary.</p>
+                <div class="cta-group">
+                    <a href="#colors" class="cta-button primary">Customize Yours</a>
+                    <span class="price-tag">Starting at $39,900*</span>
+                </div>
+                <div class="key-features">
+                    <div class="feature">
+                        <span class="feature-number">400+</span>
+                        <span class="feature-label">km Range</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-number">4.8s</span>
+                        <span class="feature-label">0-100 km/h</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-number">1,525L</span>
+                        <span class="feature-label">Cargo Space</span>
+                    </div>
+                </div>
             </div>
             <div class="scroll-indicator">
                 <span></span>
-                <p>Scroll to explore</p>
+                <p>Scroll to explore colors</p>
             </div>
         </div>
 
