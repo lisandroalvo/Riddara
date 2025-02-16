@@ -583,67 +583,47 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #1C1C1C 0%, #2C2C2C 100%);
-            transition: all 0.5s ease;
-        }
-
-        .rd6-logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.03);
-            white-space: nowrap;
-            pointer-events: none;
-            transition: all 0.5s ease;
-            z-index: 1;
+            background: #1C1C1C;
+            transition: background 0.5s ease;
         }
 
         .color-content {
             position: relative;
-            z-index: 2;
             width: 100%;
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 4rem 0;
+            z-index: 2;
         }
 
         .car-showcase {
             position: relative;
             width: 100%;
-            height: 50vh;
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 2rem 0;
-            transition: all 0.5s ease;
+            overflow: hidden;
         }
 
         .car-image {
             max-width: 90%;
-            height: auto;
-            transition: all 0.5s ease;
-            opacity: 1;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
         }
 
         .car-image.transitioning {
+            transform: translateX(-100%);
             opacity: 0;
-            transform: translateX(-100px);
-        }
-
-        .car-image.next {
-            transform: translateX(100px);
         }
 
         .color-selector {
             display: flex;
-            gap: 1.5rem;
-            margin-top: 3rem;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .color-option {
@@ -653,7 +633,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
-            position: relative;
         }
 
         .color-option:hover {
@@ -665,28 +644,10 @@
             transform: scale(1.1);
         }
 
-        .color-option::after {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .color-option.active::after {
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
         .color-black { background: #1C1C1C; }
         .color-silver { background: #C0C0C0; }
         .color-green { background: #3C513C; }
         .color-blue { background: #1B3F5E; }
-        .color-grey { background: #808080; }
-        .color-sand { background: #9B8B6B; }
 
         .navigation-arrows {
             position: absolute;
@@ -696,18 +657,16 @@
             transform: translateY(-50%);
             display: flex;
             justify-content: space-between;
-            padding: 0 4rem;
+            padding: 0 2rem;
             z-index: 3;
-            pointer-events: none;
         }
 
         .nav-arrow {
-            pointer-events: auto;
             width: 60px;
             height: 60px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: none;
             color: white;
             font-size: 2rem;
             cursor: pointer;
@@ -715,15 +674,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .nav-arrow:hover {
             background: var(--primary-color);
-            transform: scale(1.1);
-            border-color: var(--primary-color);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
         /* Footer Styles */
@@ -1060,12 +1014,7 @@
         <!-- Color Section -->
         <div class="section color-schemes" data-anchor="colors">
             <div class="diagonal-block"></div>
-            <div class="rd6-logo">RD6</div>
             <div class="color-content">
-                <div class="color-header">
-                    <h2>Customize Your RD6</h2>
-                    <p>Choose from our signature finishes</p>
-                </div>
                 <div class="car-showcase">
                     <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
                 </div>
@@ -1313,7 +1262,6 @@
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.querySelector('.car-image');
             const diagonalBlock = document.querySelector('.diagonal-block');
-            const rd6Logo = document.querySelector('.rd6-logo');
             let currentColorIndex = 0;
             let isAnimating = false;
 
@@ -1334,50 +1282,28 @@
                 if (isAnimating) return;
                 isAnimating = true;
 
-                const currentColor = colors[currentColorIndex];
-                const nextColor = colors[index];
-
-                // Add transition classes for car image
+                // Add transition class
                 carImage.classList.add('transitioning');
-                if (direction === 'right') {
-                    carImage.style.transform = 'translateX(100px)';
-                } else {
-                    carImage.style.transform = 'translateX(-100px)';
-                }
 
-                // Update background with gradient
-                const gradientColor = adjustColor(nextColor.bg, 20);
-                diagonalBlock.style.background = `linear-gradient(135deg, ${nextColor.bg} 0%, ${gradientColor} 100%)`;
-
-                // Update RD6 logo color
-                rd6Logo.style.color = `${nextColor.bg}20`;
+                // Update background color
+                diagonalBlock.style.background = colors[index].bg;
 
                 // Update active color
                 updateActiveColor(index);
 
                 // Change image with animation
                 setTimeout(() => {
-                    carImage.src = nextColor.img;
-                    carImage.style.transform = 'translateX(0)';
+                    carImage.src = colors[index].img;
                     carImage.classList.remove('transitioning');
                     isAnimating = false;
-                }, 500);
-            }
-
-            function adjustColor(color, amount) {
-                const hex = color.replace('#', '');
-                const r = Math.min(255, Math.max(0, parseInt(hex.substring(0, 2), 16) + amount));
-                const g = Math.min(255, Math.max(0, parseInt(hex.substring(2, 4), 16) + amount));
-                const b = Math.min(255, Math.max(0, parseInt(hex.substring(4, 6), 16) + amount));
-                return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+                }, 300);
             }
 
             // Color option click handlers
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', () => {
                     if (index !== currentColorIndex) {
-                        const direction = index > currentColorIndex ? 'right' : 'left';
-                        changeColor(index, direction);
+                        changeColor(index);
                     }
                 });
             });
@@ -1398,9 +1324,7 @@
 
             // Initialize first color
             updateActiveColor(0);
-            const initialGradient = adjustColor(colors[0].bg, 20);
-            diagonalBlock.style.background = `linear-gradient(135deg, ${colors[0].bg} 0%, ${initialGradient} 100%)`;
-            rd6Logo.style.color = `${colors[0].bg}20`;
+            diagonalBlock.style.background = colors[0].bg;
         });
     </script>
 </body>
