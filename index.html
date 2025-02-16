@@ -692,18 +692,14 @@
             transform: scale(1.1);
         }
 
-        /* Footer Styles */
-        footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 1.5rem 0;
-            z-index: 1000;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        /* Footer Section Styles */
+        .footer-section {
+            background-color: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem 0;
         }
 
         .footer-content {
@@ -711,81 +707,47 @@
             margin: 0 auto;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            font-size: 0.9rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
         }
 
-        .footer-section {
+        .footer-block {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 1rem;
         }
 
-        .footer-section h3 {
-            font-size: 1rem;
+        .footer-block h3 {
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
             color: var(--primary-color);
+            margin-bottom: 1rem;
         }
 
-        .footer-section p,
-        .footer-section a {
+        .footer-block p,
+        .footer-block a {
             color: var(--text-dark);
             text-decoration: none;
             transition: color 0.3s ease;
-            line-height: 1.4;
-            margin: 0;
+            line-height: 1.6;
         }
 
-        .footer-section a:hover {
+        .footer-block a:hover {
             color: var(--primary-color);
         }
 
         .footer-bottom {
-            margin-top: 1rem;
-            padding-top: 1rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-dark);
         }
 
-        /* Adjust fullpage sections */
-        .fp-section {
-            padding-bottom: 200px;
-        }
-
-        #fullpage {
-            padding-bottom: 200px;
-        }
-
-        /* Make footer more compact on mobile */
-        @media (max-width: 768px) {
-            footer {
-                padding: 1rem 0;
-            }
-
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                font-size: 0.8rem;
-            }
-
-            .footer-section h3 {
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Main container to ensure footer stays at bottom */
-        #main-container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Ensure all sections take necessary space */
+        /* Ensure proper section heights */
         .section {
+            min-height: 100vh;
             width: 100%;
         }
     </style>
@@ -802,6 +764,7 @@
                 <a href="#services" class="nav-link">Services</a>
                 <a href="#news" class="nav-link">News</a>
                 <a href="#contact" class="nav-link">Contact</a>
+                <a href="#footer" class="nav-link">Footer</a>
             </div>
         </nav>
 
@@ -1010,39 +973,40 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <footer>
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>About Us</h3>
-                    <p>Experience the future of electric mobility with Riddara. Your premier electric vehicle dealership in Chonburi, Thailand.</p>
+            <!-- Footer Section -->
+            <div class="section footer-section" data-anchor="footer">
+                <div class="footer-content">
+                    <div class="footer-block">
+                        <h3>About Us</h3>
+                        <p>Experience the future of electric mobility with Riddara. Your premier electric vehicle dealership in Chonburi, Thailand.</p>
+                    </div>
+                    <div class="footer-block">
+                        <h3>Quick Links</h3>
+                        <a href="#home">Home</a>
+                        <a href="#inventory">Inventory</a>
+                        <a href="#services">Services</a>
+                        <a href="#news">News</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                    <div class="footer-block">
+                        <h3>Hours</h3>
+                        <p>Mon-Sat: 9:00 AM - 6:00 PM</p>
+                        <p>Sunday: 10:00 AM - 4:00 PM</p>
+                    </div>
+                    <div class="footer-block">
+                        <h3>Contact</h3>
+                        <p>123 Sukhumvit Road</p>
+                        <p>Chonburi, Thailand 20150</p>
+                        <p>Sales: +66 2 123 4567</p>
+                        <p>Service: +66 2 123 4568</p>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <a href="#home">Home</a>
-                    <a href="#inventory">Inventory</a>
-                    <a href="#services">Services</a>
-                    <a href="#news">News</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Hours</h3>
-                    <p>Mon-Sat: 9:00 AM - 6:00 PM</p>
-                    <p>Sunday: 10:00 AM - 4:00 PM</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p>123 Sukhumvit Road</p>
-                    <p>Chonburi, Thailand 20150</p>
-                    <p>Sales: +66 2 123 4567</p>
-                    <p>Service: +66 2 123 4568</p>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Riddara Chonburi. All rights reserved.</p>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Riddara Chonburi. All rights reserved.</p>
-            </div>
-        </footer>
+        </div>
     </div>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -1092,24 +1056,28 @@
 
             // Initialize fullPage.js with video handling
             new fullpage('#fullpage', {
-                licenseKey: 'YOUR_KEY_HERE',
-                autoScrolling: true,
-                scrollHorizontally: true,
                 navigation: true,
                 navigationPosition: 'right',
+                scrollingSpeed: 1000,
                 showActiveTooltip: true,
-                slidesNavigation: true,
-                controlArrows: true,
-                anchors: ['home', 'news', 'inventory', 'services', 'colors', 'contact'],
-                paddingTop: '80px',
-                paddingBottom: '200px',
-                scrollOverflow: true,
-                scrollOverflowReset: true,
-                normalScrollElements: 'footer',
+                anchors: ['home', 'news', 'inventory', 'services', 'colors', 'contact', 'footer'],
+                navigationTooltips: ['Home', 'News', 'Inventory', 'Services', 'Colors', 'Contact', 'Footer'],
+                scrollOverflow: false,
+                fitToSection: true,
+                css3: true,
+                onLeave: function(origin, destination, direction) {
+                    ensureVideoPlaying();
+                },
                 afterLoad: function(origin, destination, direction) {
-                    // Ensure footer is visible
-                    document.querySelector('footer').style.visibility = 'visible';
-                }
+                    ensureVideoPlaying();
+                },
+                afterRender: function() {
+                    ensureVideoPlaying();
+                },
+                afterResize: function() {
+                    ensureVideoPlaying();
+                },
+                credits: { enabled: false }
             });
 
             // Color section functionality
