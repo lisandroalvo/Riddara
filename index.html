@@ -1188,73 +1188,71 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Video looping fix
-            const heroVideo = document.getElementById('heroVideo');
-            if (heroVideo) {
-                heroVideo.play().catch(function(error) {
-                    console.log("Video autoplay failed:", error);
-                });
-                
-                heroVideo.addEventListener('ended', function() {
-                    heroVideo.currentTime = 0;
-                    heroVideo.play();
-                });
-            }
-
-            // Ensure video keeps playing during scroll
             const video = document.getElementById('heroVideo');
-            let isVideoPlaying = false;
 
-            function playVideo() {
-                if (!isVideoPlaying) {
-                    video.play().then(() => {
-                        isVideoPlaying = true;
-                    }).catch(error => {
-                        console.log("Video play failed:", error);
+            // Function to ensure video is playing
+            function ensureVideoPlaying() {
+                if (video.paused || video.ended) {
+                    video.currentTime = 0; // Reset video if it ended
+                    video.play().catch(function(error) {
+                        console.log("Video play prevented:", error);
                     });
                 }
             }
 
-            // Play video when it's ready
-            video.addEventListener('loadedmetadata', playVideo);
-            
-            // Handle video visibility changes
-            document.addEventListener('visibilitychange', () => {
-                if (document.visibilityState === 'visible') {
-                    playVideo();
+            // Play video initially
+            video.play().catch(function(error) {
+                console.log("Initial video play prevented:", error);
+            });
+
+            // Handle video events
+            video.addEventListener('pause', ensureVideoPlaying);
+            video.addEventListener('ended', ensureVideoPlaying);
+            video.addEventListener('timeupdate', function() {
+                if (video.currentTime >= video.duration - 0.1) {
+                    video.currentTime = 0;
                 }
             });
 
-            // Ensure video plays after scroll
-            window.addEventListener('scroll', () => {
-                requestAnimationFrame(playVideo);
+            // Handle page visibility
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden) {
+                    ensureVideoPlaying();
+                }
             });
 
-            // Ensure video plays after any user interaction
-            document.addEventListener('click', playVideo);
-            document.addEventListener('touchstart', playVideo);
+            // Handle window events
+            window.addEventListener('focus', ensureVideoPlaying);
+            window.addEventListener('scroll', ensureVideoPlaying);
+            window.addEventListener('resize', ensureVideoPlaying);
+            
+            // Periodic check to ensure video is playing
+            setInterval(ensureVideoPlaying, 1000);
 
-            // Handle fullpage.js transitions
-            if (typeof fullpage_api !== 'undefined') {
-                fullpage_api.setAllowScrolling(true);
-                fullpage_api.setKeyboardScrolling(true);
-                
-                fullpage_api.afterLoad = function() {
-                    playVideo();
-                };
-            }
-
-            // Initialize fullPage.js
+            // Initialize fullPage.js with video handling
             new fullpage('#fullpage', {
                 navigation: true,
                 navigationPosition: 'right',
+                scrollingSpeed: 1000,
                 showActiveTooltip: true,
                 anchors: ['home', 'news', 'inventory', 'services', 'colors', 'contact'],
                 navigationTooltips: ['Home', 'News', 'Inventory', 'Services', 'Colors', 'Contact'],
                 scrollOverflow: false,
                 fitToSection: true,
                 css3: true,
-                // ... rest of the configuration
+                onLeave: function(origin, destination, direction) {
+                    ensureVideoPlaying();
+                },
+                afterLoad: function(origin, destination, direction) {
+                    ensureVideoPlaying();
+                },
+                afterRender: function() {
+                    ensureVideoPlaying();
+                },
+                afterResize: function() {
+                    ensureVideoPlaying();
+                },
+                credits: { enabled: false }
             });
 
             // Color selector functionality
