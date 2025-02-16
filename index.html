@@ -50,34 +50,39 @@
             top: 0;
             left: 0;
             width: 100%;
-            padding: 1rem 2rem;
+            padding: 1rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
         }
 
         .nav-brand img {
-            height: 40px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            height: 45px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-links a {
-            color: var(--text-dark);
+            color: white;
             text-decoration: none;
             font-size: 1rem;
             font-weight: 500;
-            opacity: 0.8;
+            opacity: 0.9;
             transition: all 0.3s;
             padding: 0.5rem 1rem;
             border-radius: 4px;
@@ -85,8 +90,8 @@
 
         .nav-links a:hover {
             opacity: 1;
-            color: var(--primary-color);
-            background: rgba(90, 116, 72, 0.1);
+            color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* Hero Section */
@@ -120,11 +125,10 @@
             height: 100%;
             background: linear-gradient(
                 to bottom,
-                rgba(255, 255, 255, 0.9) 0%,
-                rgba(255, 255, 255, 0.7) 50%,
-                rgba(255, 255, 255, 0.9) 100%
+                rgba(0, 0, 0, 0.7) 0%,
+                rgba(0, 0, 0, 0.5) 50%,
+                rgba(0, 0, 0, 0.7) 100%
             );
-            z-index: 2;
         }
 
         .hero-content {
@@ -132,205 +136,114 @@
             z-index: 3;
             text-align: center;
             padding-top: 25vh;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            color: var(--text-dark);
-            background: var(--glass-bg);
+            color: white;
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--glass-shadow);
+            padding: 3rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
 
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 2rem;
-            animation: fadeInDown 0.8s ease-out;
-        }
-
-        .hero-logo {
-            height: 60px;
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-        }
-
-        .location {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: var(--text-light);
-            opacity: 0.9;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .location::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: var(--primary-color);
+            line-height: 1.2;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero-subtitle {
             font-size: 2rem;
             font-weight: 300;
-            color: var(--text-dark);
-            opacity: 0.9;
-            margin-bottom: 1rem;
-            animation: fadeInDown 0.8s ease-out 0.2s backwards;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero-description {
             font-size: 1.2rem;
-            color: var(--text-dark);
-            opacity: 0.8;
-            margin-bottom: 2rem;
-            animation: fadeInDown 0.8s ease-out 0.4s backwards;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
         }
 
-        .cta-group {
+        .hero-cta-container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
         }
 
         .cta-button {
-            display: inline-block;
             padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-dark);
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
             text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 200px;
         }
 
         .cta-button.primary {
             background: var(--primary-color);
+            color: white;
             border: none;
-            padding: 1.2rem 3rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         .cta-button.primary:hover {
             background: var(--secondary-color);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.4);
         }
 
-        .cta-button:hover {
+        .cta-button.secondary:hover {
             background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
         }
 
-        .price-tag {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .key-features {
+        /* Feature Numbers */
+        .feature-numbers {
             display: flex;
             justify-content: center;
             gap: 4rem;
             margin-top: 3rem;
-            animation: fadeInUp 0.8s ease-out 0.8s backwards;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .feature {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
+        .feature-item {
+            text-align: center;
+            color: white;
         }
 
         .feature-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: var(--primary-color);
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .feature-label {
             font-size: 1rem;
-            opacity: 0.8;
+            color: rgba(255, 255, 255, 0.8);
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--text-dark);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            z-index: 3;
-            color: var(--text-dark);
-        }
-
-        .scroll-indicator span {
-            display: block;
-            width: 30px;
-            height: 50px;
-            border: 2px solid var(--text-dark);
-            border-radius: 15px;
-            margin: 0 auto 1rem;
-            position: relative;
-        }
-
-        .scroll-indicator span::before {
-            content: '';
-            position: absolute;
-            top: 6px;
-            left: 50%;
-            width: 4px;
-            height: 4px;
-            background: white;
-            border-radius: 50%;
-            transform: translateX(-50%);
-            animation: scroll 2s infinite;
-        }
-
-        @keyframes scroll {
-            0% { transform: translate(-50%, 0); opacity: 1; }
-            100% { transform: translate(-50%, 20px); opacity: 0; }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         /* Color Section */
@@ -1086,37 +999,27 @@
                 <div class="video-overlay"></div>
             </div>
             <div class="hero-content">
-                <div class="logo-container">
-                    <img src="images/footer.png" alt="Riddara Logo" class="hero-logo">
-                    <p class="location">Official Dealership in Chonburi, Thailand</p>
-                </div>
+                <h1 class="hero-title">RIDDARA RD6</h1>
                 <p class="hero-subtitle">Your Premier Riddara Electric Vehicle Dealership</p>
                 <p class="hero-description">Experience Luxury Electric Vehicles with Exceptional Service</p>
-                <div class="cta-group">
-                    <div class="cta-buttons">
-                        <a href="#inventory" class="cta-button primary">View Inventory</a>
-                        <a href="#test-drive" class="cta-button secondary">Schedule Test Drive</a>
-                    </div>
-                    <span class="availability">Available for Immediate Delivery</span>
+                <div class="hero-cta-container">
+                    <a href="#inventory" class="cta-button primary">View Inventory</a>
+                    <a href="#test-drive" class="cta-button secondary">Schedule Test Drive</a>
                 </div>
-                <div class="key-features">
-                    <div class="feature">
+                <div class="feature-numbers">
+                    <div class="feature-item">
                         <span class="feature-number">24/7</span>
                         <span class="feature-label">Service Support</span>
                     </div>
-                    <div class="feature">
+                    <div class="feature-item">
                         <span class="feature-number">5★</span>
                         <span class="feature-label">Customer Rating</span>
                     </div>
-                    <div class="feature">
+                    <div class="feature-item">
                         <span class="feature-number">0%</span>
                         <span class="feature-label">Financing Available</span>
                     </div>
                 </div>
-            </div>
-            <div class="scroll-indicator">
-                <span></span>
-                <p>Explore Our Services</p>
             </div>
         </div>
 
