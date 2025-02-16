@@ -78,7 +78,7 @@
         }
 
         .nav-links a {
-            color: #FFFFFF;
+            color: white;
             text-decoration: none;
             font-size: 1rem;
             font-weight: 500;
@@ -266,142 +266,68 @@
         /* News & Promotions Section */
         .news-section {
             position: relative;
-            min-height: 100vh;
+            height: 100vh;
             background: var(--bg-dark);
+            display: flex;
+            align-items: center;
             overflow: hidden;
         }
 
         .news-banner {
             position: relative;
             width: 100%;
-            height: 70vh;
+            padding: 2rem 0;
             overflow: hidden;
+            white-space: nowrap;
         }
 
-        .news-slider {
-            position: relative;
-            height: 100%;
-            display: flex;
-            transition: transform 0.5s ease;
+        .news-track {
+            display: inline-flex;
+            gap: 2rem;
+            padding-right: 2rem;
+            animation: scroll 30s linear infinite;
         }
 
-        .news-slide {
-            position: relative;
-            min-width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .news-item {
+            display: inline-block;
+            min-width: 400px;
             padding: 2rem;
-        }
-
-        .news-card {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            height: 100%;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 2rem;
-            padding: 2rem;
-        }
-
-        .news-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            white-space: normal;
+            vertical-align: top;
         }
 
         .news-date {
-            font-size: 0.9rem;
             color: var(--primary-color);
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .news-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .news-description {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .news-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-        }
-
-        .news-nav {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 1rem;
-            z-index: 2;
-        }
-
-        .news-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .news-dot.active {
-            background: var(--primary-color);
-            transform: scale(1.2);
-        }
-
-        .news-arrows {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            padding: 0 2rem;
-            z-index: 2;
-        }
-
-        .news-arrow {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            border: none;
             color: white;
             font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
-        .news-arrow:hover {
-            background: var(--primary-color);
-            transform: scale(1.1);
+        .news-content {
+            color: white;
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* Inventory Section */
@@ -987,52 +913,37 @@
         <!-- News & Promotions Section -->
         <div class="section news-section" data-anchor="news">
             <div class="news-banner">
-                <div class="news-slider">
-                    <div class="news-slide">
-                        <div class="news-card">
-                            <div class="news-content">
-                                <p class="news-date">February 2025</p>
-                                <h2 class="news-title">Lunar New Year Special Offer</h2>
-                                <p class="news-description">Celebrate Lunar New Year with 0% interest for 48 months and complimentary home charging installation.</p>
-                            </div>
-                            <div class="news-image">
-                                <img src="images/Black EV Pickup 1.png" alt="Lunar New Year Promotion">
-                            </div>
-                        </div>
+                <div class="news-track">
+                    <div class="news-item">
+                        <p class="news-date">February 2025</p>
+                        <h2 class="news-title">Lunar New Year Special Offer</h2>
+                        <p class="news-content">Celebrate Lunar New Year with 0% interest for 48 months and complimentary home charging installation.</p>
                     </div>
-                    <div class="news-slide">
-                        <div class="news-card">
-                            <div class="news-content">
-                                <p class="news-date">Every Saturday & Sunday</p>
-                                <h2 class="news-title">Weekend Test Drive Event</h2>
-                                <p class="news-description">Experience the RD6 with our exclusive weekend test drive program. Book your slot now!</p>
-                            </div>
-                            <div class="news-image">
-                                <img src="images/Blue EV Pickup 2.png" alt="Test Drive Event">
-                            </div>
-                        </div>
+                    <div class="news-item">
+                        <p class="news-date">Every Saturday & Sunday</p>
+                        <h2 class="news-title">Weekend Test Drive Event</h2>
+                        <p class="news-content">Experience the RD6 with our exclusive weekend test drive program. Book your slot now!</p>
                     </div>
-                    <div class="news-slide">
-                        <div class="news-card">
-                            <div class="news-content">
-                                <p class="news-date">New Service Launch</p>
-                                <h2 class="news-title">Premium Care Package</h2>
-                                <p class="news-description">5-year maintenance package with 24/7 roadside assistance included with every new RD6.</p>
-                            </div>
-                            <div class="news-image">
-                                <img src="images/Green EV Pickup 1.png" alt="Service Package">
-                            </div>
-                        </div>
+                    <div class="news-item">
+                        <p class="news-date">New Service Launch</p>
+                        <h2 class="news-title">Premium Care Package</h2>
+                        <p class="news-content">5-year maintenance package with 24/7 roadside assistance included with every new RD6.</p>
                     </div>
-                </div>
-                <div class="news-nav">
-                    <div class="news-dot active"></div>
-                    <div class="news-dot"></div>
-                    <div class="news-dot"></div>
-                </div>
-                <div class="news-arrows">
-                    <button class="news-arrow">Previous</button>
-                    <button class="news-arrow">Next</button>
+                    <div class="news-item">
+                        <p class="news-date">February 2025</p>
+                        <h2 class="news-title">Lunar New Year Special Offer</h2>
+                        <p class="news-content">Celebrate Lunar New Year with 0% interest for 48 months and complimentary home charging installation.</p>
+                    </div>
+                    <div class="news-item">
+                        <p class="news-date">Every Saturday & Sunday</p>
+                        <h2 class="news-title">Weekend Test Drive Event</h2>
+                        <p class="news-content">Experience the RD6 with our exclusive weekend test drive program. Book your slot now!</p>
+                    </div>
+                    <div class="news-item">
+                        <p class="news-date">New Service Launch</p>
+                        <h2 class="news-title">Premium Care Package</h2>
+                        <p class="news-content">5-year maintenance package with 24/7 roadside assistance included with every new RD6.</p>
+                    </div>
                 </div>
             </div>
         </div>
