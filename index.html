@@ -27,6 +27,8 @@
             --glass-bg: rgba(255, 255, 255, 0.8);
             --glass-border: rgba(255, 255, 255, 0.3);
             --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --hover-color: #FF6B00;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
@@ -83,14 +85,14 @@
             font-size: 1rem;
             font-weight: 500;
             opacity: 1;
-            transition: all 0.3s;
+            transition: var(--transition-smooth);
             padding: 0.5rem 1rem;
             border-radius: 4px;
         }
 
         .nav-links a:hover {
-            opacity: 1;
-            background: rgba(255, 255, 255, 0.1);
+            color: var(--hover-color);
+            transform: translateY(-2px);
         }
 
         /* Hero Section */
@@ -214,7 +216,7 @@
             font-weight: 500;
             border-radius: 50px;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition-smooth);
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
@@ -228,6 +230,12 @@
             border: none;
         }
 
+        .cta-button.primary:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+        }
+
         .cta-button.secondary {
             background: rgba(255, 255, 255, 0.1);
             color: white;
@@ -235,18 +243,10 @@
             backdrop-filter: blur(5px);
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button.primary:hover {
-            background: #6a8555;
-        }
-
         .cta-button.secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
         }
 
         .hero-title {
@@ -307,6 +307,12 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             white-space: normal;
             vertical-align: top;
+            transition: var(--transition-smooth);
+        }
+
+        .news-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.1);
         }
 
         .news-date {
@@ -356,7 +362,7 @@
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
             border-radius: 10px;
-            transition: all 0.3s ease;
+            transition: var(--transition-smooth);
         }
 
         .specs-card h3 {
@@ -413,14 +419,14 @@
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
             border-radius: 10px;
-            transition: all 0.3s ease;
+            transition: var(--transition-smooth);
             text-align: center;
             padding: 2rem;
         }
 
         .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.1);
         }
 
         .service-icon {
@@ -445,13 +451,13 @@
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            transition: all 0.3s;
+            transition: var(--transition-smooth);
         }
 
         .service-cta:hover {
-            background: var(--secondary-color);
+            background-color: var(--hover-color);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
         }
 
         /* Contact Section */
@@ -523,7 +529,7 @@
             color: var(--text-dark);
             padding: 1rem;
             width: 100%;
-            transition: all 0.3s ease;
+            transition: var(--transition-smooth);
         }
 
         .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
@@ -538,13 +544,13 @@
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            transition: all 0.3s;
+            transition: var(--transition-smooth);
         }
 
         .contact-form .submit-btn:hover {
-            background: var(--secondary-color);
+            background-color: var(--hover-color);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
         }
 
         .cta-buttons {
@@ -560,7 +566,9 @@
         }
 
         .cta-button.secondary:hover {
-            background: rgba(90, 116, 72, 0.1);
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
         }
 
         .availability {
@@ -632,7 +640,7 @@
         .car-image {
             max-width: 90%;
             max-height: 100%;
-            transition: all 0.5s ease;
+            transition: var(--transition-smooth);
         }
 
         .car-image.fade {
@@ -653,11 +661,12 @@
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid transparent;
-            transition: all 0.3s ease;
+            transition: var(--transition-smooth);
         }
 
         .color-option:hover {
             transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 107, 0, 0.3);
         }
 
         .color-option.active {
@@ -685,10 +694,11 @@
             font-size: 2rem;
             cursor: pointer;
             padding: 1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition-smooth);
         }
 
         .nav-arrow:hover {
+            color: var(--hover-color);
             transform: scale(1.1);
         }
 
@@ -737,13 +747,14 @@
             font-size: 0.9rem;
             color: var(--text-dark);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: var(--transition-smooth);
             line-height: 1.4;
             margin: 0;
         }
 
         .footer-block a:hover {
-            color: var(--primary-color);
+            color: var(--hover-color);
+            transform: translateX(5px);
         }
 
         .footer-bottom {
