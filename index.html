@@ -14,10 +14,20 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #00A651;
+            --primary-hover: #008c44;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #ffffff;
+            --bg-gray: #f8f9fa;
+            --border-color: #e9ecef;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-            background: #000;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-light);
         }
 
         /* Navigation */
@@ -48,7 +58,7 @@
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-dark);
             text-decoration: none;
             font-size: 0.9rem;
             opacity: 0.8;
@@ -64,7 +74,7 @@
             position: relative;
             height: 100vh;
             overflow: hidden;
-            background: #000;
+            background: var(--bg-light);
         }
 
         .video-background {
@@ -124,7 +134,7 @@
         .location {
             font-size: 1.2rem;
             font-weight: 300;
-            color: #fff;
+            color: var(--text-light);
             opacity: 0.9;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -141,7 +151,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 2px;
-            background: #FF6B00;
+            background: var(--primary-color);
         }
 
         .hero-subtitle {
@@ -172,14 +182,14 @@
             padding: 1rem 2rem;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
+            color: var(--text-dark);
             text-decoration: none;
             border-radius: 4px;
             transition: all 0.3s;
         }
 
         .cta-button.primary {
-            background: #FF6B00;
+            background: var(--primary-color);
             border: none;
             padding: 1.2rem 3rem;
             font-size: 1.2rem;
@@ -190,9 +200,9 @@
         }
 
         .cta-button.primary:hover {
-            background: #FF8533;
+            background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.4);
         }
 
         .cta-button:hover {
@@ -223,7 +233,7 @@
         .feature-number {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #FF6B00;
+            color: var(--primary-color);
         }
 
         .feature-label {
@@ -298,7 +308,7 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            background: #1C1C1C;
+            background: var(--bg-light);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -310,7 +320,7 @@
             left: -10%;
             width: 65%;
             height: 120%;
-            background: #1C1C1C;
+            background: var(--bg-gray);
             transform: skewX(-20deg) translateX(-10%);
             transition: background 1s cubic-bezier(0.645, 0.045, 0.355, 1.000);
             z-index: 1;
@@ -391,7 +401,7 @@
         }
 
         .color-option.active {
-            border-color: white;
+            border-color: var(--primary-color);
             transform: scale(1.1);
         }
 
@@ -415,7 +425,7 @@
         .nav-arrow {
             background: none;
             border: none;
-            color: white;
+            color: var(--text-dark);
             font-size: 2rem;
             cursor: pointer;
             opacity: 0.5;
@@ -432,7 +442,7 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            background: #1C1C1C;
+            background: var(--bg-light);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -463,8 +473,8 @@
         }
 
         .model-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: white;
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
@@ -509,7 +519,7 @@
         .model-cta {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: #FF6B00;
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -517,9 +527,9 @@
         }
 
         .model-cta:hover {
-            background: #FF8533;
+            background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.4);
         }
 
         /* Services Section */
@@ -528,7 +538,7 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            background: #1C1C1C;
+            background: var(--bg-light);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -542,8 +552,8 @@
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: white;
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
             text-align: center;
             padding: 2rem;
@@ -572,7 +582,7 @@
         .service-cta {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: #FF6B00;
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -580,9 +590,9 @@
         }
 
         .service-cta:hover {
-            background: #FF8533;
+            background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.4);
         }
 
         /* Contact Section */
@@ -591,7 +601,7 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            background: #1C1C1C;
+            background: var(--bg-light);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -610,8 +620,8 @@
         }
 
         .info-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: white;
+            border: 1px solid var(--border-color);
             padding: 1.5rem;
         }
 
@@ -626,8 +636,8 @@
         }
 
         .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: white;
+            border: 1px solid var(--border-color);
             padding: 1.5rem;
         }
 
@@ -643,23 +653,23 @@
         }
 
         .contact-form input, .contact-form select, .contact-form textarea {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
+            background: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
             padding: 1rem;
             width: 100%;
             transition: all 0.3s ease;
         }
 
         .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
-            border-color: #FF6B00;
+            border-color: var(--primary-color);
             outline: none;
         }
 
         .contact-form .submit-btn {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: #FF6B00;
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -667,9 +677,9 @@
         }
 
         .contact-form .submit-btn:hover {
-            background: #FF8533;
+            background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.4);
         }
 
         .cta-buttons {
@@ -679,12 +689,13 @@
         }
 
         .cta-button.secondary {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
         }
 
         .cta-button.secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 166, 81, 0.1);
         }
 
         .availability {
@@ -699,7 +710,7 @@
             width: 100%;
             height: 100vh;
             overflow: hidden;
-            background: #1C1C1C;
+            background: var(--bg-light);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -713,8 +724,8 @@
         }
 
         .news-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: white;
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
@@ -740,7 +751,7 @@
             position: absolute;
             top: 1rem;
             left: 1rem;
-            background: #FF6B00;
+            background: var(--primary-color);
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 4px;
@@ -765,7 +776,7 @@
         .news-cta {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: #FF6B00;
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
             border-radius: 4px;
@@ -773,9 +784,9 @@
         }
 
         .news-cta:hover {
-            background: #FF8533;
+            background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.4);
         }
 
         /* Improved Inventory Section */
@@ -787,8 +798,8 @@
         }
 
         .specs-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: white;
+            border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
 
@@ -818,6 +829,168 @@
         .spec-detail {
             font-size: 1rem;
             opacity: 0.8;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: var(--bg-gray);
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .footer-brand p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .footer-links h4 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Update existing styles */
+        .section {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .section:nth-child(even) {
+            background: var(--bg-gray);
+        }
+
+        .cta-button.primary,
+        .news-cta,
+        .service-cta,
+        .model-cta,
+        .contact-form .submit-btn {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .cta-button.primary:hover,
+        .news-cta:hover,
+        .service-cta:hover,
+        .model-cta:hover,
+        .contact-form .submit-btn:hover {
+            background: var(--primary-hover);
+            box-shadow: 0 4px 15px rgba(0, 166, 81, 0.4);
+        }
+
+        .news-card,
+        .specs-card,
+        .service-card,
+        .model-card,
+        .info-item,
+        .contact-form {
+            background: white;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header h2 {
+            color: var(--text-dark);
+        }
+
+        .section-header p,
+        .spec-detail,
+        .news-date {
+            color: var(--text-light);
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            background: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .feature-number {
+            color: var(--primary-color);
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
         }
     </style>
 </head>
@@ -1079,6 +1252,61 @@
             </div>
         </div>
     </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="images/footer.png" alt="Riddara Logo">
+                <p>Experience the future of electric mobility with Riddara. Your premier electric vehicle dealership in Chonburi, Thailand.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-line"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#inventory">Inventory</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#colors">Customize</a></li>
+                    <li><a href="#news">News</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#test-drive">Test Drive</a></li>
+                    <li><a href="#finance">Financing</a></li>
+                    <li><a href="#service">Service Center</a></li>
+                    <li><a href="#charging">Charging Solutions</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contact</h4>
+                <ul>
+                    <li>123 Sukhumvit Road</li>
+                    <li>Chonburi, Thailand 20150</li>
+                    <li>Sales: +66 2 123 4567</li>
+                    <li>Service: +66 2 123 4568</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Riddara Chonburi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
