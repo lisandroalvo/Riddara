@@ -582,6 +582,14 @@
             padding: 2rem;
         }
 
+        .rd6-logo {
+            font-size: 8rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+            transition: color 0.3s ease;
+        }
+
         .car-showcase {
             width: 100%;
             height: 60vh;
@@ -630,6 +638,9 @@
         .color-silver { background: #C0C0C0; }
         .color-green { background: #3C513C; }
         .color-blue { background: #1B3F5E; }
+        .color-grey { background: #808080; }
+        .color-sand { background: #9B8B6B; }
+        .color-red { background: #8B0000; }
 
         .navigation-arrows {
             display: flex;
@@ -984,6 +995,7 @@
 
         <!-- Color Section -->
         <div class="section color-schemes" data-anchor="colors">
+            <div class="rd6-logo">RD6</div>
             <div class="car-showcase">
                 <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
             </div>
@@ -992,6 +1004,9 @@
                 <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
                 <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
                 <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
+                <div class="color-option color-grey" data-color="grey" data-img="images/Grey EV Pickup 1.png" data-bg="#808080"></div>
+                <div class="color-option color-sand" data-color="sand" data-img="images/Sand EV Pickup 1.png" data-bg="#9B8B6B"></div>
+                <div class="color-option color-red" data-color="red" data-img="images/Red EV Pickup 1.png" data-bg="#8B0000"></div>
             </div>
             <div class="navigation-arrows">
                 <button class="nav-arrow" aria-label="Previous color">&#8592;</button>
@@ -1168,6 +1183,7 @@
             const colorSection = document.querySelector('.color-schemes');
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.querySelector('.car-image');
+            const rd6Logo = document.querySelector('.rd6-logo');
             let currentIndex = 0;
             let isChanging = false;
 
@@ -1186,8 +1202,9 @@
                 // Fade out image
                 carImage.classList.add('fade');
 
-                // Change background
+                // Change background and logo color
                 colorSection.style.background = newBg;
+                rd6Logo.style.color = `${newBg}40`; // 40 is hex for 25% opacity
 
                 // After fade out, change image and fade in
                 setTimeout(() => {
@@ -1224,6 +1241,7 @@
             // Initialize first color
             colorOptions[0].classList.add('active');
             colorSection.style.background = colorOptions[0].dataset.bg;
+            rd6Logo.style.color = `${colorOptions[0].dataset.bg}40`;
         });
     </script>
 </body>
