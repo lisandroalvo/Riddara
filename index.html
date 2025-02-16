@@ -584,22 +584,34 @@
             width: 100%;
             height: 100%;
             background: #1C1C1C;
-            transition: background 0.5s ease;
+            transform: skewY(-12deg);
+            transform-origin: 0;
+            transition: all 0.5s ease;
         }
 
-        .color-content {
+        .color-header {
             position: relative;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             z-index: 2;
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .color-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .color-header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
         }
 
         .car-showcase {
             position: relative;
+            z-index: 2;
             width: 100%;
             height: 60vh;
             display: flex;
@@ -611,18 +623,20 @@
         .car-image {
             max-width: 90%;
             max-height: 100%;
-            object-fit: contain;
-            transition: transform 0.5s ease;
+            transition: all 0.5s ease;
         }
 
         .car-image.transitioning {
-            transform: translateX(-100%);
             opacity: 0;
+            transform: translateX(-50px);
         }
 
         .color-selector {
+            position: relative;
+            z-index: 2;
             display: flex;
-            gap: 2rem;
+            justify-content: center;
+            gap: 1rem;
             margin-top: 2rem;
         }
 
@@ -650,34 +664,26 @@
         .color-blue { background: #1B3F5E; }
 
         .navigation-arrows {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
+            position: relative;
+            z-index: 2;
             display: flex;
-            justify-content: space-between;
-            padding: 0 2rem;
-            z-index: 3;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
         .nav-arrow {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: none;
             border: none;
             color: white;
             font-size: 2rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 0.5rem 1rem;
         }
 
         .nav-arrow:hover {
-            background: var(--primary-color);
+            transform: scale(1.1);
         }
 
         /* Footer Styles */
@@ -1014,20 +1020,22 @@
         <!-- Color Section -->
         <div class="section color-schemes" data-anchor="colors">
             <div class="diagonal-block"></div>
-            <div class="color-content">
-                <div class="car-showcase">
-                    <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
-                </div>
-                <div class="color-selector">
-                    <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
-                    <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
-                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
-                    <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
-                </div>
-                <div class="navigation-arrows">
-                    <button class="nav-arrow" aria-label="Previous color">&#8592;</button>
-                    <button class="nav-arrow" aria-label="Next color">&#8594;</button>
-                </div>
+            <div class="color-header">
+                <h2>Choose Your Color</h2>
+                <p>Experience the RD6 in a variety of colors</p>
+            </div>
+            <div class="car-showcase">
+                <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
+            </div>
+            <div class="color-selector">
+                <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
+                <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
+                <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
+                <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
+            </div>
+            <div class="navigation-arrows">
+                <button class="nav-arrow" aria-label="Previous color">&#8592;</button>
+                <button class="nav-arrow" aria-label="Next color">&#8594;</button>
             </div>
         </div>
 
@@ -1265,66 +1273,60 @@
             let currentColorIndex = 0;
             let isAnimating = false;
 
-            const colors = [
-                { name: 'black', bg: '#1C1C1C', img: 'images/Black EV Pickup 1.png' },
-                { name: 'silver', bg: '#C0C0C0', img: 'images/Silver EV Pickup 1.png' },
-                { name: 'green', bg: '#3C513C', img: 'images/Green EV Pickup 1.png' },
-                { name: 'blue', bg: '#1B3F5E', img: 'images/Blue EV Pickup 2.png' }
-            ];
-
-            function updateActiveColor(index) {
-                colorOptions.forEach(option => option.classList.remove('active'));
-                colorOptions[index].classList.add('active');
-                currentColorIndex = index;
-            }
-
-            function changeColor(index, direction = 'right') {
+            function updateColor(element) {
                 if (isAnimating) return;
                 isAnimating = true;
 
-                // Add transition class
+                const color = element.dataset.color;
+                const imgSrc = element.dataset.img;
+                const bgColor = element.dataset.bg;
+
+                // Update active state
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                element.classList.add('active');
+
+                // Update background
+                diagonalBlock.style.background = bgColor;
+
+                // Update car image with transition
                 carImage.classList.add('transitioning');
-
-                // Update background color
-                diagonalBlock.style.background = colors[index].bg;
-
-                // Update active color
-                updateActiveColor(index);
-
-                // Change image with animation
                 setTimeout(() => {
-                    carImage.src = colors[index].img;
+                    carImage.src = imgSrc;
                     carImage.classList.remove('transitioning');
                     isAnimating = false;
                 }, 300);
             }
 
-            // Color option click handlers
+            // Add click handlers to color options
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', () => {
-                    if (index !== currentColorIndex) {
-                        changeColor(index);
+                    if (!isAnimating && !option.classList.contains('active')) {
+                        currentColorIndex = index;
+                        updateColor(option);
                     }
                 });
             });
 
-            // Navigation arrows
+            // Navigation arrows functionality
             const prevButton = document.querySelector('.nav-arrow:first-child');
             const nextButton = document.querySelector('.nav-arrow:last-child');
 
             prevButton.addEventListener('click', () => {
-                const prevIndex = (currentColorIndex - 1 + colors.length) % colors.length;
-                changeColor(prevIndex, 'left');
+                if (!isAnimating) {
+                    currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
+                    updateColor(colorOptions[currentColorIndex]);
+                }
             });
 
             nextButton.addEventListener('click', () => {
-                const nextIndex = (currentColorIndex + 1) % colors.length;
-                changeColor(nextIndex, 'right');
+                if (!isAnimating) {
+                    currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
+                    updateColor(colorOptions[currentColorIndex]);
+                }
             });
 
             // Initialize first color
-            updateActiveColor(0);
-            diagonalBlock.style.background = colors[0].bg;
+            updateColor(colorOptions[0]);
         });
     </script>
 </body>
