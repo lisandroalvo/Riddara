@@ -44,54 +44,58 @@
             box-shadow: var(--glass-shadow);
         }
 
-        /* Navigation */
+        /* Navbar Styles */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .nav-brand {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-brand img {
-            height: 50px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        .navbar-brand img {
+            height: 40px;
+            transition: all 0.3s ease;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             align-items: center;
         }
 
-        .nav-links a {
+        .nav-link {
             color: white;
             text-decoration: none;
             font-size: 1rem;
             font-weight: 500;
-            opacity: 0.9;
-            transition: all 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            opacity: 1;
-            color: var(--secondary-color);
-            background: rgba(255, 255, 255, 0.1);
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
         }
 
         /* Hero Section */
@@ -267,107 +271,142 @@
         /* News & Promotions Section */
         .news-section {
             position: relative;
-            width: 100%;
-            height: 100vh;
+            min-height: 100vh;
+            background: var(--bg-dark);
             overflow: hidden;
-            background: var(--bg-light);
+        }
+
+        .news-banner {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            overflow: hidden;
+        }
+
+        .news-slider {
+            position: relative;
+            height: 100%;
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .news-slide {
+            position: relative;
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .news-card {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .news-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .news-date {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .news-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .news-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .news-nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 2;
+        }
+
+        .news-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .news-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        .news-arrows {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 2;
+        }
+
+        .news-arrow {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .section-header {
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            z-index: 2;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-header p {
-            font-size: 1rem;
-            opacity: 0.8;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            padding: 2rem;
-        }
-
-        .news-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .news-card.featured {
-            grid-column: 1 / 3;
-        }
-
-        .news-image {
-            position: relative;
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px 10px 0 0;
-        }
-
-        .news-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .promo-badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
+        .news-arrow:hover {
             background: var(--primary-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        .news-content {
-            padding: 1rem;
-        }
-
-        .news-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .news-date {
-            font-size: 1rem;
-            opacity: 0.8;
-            margin-bottom: 1rem;
-        }
-
-        .news-cta {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .news-cta:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            transform: scale(1.1);
         }
 
         /* Inventory Section */
@@ -911,11 +950,11 @@
             <img src="images/main1.png" alt="RIDDARA">
         </div>
         <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#inventory">Inventory</a>
-            <a href="#services">Services</a>
-            <a href="#news">News</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#inventory" class="nav-link">Inventory</a>
+            <a href="#services" class="nav-link">Services</a>
+            <a href="#news" class="nav-link">News</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
     </nav>
 
@@ -941,45 +980,53 @@
 
         <!-- News & Promotions Section -->
         <div class="section news-section" data-anchor="news">
-            <div class="section-header">
-                <h2>Latest News & Promotions</h2>
-                <p>Stay Updated with Riddara Chonburi</p>
-            </div>
-            <div class="news-grid">
-                <div class="news-card featured">
-                    <div class="news-image">
-                        <div class="promo-badge">Limited Time</div>
-                        <img src="images/Black EV Pickup 1.png" alt="Lunar New Year Promotion">
+            <div class="news-banner">
+                <div class="news-slider">
+                    <div class="news-slide">
+                        <div class="news-card">
+                            <div class="news-content">
+                                <p class="news-date">February 2025</p>
+                                <h2 class="news-title">Lunar New Year Special Offer</h2>
+                                <p class="news-description">Celebrate Lunar New Year with 0% interest for 48 months and complimentary home charging installation.</p>
+                            </div>
+                            <div class="news-image">
+                                <img src="images/Black EV Pickup 1.png" alt="Lunar New Year Promotion">
+                            </div>
+                        </div>
                     </div>
-                    <div class="news-content">
-                        <h3>Lunar New Year Special Offer</h3>
-                        <p class="news-date">Valid until February 29, 2025</p>
-                        <p>Celebrate Lunar New Year with 0% interest for 48 months and complimentary home charging installation.</p>
-                        <a href="#contact" class="news-cta">Learn More</a>
+                    <div class="news-slide">
+                        <div class="news-card">
+                            <div class="news-content">
+                                <p class="news-date">Every Saturday & Sunday</p>
+                                <h2 class="news-title">Weekend Test Drive Event</h2>
+                                <p class="news-description">Experience the RD6 with our exclusive weekend test drive program. Book your slot now!</p>
+                            </div>
+                            <div class="news-image">
+                                <img src="images/Blue EV Pickup 2.png" alt="Test Drive Event">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news-slide">
+                        <div class="news-card">
+                            <div class="news-content">
+                                <p class="news-date">New Service Launch</p>
+                                <h2 class="news-title">Premium Care Package</h2>
+                                <p class="news-description">5-year maintenance package with 24/7 roadside assistance included with every new RD6.</p>
+                            </div>
+                            <div class="news-image">
+                                <img src="images/Green EV Pickup 1.png" alt="Service Package">
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="news-card">
-                    <div class="news-image">
-                        <img src="images/Blue EV Pickup 2.png" alt="Test Drive Event">
-                    </div>
-                    <div class="news-content">
-                        <h3>Weekend Test Drive Event</h3>
-                        <p class="news-date">Every Saturday & Sunday</p>
-                        <p>Experience the RD6 with our exclusive weekend test drive program. Book your slot now!</p>
-                        <a href="#test-drive" class="news-cta">Reserve Now</a>
-                    </div>
+                <div class="news-nav">
+                    <div class="news-dot active"></div>
+                    <div class="news-dot"></div>
+                    <div class="news-dot"></div>
                 </div>
-                <div class="news-card">
-                    <div class="news-image">
-                        <div class="promo-badge">New</div>
-                        <img src="images/Green EV Pickup 1.png" alt="Service Package">
-                    </div>
-                    <div class="news-content">
-                        <h3>Premium Care Package</h3>
-                        <p class="news-date">New Service Launch</p>
-                        <p>5-year maintenance package with 24/7 roadside assistance included with every new RD6.</p>
-                        <a href="#services" class="news-cta">View Details</a>
-                    </div>
+                <div class="news-arrows">
+                    <button class="news-arrow">Previous</button>
+                    <button class="news-arrow">Next</button>
                 </div>
             </div>
         </div>
@@ -1254,6 +1301,68 @@
                 },
                 credits: { enabled: false }
             });
+
+            // News slider functionality
+            const newsSlider = document.querySelector('.news-slider');
+            const newsSlides = document.querySelectorAll('.news-slide');
+            const newsDots = document.querySelectorAll('.news-dot');
+            const newsArrows = document.querySelectorAll('.news-arrow');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function goToSlide(index) {
+                newsSlider.style.transform = `translateX(-${index * 100}%)`;
+                newsDots.forEach(dot => dot.classList.remove('active'));
+                newsDots[index].classList.add('active');
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % newsSlides.length;
+                goToSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + newsSlides.length) % newsSlides.length;
+                goToSlide(currentSlide);
+            }
+
+            // Auto scroll
+            function startAutoScroll() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            function stopAutoScroll() {
+                clearInterval(slideInterval);
+            }
+
+            // Event listeners
+            newsArrows[0].addEventListener('click', () => {
+                stopAutoScroll();
+                prevSlide();
+                startAutoScroll();
+            });
+
+            newsArrows[1].addEventListener('click', () => {
+                stopAutoScroll();
+                nextSlide();
+                startAutoScroll();
+            });
+
+            newsDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    stopAutoScroll();
+                    goToSlide(index);
+                    startAutoScroll();
+                });
+            });
+
+            // Start auto-scrolling
+            startAutoScroll();
+
+            // Pause on hover
+            newsSlider.addEventListener('mouseenter', stopAutoScroll);
+            newsSlider.addEventListener('mouseleave', startAutoScroll);
 
             // Color selector functionality
             const colorOptions = document.querySelectorAll('.color-option');
