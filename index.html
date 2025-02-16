@@ -695,59 +695,34 @@
         /* Footer Section Styles */
         .footer-section {
             background-color: var(--bg-light);
-            min-height: 25vh !important;
+            height: 30px !important;
+            min-height: 30px !important;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            padding: 1.5rem 0;
             width: 100vw !important;
             margin: 0 !important;
+            padding: 0 !important;
             box-sizing: border-box !important;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .footer-content {
-            width: 100%;
-            max-width: 100%;
-            margin: 0;
-            padding: 0 4rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            box-sizing: border-box;
-        }
-
-        .footer-block {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .footer-block h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-block p,
-        .footer-block a {
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            line-height: 1.4;
+            display: none;
         }
 
         .footer-bottom {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin: 0;
+            padding: 0;
+            width: 100%;
             text-align: center;
             font-size: 0.8rem;
             color: var(--text-dark);
-            width: 100%;
-            padding: 0 4rem;
-            box-sizing: border-box;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            line-height: 30px;
         }
 
         @media (max-width: 1024px) {
@@ -999,32 +974,6 @@
 
             <!-- Footer Section -->
             <div class="section footer-section" data-anchor="footer">
-                <div class="footer-content">
-                    <div class="footer-block">
-                        <h3>About Us</h3>
-                        <p>Experience the future of electric mobility with Riddara. Your premier electric vehicle dealership in Chonburi, Thailand.</p>
-                    </div>
-                    <div class="footer-block">
-                        <h3>Quick Links</h3>
-                        <a href="#home">Home</a>
-                        <a href="#inventory">Inventory</a>
-                        <a href="#services">Services</a>
-                        <a href="#news">News</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                    <div class="footer-block">
-                        <h3>Hours</h3>
-                        <p>Mon-Sat: 9:00 AM - 6:00 PM</p>
-                        <p>Sunday: 10:00 AM - 4:00 PM</p>
-                    </div>
-                    <div class="footer-block">
-                        <h3>Contact</h3>
-                        <p>123 Sukhumvit Road</p>
-                        <p>Chonburi, Thailand 20150</p>
-                        <p>Sales: +66 2 123 4567</p>
-                        <p>Service: +66 2 123 4568</p>
-                    </div>
-                </div>
                 <div class="footer-bottom">
                     <p>&copy; 2025 Riddara Chonburi. All rights reserved.</p>
                 </div>
