@@ -138,211 +138,28 @@
         .hero-content {
             position: relative;
             z-index: 3;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 4rem;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 2rem;
-            align-items: center;
+            text-align: center;
+            padding-top: 15vh;
         }
 
-        .hero-text {
-            color: white;
-            padding-right: 2rem;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 107, 0, 0.2);
-            color: var(--secondary-color);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
+        .hero-logo {
+            width: 300px;
             margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid rgba(255, 107, 0, 0.3);
-        }
-
-        .hero-badge i {
-            font-size: 1.2rem;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
         }
 
         .hero-title {
-            font-size: 5.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            color: white;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            letter-spacing: -2px;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            line-height: 1.4;
-            max-width: 600px;
-        }
-
-        .hero-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .feature-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: left;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .feature-item i {
-            font-size: 2rem;
-            color: var(--secondary-color);
-        }
-
-        .feature-text {
-            flex: 1;
-        }
-
-        .feature-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .feature-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0.25rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hero-image {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-image img {
-            width: 120%;
-            height: auto;
-            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
-            animation: float 6s ease-in-out infinite;
-            transform: translateX(-10%);
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-        }
-
-        .cta-button {
-            padding: 1.2rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            letter-spacing: 0.5px;
-        }
-
-        .cta-button.primary {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-        }
-
-        .cta-button.secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-        }
-
-        .cta-button i {
-            font-size: 1.2rem;
-        }
-
-        .hero-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .feature-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .feature-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .feature-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hero-image {
-            position: relative;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            font-size: 20vw;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            z-index: 1;
+            letter-spacing: -1vw;
+            pointer-events: none;
         }
 
         /* News & Promotions Section */
@@ -690,6 +507,137 @@
             font-weight: 500;
         }
 
+        /* Color Section */
+        .color-section {
+            position: relative;
+            min-height: 100vh;
+            background: var(--bg-light);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .color-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, rgba(90, 116, 72, 0.2) 100%);
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .color-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .color-text {
+            padding-right: 2rem;
+        }
+
+        .color-heading {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            color: var(--text-dark);
+        }
+
+        .color-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .color-option {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+
+        .color-option.active {
+            border-color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .color-option.active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+        }
+
+        .color-black { background: #1C1C1C; }
+        .color-silver { background: #C0C0C0; }
+        .color-green { background: #3C513C; }
+        .color-blue { background: #1B3F5E; }
+
+        .color-showcase {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .color-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .color-image.active {
+            opacity: 1;
+        }
+
+        .rd6-background {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 25vw;
+            font-weight: 900;
+            color: rgba(90, 116, 72, 0.05);
+            white-space: nowrap;
+            z-index: 1;
+            letter-spacing: -1vw;
+            pointer-events: none;
+        }
+
         /* Footer Styles */
         .footer {
             background: var(--glass-bg);
@@ -889,57 +837,8 @@
                 <div class="video-overlay"></div>
             </div>
             <div class="hero-content">
-                <div class="hero-text">
-                    <span class="hero-badge">
-                        <i class="fas fa-bolt"></i>
-                        Available for Immediate Delivery
-                    </span>
-                    <h1 class="hero-title">RIDDARA RD6</h1>
-                    <p class="hero-subtitle">Experience the future of electric mobility with Thailand's premier electric vehicle dealership.</p>
-                    <div class="hero-cta">
-                        <a href="#inventory" class="cta-button primary">
-                            <i class="fas fa-car"></i>
-                            View Inventory
-                        </a>
-                        <a href="#test-drive" class="cta-button secondary">
-                            <i class="fas fa-clock"></i>
-                            Schedule Test Drive
-                        </a>
-                    </div>
-                    <div class="hero-features">
-                        <div class="feature-item">
-                            <i class="fas fa-clock"></i>
-                            <div class="feature-text">
-                                <div class="feature-number">24/7</div>
-                                <div class="feature-label">Service Support</div>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-star"></i>
-                            <div class="feature-text">
-                                <div class="feature-number">5★</div>
-                                <div class="feature-label">Customer Rating</div>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-percent"></i>
-                            <div class="feature-text">
-                                <div class="feature-number">0%</div>
-                                <div class="feature-label">Financing Available</div>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-charging-station"></i>
-                            <div class="feature-text">
-                                <div class="feature-number">500+</div>
-                                <div class="feature-label">Charging Stations</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6">
-                </div>
+                <img src="images/main1.png" alt="RIDDARA" class="hero-logo">
+                <h1 class="hero-title">RIDDARA RD6</h1>
             </div>
         </div>
 
@@ -1072,30 +971,23 @@
             </div>
         </div>
 
-        <!-- Colors Section -->
-        <div class="section color-schemes" data-anchor="colors">
-            <div class="diagonal-block"></div>
-            <div class="color-header">
-                <h2>CUSTOMIZE YOUR RD6</h2>
-                <p>Choose from our signature finishes</p>
-            </div>
-            <div class="rd6-corner-logo">
-                <img src="images/Black.png" alt="RD6 Logo" id="cornerLogo">
-            </div>
-            <div class="car-showcase">
-                <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image" id="carImage">
-            </div>
-            <div class="color-selector">
-                <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
-                <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
-                <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
-                <div class="color-option color-grey" data-color="grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
-                <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
-                <div class="color-option color-sand" data-color="sand" data-img="images/Yellow EV Pickup 1.png" data-bg="#9B8B6B"></div>
-            </div>
-            <div class="navigation-arrows">
-                <button class="nav-arrow prev">←</button>
-                <button class="nav-arrow next">→</button>
+        <!-- Color Section -->
+        <div class="section color-section" data-anchor="colors">
+            <div class="color-background"></div>
+            <div class="color-content">
+                <div class="color-text">
+                    <h2 class="color-heading">Customize Your RD6</h2>
+                    <p class="color-description">Choose from our signature finishes</p>
+                </div>
+                <div class="color-showcase">
+                    <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="color-image active">
+                </div>
+                <div class="color-options">
+                    <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
+                    <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
+                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
+                    <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
+                </div>
             </div>
         </div>
 
@@ -1225,9 +1117,7 @@
 
             // Color selector functionality
             const colorOptions = document.querySelectorAll('.color-option');
-            const carImage = document.getElementById('carImage');
-            const diagonalBlock = document.querySelector('.diagonal-block');
-            const cornerLogo = document.getElementById('cornerLogo');
+            const carImage = document.querySelector('.color-image');
             let currentColorIndex = 0;
             let isAnimating = false;
 
@@ -1252,35 +1142,21 @@
                 
                 // Get new image and background color
                 const newImage = selectedOption.dataset.img;
-                const newBg = selectedOption.dataset.bg;
-                const newColor = selectedOption.dataset.color;
                 
                 // Add transitioning class for smooth exit
                 carImage.classList.add('transitioning');
                 
-                // Fade out logo
-                cornerLogo.style.opacity = '0';
-                cornerLogo.style.transform = 'scale(0.95)';
+                // Update images
+                carImage.src = newImage;
                 
-                // Update diagonal block with smooth transition
-                diagonalBlock.style.background = newBg;
-
+                // Reset animations after a brief delay
                 setTimeout(() => {
-                    // Update images
-                    carImage.src = newImage;
-                    cornerLogo.src = `images/${logoMap[newColor]}`;
+                    carImage.classList.remove('transitioning');
                     
-                    // Reset animations after a brief delay
                     setTimeout(() => {
-                        carImage.classList.remove('transitioning');
-                        cornerLogo.style.opacity = '1';
-                        cornerLogo.style.transform = 'scale(1)';
-                        
-                        setTimeout(() => {
-                            isAnimating = false;
-                        }, 200);
-                    }, 50);
-                }, 400);
+                        isAnimating = false;
+                    }, 200);
+                }, 500);
             }
 
             // Add click handlers to color options
@@ -1292,27 +1168,6 @@
                     updateColor(currentColorIndex, direction);
                 });
             });
-
-            // Navigation arrows
-            const prevButton = document.querySelector('.nav-arrow.prev');
-            const nextButton = document.querySelector('.nav-arrow.next');
-
-            prevButton.addEventListener('click', () => {
-                if (isAnimating) return;
-                currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
-                updateColor(currentColorIndex, 'prev');
-            });
-
-            nextButton.addEventListener('click', () => {
-                if (isAnimating) return;
-                currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
-                updateColor(currentColorIndex, 'next');
-            });
-
-            // Initialize first color with animation
-            setTimeout(() => {
-                updateColor(currentColorIndex);
-            }, 500);
         });
     </script>
 </body>
