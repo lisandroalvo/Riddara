@@ -105,7 +105,7 @@
         }
 
         .video-background {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -121,7 +121,7 @@
         }
 
         .video-overlay {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -140,12 +140,62 @@
             z-index: 3;
             text-align: center;
             padding-top: 15vh;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-logo {
             width: 300px;
             margin-bottom: 2rem;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+            opacity: 0;
+            transform: scale(0.9);
+            animation: logoReveal 1.5s ease forwards 0.5s;
+        }
+
+        @keyframes logoReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero-header {
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: headerReveal 1.5s ease forwards 1s;
+        }
+
+        @keyframes headerReveal {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-title {
@@ -832,12 +882,12 @@
             <div class="video-background">
                 <video autoplay muted loop playsinline id="heroVideo">
                     <source src="videos/hero.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
                 </video>
                 <div class="video-overlay"></div>
             </div>
             <div class="hero-content">
                 <img src="images/main1.png" alt="RIDDARA" class="hero-logo">
+                <h2 class="hero-header">The Official Dealership in Thailand</h2>
                 <h1 class="hero-title">RIDDARA RD6</h1>
             </div>
         </div>
