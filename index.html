@@ -78,11 +78,11 @@
         }
 
         .nav-links a {
-            color: white;
+            color: #FFFFFF;
             text-decoration: none;
             font-size: 1rem;
             font-weight: 500;
-            opacity: 0.9;
+            opacity: 1;
             transition: all 0.3s;
             padding: 0.5rem 1rem;
             border-radius: 4px;
@@ -647,7 +647,7 @@
         .color-schemes {
             position: relative;
             min-height: 100vh;
-            background: var(--bg-light);
+            background: var(--bg-dark);
             overflow: hidden;
         }
 
@@ -670,7 +670,7 @@
         }
 
         .color-header h2 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
             letter-spacing: -1px;
@@ -701,18 +701,22 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 2rem 0;
+            overflow: hidden;
         }
 
         .car-image {
             max-width: 90%;
             max-height: 100%;
-            transition: all 0.5s ease;
+            transition: transform 0.5s ease, opacity 0.5s ease;
         }
 
         .car-image.transitioning {
             opacity: 0;
-            transform: scale(0.95);
+            transform: translateX(-100px);
+        }
+
+        .car-image.next {
+            transform: translateX(100px);
         }
 
         .color-selector {
@@ -741,6 +745,13 @@
             border-color: white;
             transform: scale(1.1);
         }
+
+        .color-black { background: #1C1C1C; }
+        .color-silver { background: #C0C0C0; }
+        .color-green { background: #3C513C; }
+        .color-blue { background: #1B3F5E; }
+        .color-grey { background: #808080; }
+        .color-sand { background: #9B8B6B; }
 
         .navigation-arrows {
             position: relative;
@@ -1364,76 +1375,69 @@
             const carImage = document.querySelector('.car-image');
             const diagonalBlock = document.querySelector('.diagonal-block');
             let currentColorIndex = 0;
-            let isAnimating = false;
 
-            const logoMap = {
-                'black': 'Black.png',
-                'silver': 'Silver.png',
-                'green': 'Green.png',
-                'blue': 'Blue.png'
-            };
+            const colors = [
+                { name: 'black', bg: '#1C1C1C', img: 'images/Black EV Pickup 1.png' },
+                { name: 'silver', bg: '#C0C0C0', img: 'images/Silver EV Pickup 1.png' },
+                { name: 'green', bg: '#3C513C', img: 'images/Green EV Pickup 1.png' },
+                { name: 'blue', bg: '#1B3F5E', img: 'images/Blue EV Pickup 1.png' },
+                { name: 'grey', bg: '#808080', img: 'images/Grey EV Pickup 1.png' },
+                { name: 'sand', bg: '#9B8B6B', img: 'images/Sand EV Pickup 1.png' }
+            ];
 
-            function updateColor(index, direction = 'next') {
-                if (isAnimating) return;
-                isAnimating = true;
-
-                // Remove active class from all options
+            function updateActiveColor(index) {
                 colorOptions.forEach(option => option.classList.remove('active'));
-                
-                // Add active class to selected option
-                const selectedOption = colorOptions[index];
-                selectedOption.classList.add('active');
-                
-                // Get new image and background color
-                const newImage = selectedOption.dataset.img;
-                const newBg = selectedOption.dataset.bg;
-                
-                // Add transitioning class for smooth exit
-                carImage.classList.add('transitioning');
-                
-                // Update diagonal block with smooth transition
-                diagonalBlock.style.background = newBg;
-
-                setTimeout(() => {
-                    // Update images
-                    carImage.src = newImage;
-                    
-                    // Reset animations after a brief delay
-                    setTimeout(() => {
-                        carImage.classList.remove('transitioning');
-                        isAnimating = false;
-                    }, 200);
-                }, 400);
+                colorOptions[index].classList.add('active');
+                currentColorIndex = index;
             }
 
-            // Add click handlers to color options
+            function changeColor(index, direction = 'right') {
+                const currentImg = carImage.src;
+                const nextImg = colors[index].img;
+                
+                // Add transition classes
+                carImage.classList.add('transitioning');
+                if (direction === 'right') {
+                    carImage.classList.add('next');
+                }
+
+                // Change background color with transition
+                diagonalBlock.style.background = colors[index].bg;
+
+                // Update active color indicator
+                updateActiveColor(index);
+
+                // Change image with animation
+                setTimeout(() => {
+                    carImage.src = nextImg;
+                    carImage.classList.remove('transitioning', 'next');
+                }, 500);
+            }
+
+            // Color option click handlers
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', () => {
-                    currentColorIndex = index;
-                    updateColor(currentColorIndex);
+                    if (index !== currentColorIndex) {
+                        const direction = index > currentColorIndex ? 'right' : 'left';
+                        changeColor(index, direction);
+                    }
                 });
             });
 
             // Navigation arrows
-            const prevButton = document.querySelector('.nav-arrow:first-child');
-            const nextButton = document.querySelector('.nav-arrow:last-child');
-
-            prevButton.addEventListener('click', () => {
-                if (isAnimating) return;
-                currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
-                updateColor(currentColorIndex, 'prev');
+            document.querySelector('.nav-arrow.prev').addEventListener('click', () => {
+                const prevIndex = (currentColorIndex - 1 + colors.length) % colors.length;
+                changeColor(prevIndex, 'left');
             });
 
-            nextButton.addEventListener('click', () => {
-                if (isAnimating) return;
-                currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
-                updateColor(currentColorIndex, 'next');
+            document.querySelector('.nav-arrow.next').addEventListener('click', () => {
+                const nextIndex = (currentColorIndex + 1) % colors.length;
+                changeColor(nextIndex, 'right');
             });
 
-            // Initialize first color with animation
-            setTimeout(() => {
-                updateColor(currentColorIndex);
-            }, 500);
+            // Initialize first color
+            updateActiveColor(0);
+            diagonalBlock.style.background = colors[0].bg;
         });
     </script>
 </body>
