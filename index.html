@@ -575,6 +575,10 @@
             min-height: 100vh;
             background: var(--bg-dark);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .diagonal-block {
@@ -583,15 +587,23 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #1C1C1C;
-            transition: background 0.5s ease;
+            background: linear-gradient(135deg, #1C1C1C 0%, #2C2C2C 100%);
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+
+        .color-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .color-header {
-            position: relative;
-            z-index: 2;
             text-align: center;
-            padding: 4rem 0;
+            margin-bottom: 4rem;
             color: white;
         }
 
@@ -607,33 +619,20 @@
             opacity: 0.8;
         }
 
-        .rd6-corner-logo {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            z-index: 2;
-        }
-
-        .rd6-corner-logo img {
-            height: 60px;
-            transition: all 0.5s ease;
-        }
-
         .car-showcase {
             position: relative;
-            z-index: 2;
             width: 100%;
-            height: 60vh;
+            height: 50vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            margin: 2rem 0;
         }
 
         .car-image {
             max-width: 90%;
-            max-height: 100%;
-            transition: transform 0.5s ease, opacity 0.5s ease;
+            height: auto;
+            transition: all 0.5s ease;
         }
 
         .car-image.transitioning {
@@ -641,17 +640,10 @@
             transform: translateX(-100px);
         }
 
-        .car-image.next {
-            transform: translateX(100px);
-        }
-
         .color-selector {
-            position: relative;
-            z-index: 2;
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
 
         .color-option {
@@ -661,6 +653,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            position: relative;
         }
 
         .color-option:hover {
@@ -672,6 +665,22 @@
             transform: scale(1.1);
         }
 
+        .color-option::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .color-option.active::after {
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
         .color-black { background: #1C1C1C; }
         .color-silver { background: #C0C0C0; }
         .color-green { background: #3C513C; }
@@ -680,26 +689,41 @@
         .color-sand { background: #9B8B6B; }
 
         .navigation-arrows {
-            position: relative;
-            z-index: 2;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+            justify-content: space-between;
+            padding: 0 4rem;
+            z-index: 3;
+            pointer-events: none;
         }
 
         .nav-arrow {
-            background: none;
-            border: none;
+            pointer-events: auto;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
             font-size: 2rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .nav-arrow:hover {
+            background: var(--primary-color);
             transform: scale(1.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         }
 
         /* Footer Styles */
@@ -789,6 +813,7 @@
         .social-icon:hover {
             background: var(--secondary-color);
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
         }
 
         .footer-bottom {
@@ -1035,22 +1060,24 @@
         <!-- Color Section -->
         <div class="section color-schemes" data-anchor="colors">
             <div class="diagonal-block"></div>
-            <div class="color-header">
-                <h2>Customize Your RD6</h2>
-                <p>Choose from our signature finishes</p>
-            </div>
-            <div class="car-showcase">
-                <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
-            </div>
-            <div class="color-selector">
-                <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
-                <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
-                <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
-                <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
-            </div>
-            <div class="navigation-arrows">
-                <button class="nav-arrow">Previous</button>
-                <button class="nav-arrow">Next</button>
+            <div class="color-content">
+                <div class="color-header">
+                    <h2>Customize Your RD6</h2>
+                    <p>Choose from our signature finishes</p>
+                </div>
+                <div class="car-showcase">
+                    <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
+                </div>
+                <div class="color-selector">
+                    <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
+                    <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
+                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
+                    <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
+                </div>
+                <div class="navigation-arrows">
+                    <button class="nav-arrow" aria-label="Previous color">&#8592;</button>
+                    <button class="nav-arrow" aria-label="Next color">&#8594;</button>
+                </div>
             </div>
         </div>
 
@@ -1286,14 +1313,13 @@
             const carImage = document.querySelector('.car-image');
             const diagonalBlock = document.querySelector('.diagonal-block');
             let currentColorIndex = 0;
+            let isAnimating = false;
 
             const colors = [
                 { name: 'black', bg: '#1C1C1C', img: 'images/Black EV Pickup 1.png' },
                 { name: 'silver', bg: '#C0C0C0', img: 'images/Silver EV Pickup 1.png' },
                 { name: 'green', bg: '#3C513C', img: 'images/Green EV Pickup 1.png' },
-                { name: 'blue', bg: '#1B3F5E', img: 'images/Blue EV Pickup 1.png' },
-                { name: 'grey', bg: '#808080', img: 'images/Grey EV Pickup 1.png' },
-                { name: 'sand', bg: '#9B8B6B', img: 'images/Sand EV Pickup 1.png' }
+                { name: 'blue', bg: '#1B3F5E', img: 'images/Blue EV Pickup 2.png' }
             ];
 
             function updateActiveColor(index) {
@@ -1303,26 +1329,37 @@
             }
 
             function changeColor(index, direction = 'right') {
-                const currentImg = carImage.src;
-                const nextImg = colors[index].img;
-                
-                // Add transition classes
+                if (isAnimating) return;
+                isAnimating = true;
+
                 carImage.classList.add('transitioning');
                 if (direction === 'right') {
-                    carImage.classList.add('next');
+                    carImage.style.transform = 'translateX(100px)';
+                } else {
+                    carImage.style.transform = 'translateX(-100px)';
                 }
 
-                // Change background color with transition
-                diagonalBlock.style.background = colors[index].bg;
+                // Change background with smooth transition
+                diagonalBlock.style.background = `linear-gradient(135deg, ${colors[index].bg} 0%, ${adjustColor(colors[index].bg, 20)} 100%)`;
 
-                // Update active color indicator
+                // Update active color
                 updateActiveColor(index);
 
                 // Change image with animation
                 setTimeout(() => {
-                    carImage.src = nextImg;
-                    carImage.classList.remove('transitioning', 'next');
+                    carImage.src = colors[index].img;
+                    carImage.style.transform = 'translateX(0)';
+                    carImage.classList.remove('transitioning');
+                    isAnimating = false;
                 }, 500);
+            }
+
+            function adjustColor(color, amount) {
+                const hex = color.replace('#', '');
+                const r = Math.min(255, Math.max(0, parseInt(hex.substring(0, 2), 16) + amount));
+                const g = Math.min(255, Math.max(0, parseInt(hex.substring(2, 4), 16) + amount));
+                const b = Math.min(255, Math.max(0, parseInt(hex.substring(4, 6), 16) + amount));
+                return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
             }
 
             // Color option click handlers
@@ -1336,19 +1373,22 @@
             });
 
             // Navigation arrows
-            document.querySelector('.nav-arrow.prev').addEventListener('click', () => {
+            const prevButton = document.querySelector('.nav-arrow:first-child');
+            const nextButton = document.querySelector('.nav-arrow:last-child');
+
+            prevButton.addEventListener('click', () => {
                 const prevIndex = (currentColorIndex - 1 + colors.length) % colors.length;
                 changeColor(prevIndex, 'left');
             });
 
-            document.querySelector('.nav-arrow.next').addEventListener('click', () => {
+            nextButton.addEventListener('click', () => {
                 const nextIndex = (currentColorIndex + 1) % colors.length;
                 changeColor(nextIndex, 'right');
             });
 
             // Initialize first color
             updateActiveColor(0);
-            diagonalBlock.style.background = colors[0].bg;
+            diagonalBlock.style.background = `linear-gradient(135deg, ${colors[0].bg} 0%, ${adjustColor(colors[0].bg, 20)} 100%)`;
         });
     </script>
 </body>
