@@ -573,80 +573,48 @@
         .color-schemes {
             position: relative;
             min-height: 100vh;
-            background: var(--bg-dark);
-            overflow: hidden;
-        }
-
-        .diagonal-block {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background: #1C1C1C;
-            transform: skewY(-12deg);
-            transform-origin: 0;
-            transition: all 0.5s ease;
-        }
-
-        .color-header {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 4rem 0;
-            color: white;
-        }
-
-        .color-header h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-        }
-
-        .color-header p {
-            font-size: 1.2rem;
-            opacity: 0.8;
+            transition: background 0.3s ease;
+            padding: 2rem;
         }
 
         .car-showcase {
-            position: relative;
-            z-index: 2;
             width: 100%;
             height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            margin: 2rem 0;
         }
 
         .car-image {
             max-width: 90%;
-            max-height: 100%;
-            transition: all 0.5s ease;
+            height: auto;
+            opacity: 1;
+            transition: opacity 0.3s ease;
         }
 
-        .car-image.transitioning {
+        .car-image.fade {
             opacity: 0;
-            transform: translateX(-50px);
         }
 
         .color-selector {
-            position: relative;
-            z-index: 2;
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
         .color-option {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
-            transition: all 0.3s ease;
             border: 2px solid transparent;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .color-option:hover {
@@ -664,12 +632,9 @@
         .color-blue { background: #1B3F5E; }
 
         .navigation-arrows {
-            position: relative;
-            z-index: 2;
             display: flex;
-            justify-content: center;
             gap: 2rem;
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
 
         .nav-arrow {
@@ -678,8 +643,8 @@
             color: white;
             font-size: 2rem;
             cursor: pointer;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
+            padding: 1rem;
+            transition: transform 0.3s ease;
         }
 
         .nav-arrow:hover {
@@ -1019,11 +984,6 @@
 
         <!-- Color Section -->
         <div class="section color-schemes" data-anchor="colors">
-            <div class="diagonal-block"></div>
-            <div class="color-header">
-                <h2>Choose Your Color</h2>
-                <p>Experience the RD6 in a variety of colors</p>
-            </div>
             <div class="car-showcase">
                 <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
             </div>
@@ -1204,129 +1164,66 @@
                 credits: { enabled: false }
             });
 
-            // News slider functionality
-            const newsSlider = document.querySelector('.news-slider');
-            const newsSlides = document.querySelectorAll('.news-slide');
-            const newsDots = document.querySelectorAll('.news-dot');
-            const newsArrows = document.querySelectorAll('.news-arrow');
-            let currentSlide = 0;
-            let slideInterval;
-
-            function goToSlide(index) {
-                newsSlider.style.transform = `translateX(-${index * 100}%)`;
-                newsDots.forEach(dot => dot.classList.remove('active'));
-                newsDots[index].classList.add('active');
-                currentSlide = index;
-            }
-
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % newsSlides.length;
-                goToSlide(currentSlide);
-            }
-
-            function prevSlide() {
-                currentSlide = (currentSlide - 1 + newsSlides.length) % newsSlides.length;
-                goToSlide(currentSlide);
-            }
-
-            // Auto scroll
-            function startAutoScroll() {
-                slideInterval = setInterval(nextSlide, 5000);
-            }
-
-            function stopAutoScroll() {
-                clearInterval(slideInterval);
-            }
-
-            // Event listeners
-            newsArrows[0].addEventListener('click', () => {
-                stopAutoScroll();
-                prevSlide();
-                startAutoScroll();
-            });
-
-            newsArrows[1].addEventListener('click', () => {
-                stopAutoScroll();
-                nextSlide();
-                startAutoScroll();
-            });
-
-            newsDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    stopAutoScroll();
-                    goToSlide(index);
-                    startAutoScroll();
-                });
-            });
-
-            // Start auto-scrolling
-            startAutoScroll();
-
-            // Pause on hover
-            newsSlider.addEventListener('mouseenter', stopAutoScroll);
-            newsSlider.addEventListener('mouseleave', startAutoScroll);
-
-            // Color selector functionality
+            // Color section functionality
+            const colorSection = document.querySelector('.color-schemes');
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.querySelector('.car-image');
-            const diagonalBlock = document.querySelector('.diagonal-block');
-            let currentColorIndex = 0;
-            let isAnimating = false;
+            let currentIndex = 0;
+            let isChanging = false;
 
-            function updateColor(element) {
-                if (isAnimating) return;
-                isAnimating = true;
+            function changeColor(newIndex) {
+                if (isChanging) return;
+                isChanging = true;
 
-                const color = element.dataset.color;
-                const imgSrc = element.dataset.img;
-                const bgColor = element.dataset.bg;
+                const newOption = colorOptions[newIndex];
+                const newBg = newOption.dataset.bg;
+                const newImg = newOption.dataset.img;
 
                 // Update active state
-                colorOptions.forEach(opt => opt.classList.remove('active'));
-                element.classList.add('active');
+                colorOptions[currentIndex].classList.remove('active');
+                newOption.classList.add('active');
 
-                // Update background
-                diagonalBlock.style.background = bgColor;
+                // Fade out image
+                carImage.classList.add('fade');
 
-                // Update car image with transition
-                carImage.classList.add('transitioning');
+                // Change background
+                colorSection.style.background = newBg;
+
+                // After fade out, change image and fade in
                 setTimeout(() => {
-                    carImage.src = imgSrc;
-                    carImage.classList.remove('transitioning');
-                    isAnimating = false;
+                    carImage.src = newImg;
+                    carImage.classList.remove('fade');
+                    currentIndex = newIndex;
+                    isChanging = false;
                 }, 300);
             }
 
-            // Add click handlers to color options
+            // Color dots click handlers
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', () => {
-                    if (!isAnimating && !option.classList.contains('active')) {
-                        currentColorIndex = index;
-                        updateColor(option);
+                    if (index !== currentIndex) {
+                        changeColor(index);
                     }
                 });
             });
 
-            // Navigation arrows functionality
-            const prevButton = document.querySelector('.nav-arrow:first-child');
-            const nextButton = document.querySelector('.nav-arrow:last-child');
+            // Arrow navigation
+            const prevArrow = document.querySelector('.nav-arrow:first-child');
+            const nextArrow = document.querySelector('.nav-arrow:last-child');
 
-            prevButton.addEventListener('click', () => {
-                if (!isAnimating) {
-                    currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
-                    updateColor(colorOptions[currentColorIndex]);
-                }
+            prevArrow.addEventListener('click', () => {
+                const newIndex = (currentIndex - 1 + colorOptions.length) % colorOptions.length;
+                changeColor(newIndex);
             });
 
-            nextButton.addEventListener('click', () => {
-                if (!isAnimating) {
-                    currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
-                    updateColor(colorOptions[currentColorIndex]);
-                }
+            nextArrow.addEventListener('click', () => {
+                const newIndex = (currentIndex + 1) % colorOptions.length;
+                changeColor(newIndex);
             });
 
             // Initialize first color
-            updateColor(colorOptions[0]);
+            colorOptions[0].classList.add('active');
+            colorSection.style.background = colorOptions[0].dataset.bg;
         });
     </script>
 </body>
