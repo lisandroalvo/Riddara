@@ -693,453 +693,323 @@
         }
 
         /* Footer Styles */
-        .footer {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-top: 1px solid var(--glass-border);
-            padding: 4rem 0 0;
+        footer {
             position: relative;
+            width: 100%;
+            background-color: var(--bg-light);
+            padding: 4rem 0;
+            margin-top: auto;
             z-index: 10;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: var(--max-width);
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 4rem;
             padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
         }
 
-        .footer-brand {
+        .footer-section {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
 
-        .footer-brand img {
-            height: 40px;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-brand p {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links h4 {
-            color: var(--primary-color);
+        .footer-section h3 {
             font-size: 1.2rem;
-            margin-bottom: 1.5rem;
             font-weight: 600;
-        }
-
-        .footer-links ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-links li {
             margin-bottom: 1rem;
         }
 
-        .footer-links a {
-            color: var(--text-light);
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-dark);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 1.2rem;
-        }
-
-        .social-icon:hover {
-            background: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
-        }
-
-        .footer-bottom {
-            margin-top: 4rem;
-            padding: 1.5rem;
-            text-align: center;
-            background: rgba(90, 116, 72, 0.1);
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Update existing styles */
-        .section {
-            background: var(--bg-light);
-            color: var(--text-dark);
-        }
-
-        .section:nth-child(even) {
-            background: var(--bg-gray);
-        }
-
-        .cta-button.primary,
-        .news-cta,
-        .service-cta,
-        .model-cta,
-        .contact-form .submit-btn {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .cta-button.primary:hover,
-        .news-cta:hover,
-        .service-cta:hover,
-        .model-cta:hover,
-        .contact-form .submit-btn:hover {
-            background: var(--secondary-color);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
-        }
-
-        .news-card,
-        .specs-card,
-        .service-card,
-        .model-card,
-        .info-item,
-        .contact-form {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .section-header h2 {
-            color: var(--text-dark);
-        }
-
-        .section-header p,
-        .spec-detail,
-        .news-date {
-            color: var(--text-light);
-        }
-
-        .contact-form input,
-        .contact-form select,
-        .contact-form textarea {
-            background: white;
-            border: 1px solid var(--border-color);
-            color: var(--text-dark);
-        }
-
-        .contact-form input:focus,
-        .contact-form select:focus,
-        .contact-form textarea:focus {
-            border-color: var(--primary-color);
-        }
-
-        .feature-number {
+        .footer-section a:hover {
             color: var(--primary-color);
         }
 
-        .nav-links a {
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 0.9rem;
             color: var(--text-dark);
+        }
+
+        /* Main container to ensure footer stays at bottom */
+        #main-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ensure all sections take necessary space */
+        .section {
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-brand">
-            <img src="images/main1.png" alt="RIDDARA">
-        </div>
-        <div class="nav-links">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#inventory" class="nav-link">Inventory</a>
-            <a href="#services" class="nav-link">Services</a>
-            <a href="#news" class="nav-link">News</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </div>
-    </nav>
+    <div id="main-container">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <img src="images/main1.png" alt="RIDDARA">
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#inventory" class="nav-link">Inventory</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#news" class="nav-link">News</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </nav>
 
-    <div id="fullpage">
-        <!-- Hero Section -->
-        <div class="section hero" data-anchor="home">
-            <div class="video-background">
-                <video autoplay muted loop playsinline id="heroVideo" preload="auto">
-                    <source src="videos/hero.mp4" type="video/mp4">
-                </video>
-                <div class="video-overlay"></div>
-            </div>
-            <div class="hero-content">
-                <img src="images/main1.png" alt="RIDDARA" class="hero-logo">
-                <h2 class="hero-header">The Official Dealership in Chonburi, Thailand</h2>
-                <div class="hero-cta">
-                    <a href="#inventory" class="cta-button primary">Explore Inventory</a>
-                    <a href="#contact" class="cta-button secondary">Schedule a Visit</a>
+        <div id="fullpage">
+            <!-- Hero Section -->
+            <div class="section hero" data-anchor="home">
+                <div class="video-background">
+                    <video autoplay muted loop playsinline id="heroVideo" preload="auto">
+                        <source src="videos/hero.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay"></div>
                 </div>
-                <h1 class="hero-title">RIDDARA RD6</h1>
+                <div class="hero-content">
+                    <img src="images/main1.png" alt="RIDDARA" class="hero-logo">
+                    <h2 class="hero-header">The Official Dealership in Chonburi, Thailand</h2>
+                    <div class="hero-cta">
+                        <a href="#inventory" class="cta-button primary">Explore Inventory</a>
+                        <a href="#contact" class="cta-button secondary">Schedule a Visit</a>
+                    </div>
+                    <h1 class="hero-title">RIDDARA RD6</h1>
+                </div>
             </div>
-        </div>
 
-        <!-- News & Promotions Section -->
-        <div class="section news-section" data-anchor="news">
-            <div class="news-banner">
-                <div class="news-track">
-                    <div class="news-item">
-                        <p class="news-date">February 2025</p>
-                        <h2 class="news-title">Lunar New Year Special Offer</h2>
-                        <p class="news-content">Celebrate Lunar New Year with 0% interest for 48 months and complimentary home charging installation.</p>
-                    </div>
-                    <div class="news-item">
-                        <p class="news-date">Every Saturday & Sunday</p>
-                        <h2 class="news-title">Weekend Test Drive Event</h2>
-                        <p class="news-content">Experience the RD6 with our exclusive weekend test drive program. Book your slot now!</p>
-                    </div>
-                    <div class="news-item">
-                        <p class="news-date">New Service Launch</p>
-                        <h2 class="news-title">Premium Care Package</h2>
-                        <p class="news-content">5-year maintenance package with 24/7 roadside assistance included with every new RD6.</p>
-                    </div>
-                    <div class="news-item">
-                        <p class="news-date">February 2025</p>
-                        <h2 class="news-title">Lunar New Year Special Offer</h2>
-                        <p class="news-content">Celebrate Lunar New Year with 0% interest for 48 months and complimentary home charging installation.</p>
-                    </div>
-                    <div class="news-item">
-                        <p class="news-date">Every Saturday & Sunday</p>
-                        <h2 class="news-title">Weekend Test Drive Event</h2>
-                        <p class="news-content">Experience the RD6 with our exclusive weekend test drive program. Book your slot now!</p>
-                    </div>
-                    <div class="news-item">
-                        <p class="news-date">New Service Launch</p>
-                        <h2 class="news-title">Premium Care Package</h2>
-                        <p class="news-content">5-year maintenance package with 24/7 roadside assistance included with every new RD6.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Inventory Section -->
-        <div class="section inventory-section" data-anchor="inventory">
-            <div class="section-header">
-                <h2>RD6 Specifications</h2>
-                <p>Choose Your Perfect Configuration</p>
-            </div>
-            <div class="specs-grid">
-                <div class="specs-card">
-                    <h3>100% Electric</h3>
-                    <div class="specs-content">
-                        <div class="spec-item">
-                            <h4>Drive Energy Variation</h4>
-                            <p>Extreme Acceleration</p>
-                            <p class="spec-detail">0 to 100 km/h acceleration in 7.3 seconds, for a quicker start.</p>
+            <!-- News & Promotions Section -->
+            <div class="section news-section" data-anchor="news">
+                <div class="news-banner">
+                    <div class="news-track">
+                        <div class="news-item">
+                            <p class="news-date">February 2025</p>
+                            <h2 class="news-title">Lunar New Year Special Offer</h2>
+                            <p class="news-content">Celebrate Lunar New Year with 0% interest for 48 months and complimentary home charging installation.</p>
                         </div>
-                        <div class="spec-item">
-                            <h4>Smart Control</h4>
-                            <p>Advanced Driving Experience</p>
-                            <p class="spec-detail">Smooth smart control system delivers the driving experience like a 100% electric SUV.</p>
+                        <div class="news-item">
+                            <p class="news-date">Every Saturday & Sunday</p>
+                            <h2 class="news-title">Weekend Test Drive Event</h2>
+                            <p class="news-content">Experience the RD6 with our exclusive weekend test drive program. Book your slot now!</p>
                         </div>
-                    </div>
-                </div>
-                <div class="specs-card">
-                    <h3>Core Function Highlights</h3>
-                    <div class="specs-content">
-                        <div class="spec-item">
-                            <h4>Intelligent Discharge</h4>
-                            <p>6kW/220V discharge in all scenarios</p>
-                            <p class="spec-detail">Staying ahead in the same price range for pickup truck and SUV, allowing use of electric functions anytime and anywhere.</p>
+                        <div class="news-item">
+                            <p class="news-date">New Service Launch</p>
+                            <h2 class="news-title">Premium Care Package</h2>
+                            <p class="news-content">5-year maintenance package with 24/7 roadside assistance included with every new RD6.</p>
                         </div>
-                    </div>
-                </div>
-                <div class="specs-card">
-                    <h3>All-purpose Pickup Truck</h3>
-                    <div class="specs-content">
-                        <div class="spec-item">
-                            <h4>Comfort & Safety</h4>
-                            <p>Refined Styling and Interior Comfort</p>
-                            <p class="spec-detail">Immerse yourself in a spacious, modern cabin packed with advanced technology features and entertainment.</p>
+                        <div class="news-item">
+                            <p class="news-date">February 2025</p>
+                            <h2 class="news-title">Lunar New Year Special Offer</h2>
+                            <p class="news-content">Celebrate Lunar New Year with 0% interest for 48 months and complimentary home charging installation.</p>
                         </div>
-                        <div class="spec-item">
-                            <h4>Engineered for Safety</h4>
-                            <p>Multidimensional Protection</p>
-                            <p class="spec-detail">Advanced safety systems providing you with peace of mind.</p>
+                        <div class="news-item">
+                            <p class="news-date">Every Saturday & Sunday</p>
+                            <h2 class="news-title">Weekend Test Drive Event</h2>
+                            <p class="news-content">Experience the RD6 with our exclusive weekend test drive program. Book your slot now!</p>
+                        </div>
+                        <div class="news-item">
+                            <p class="news-date">New Service Launch</p>
+                            <h2 class="news-title">Premium Care Package</h2>
+                            <p class="news-content">5-year maintenance package with 24/7 roadside assistance included with every new RD6.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Services Section -->
-        <div class="section services-section" data-anchor="services">
-            <div class="section-header">
-                <h2>Premium Services</h2>
-                <p>Experience Excellence at Every Step</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🚗</div>
-                    <h3>Test Drive</h3>
-                    <p>Schedule a personalized test drive experience</p>
-                    <a href="#test-drive" class="service-cta">Book Now</a>
+            <!-- Inventory Section -->
+            <div class="section inventory-section" data-anchor="inventory">
+                <div class="section-header">
+                    <h2>RD6 Specifications</h2>
+                    <p>Choose Your Perfect Configuration</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">💰</div>
-                    <h3>Financing</h3>
-                    <p>Flexible financing options with competitive rates</p>
-                    <a href="#finance" class="service-cta">Learn More</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔧</div>
-                    <h3>Service Center</h3>
-                    <p>Factory-certified maintenance and repairs</p>
-                    <a href="#service" class="service-cta">Schedule Service</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔌</div>
-                    <h3>Charging</h3>
-                    <p>Complimentary charging station installation</p>
-                    <a href="#charging" class="service-cta">Details</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Color Section -->
-        <div class="section color-schemes" id="colors">
-            <div class="diagonal-block"></div>
-            <div class="rd6-text">RD6</div>
-            <div class="color-content">
-                <div class="car-showcase">
-                    <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
-                </div>
-                <div class="color-selector">
-                    <div class="color-option color-black active" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
-                    <div class="color-option color-silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
-                    <div class="color-option color-green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
-                    <div class="color-option color-blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
-                    <div class="color-option color-grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
-                    <div class="color-option color-white" data-img="images/Riddara EV Pickup Car 1 White 1.png" data-bg="#FFFFFF"></div>
-                    <div class="color-option color-yellow" data-img="images/Yellow EV Pickup 1.png" data-bg="#FFD700"></div>
-                </div>
-                <div class="navigation-arrows">
-                    <button class="nav-arrow" aria-label="Previous color">&#8592;</button>
-                    <button class="nav-arrow" aria-label="Next color">&#8594;</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="section contact-section" data-anchor="contact">
-            <div class="section-header">
-                <h2>Visit Our Showroom</h2>
-                <p>Experience the Future of Electric Mobility</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="info-item">
-                        <h3>Location</h3>
-                        <p>123 Sukhumvit Road<br>Chonburi, Thailand 20150</p>
+                <div class="specs-grid">
+                    <div class="specs-card">
+                        <h3>100% Electric</h3>
+                        <div class="specs-content">
+                            <div class="spec-item">
+                                <h4>Drive Energy Variation</h4>
+                                <p>Extreme Acceleration</p>
+                                <p class="spec-detail">0 to 100 km/h acceleration in 7.3 seconds, for a quicker start.</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>Smart Control</h4>
+                                <p>Advanced Driving Experience</p>
+                                <p class="spec-detail">Smooth smart control system delivers the driving experience like a 100% electric SUV.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <h3>Hours</h3>
-                        <p>Mon-Sat: 9:00 AM - 6:00 PM<br>Sunday: 10:00 AM - 4:00 PM</p>
+                    <div class="specs-card">
+                        <h3>Core Function Highlights</h3>
+                        <div class="specs-content">
+                            <div class="spec-item">
+                                <h4>Intelligent Discharge</h4>
+                                <p>6kW/220V discharge in all scenarios</p>
+                                <p class="spec-detail">Staying ahead in the same price range for pickup truck and SUV, allowing use of electric functions anytime and anywhere.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="info-item">
-                        <h3>Contact</h3>
-                        <p>Sales: +66 2 123 4567<br>Service: +66 2 123 4568</p>
+                    <div class="specs-card">
+                        <h3>All-purpose Pickup Truck</h3>
+                        <div class="specs-content">
+                            <div class="spec-item">
+                                <h4>Comfort & Safety</h4>
+                                <p>Refined Styling and Interior Comfort</p>
+                                <p class="spec-detail">Immerse yourself in a spacious, modern cabin packed with advanced technology features and entertainment.</p>
+                            </div>
+                            <div class="spec-item">
+                                <h4>Engineered for Safety</h4>
+                                <p>Multidimensional Protection</p>
+                                <p class="spec-detail">Advanced safety systems providing you with peace of mind.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Schedule a Visit</h3>
-                    <form id="visit-form">
-                        <input type="text" placeholder="Name" required>
-                        <input type="email" placeholder="Email" required>
-                        <input type="tel" placeholder="Phone" required>
-                        <select required>
-                            <option value="">Select Service</option>
-                            <option value="test-drive">Test Drive</option>
-                            <option value="sales">Sales Inquiry</option>
-                            <option value="service">Service Appointment</option>
-                        </select>
-                        <textarea placeholder="Message" rows="4"></textarea>
-                        <button type="submit" class="submit-btn">Submit Request</button>
-                    </form>
+            </div>
+
+            <!-- Services Section -->
+            <div class="section services-section" data-anchor="services">
+                <div class="section-header">
+                    <h2>Premium Services</h2>
+                    <p>Experience Excellence at Every Step</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🚗</div>
+                        <h3>Test Drive</h3>
+                        <p>Schedule a personalized test drive experience</p>
+                        <a href="#test-drive" class="service-cta">Book Now</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💰</div>
+                        <h3>Financing</h3>
+                        <p>Flexible financing options with competitive rates</p>
+                        <a href="#finance" class="service-cta">Learn More</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔧</div>
+                        <h3>Service Center</h3>
+                        <p>Factory-certified maintenance and repairs</p>
+                        <a href="#service" class="service-cta">Schedule Service</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔌</div>
+                        <h3>Charging</h3>
+                        <p>Complimentary charging station installation</p>
+                        <a href="#charging" class="service-cta">Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Color Section -->
+            <div class="section color-schemes" id="colors">
+                <div class="diagonal-block"></div>
+                <div class="rd6-text">RD6</div>
+                <div class="color-content">
+                    <div class="car-showcase">
+                        <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
+                    </div>
+                    <div class="color-selector">
+                        <div class="color-option color-black active" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
+                        <div class="color-option color-silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
+                        <div class="color-option color-green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
+                        <div class="color-option color-blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
+                        <div class="color-option color-grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
+                        <div class="color-option color-white" data-img="images/Riddara EV Pickup Car 1 White 1.png" data-bg="#FFFFFF"></div>
+                        <div class="color-option color-yellow" data-img="images/Yellow EV Pickup 1.png" data-bg="#FFD700"></div>
+                    </div>
+                    <div class="navigation-arrows">
+                        <button class="nav-arrow" aria-label="Previous color">&#8592;</button>
+                        <button class="nav-arrow" aria-label="Next color">&#8594;</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="section contact-section" data-anchor="contact">
+                <div class="section-header">
+                    <h2>Visit Our Showroom</h2>
+                    <p>Experience the Future of Electric Mobility</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <h3>Location</h3>
+                            <p>123 Sukhumvit Road<br>Chonburi, Thailand 20150</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>Hours</h3>
+                            <p>Mon-Sat: 9:00 AM - 6:00 PM<br>Sunday: 10:00 AM - 4:00 PM</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>Contact</h3>
+                            <p>Sales: +66 2 123 4567<br>Service: +66 2 123 4568</p>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Schedule a Visit</h3>
+                        <form id="visit-form">
+                            <input type="text" placeholder="Name" required>
+                            <input type="email" placeholder="Email" required>
+                            <input type="tel" placeholder="Phone" required>
+                            <select required>
+                                <option value="">Select Service</option>
+                                <option value="test-drive">Test Drive</option>
+                                <option value="sales">Sales Inquiry</option>
+                                <option value="service">Service Appointment</option>
+                            </select>
+                            <textarea placeholder="Message" rows="4"></textarea>
+                            <button type="submit" class="submit-btn">Submit Request</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>Experience the future of electric mobility with Riddara. Your premier electric vehicle dealership in Chonburi, Thailand.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#inventory">Inventory</a>
+                    <a href="#services">Services</a>
+                    <a href="#news">News</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Hours</h3>
+                    <p>Mon-Sat: 9:00 AM - 6:00 PM</p>
+                    <p>Sunday: 10:00 AM - 4:00 PM</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>123 Sukhumvit Road</p>
+                    <p>Chonburi, Thailand 20150</p>
+                    <p>Sales: +66 2 123 4567</p>
+                    <p>Service: +66 2 123 4568</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Riddara Chonburi. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <img src="images/footer.png" alt="Riddara Logo">
-                <p>Experience the future of electric mobility with Riddara. Your premier electric vehicle dealership in Chonburi, Thailand.</p>
-                <div class="footer-social">
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-line"></i>
-                    </a>
-                    <a href="#" class="social-icon">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#inventory">Inventory</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#colors">Customize</a></li>
-                    <li><a href="#news">News</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#test-drive">Test Drive</a></li>
-                    <li><a href="#finance">Financing</a></li>
-                    <li><a href="#service">Service Center</a></li>
-                    <li><a href="#charging">Charging Solutions</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Contact</h4>
-                <ul>
-                    <li>123 Sukhumvit Road</li>
-                    <li>Chonburi, Thailand 20150</li>
-                    <li>Sales: +66 2 123 4567</li>
-                    <li>Service: +66 2 123 4568</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Riddara Chonburi. All rights reserved.</p>
-        </div>
-    </footer>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
