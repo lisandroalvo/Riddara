@@ -128,9 +128,9 @@
             height: 100%;
             background: linear-gradient(
                 to bottom,
-                rgba(0, 0, 0, 0.8) 0%,
-                rgba(0, 0, 0, 0.5) 50%,
-                rgba(0, 0, 0, 0.8) 100%
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0.2) 50%,
+                rgba(0, 0, 0, 0.3) 100%
             );
             z-index: 2;
         }
@@ -185,6 +185,7 @@
             opacity: 0;
             transform: translateY(20px);
             animation: headerReveal 1.5s ease forwards 1s;
+            margin-bottom: 2rem;
         }
 
         @keyframes headerReveal {
@@ -196,6 +197,57 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: headerReveal 1.5s ease forwards 1.5s;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button.primary {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button.primary:hover {
+            background: #6a8555;
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .hero-title {
@@ -558,72 +610,93 @@
         }
 
         /* Color Section */
-        .color-section {
+        .color-schemes {
             position: relative;
             min-height: 100vh;
             background: var(--bg-light);
             overflow: hidden;
-            display: flex;
-            align-items: center;
         }
 
-        .color-background {
+        .diagonal-block {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary-color) 0%, rgba(90, 116, 72, 0.2) 100%);
-            opacity: 0.1;
-            z-index: 1;
+            background: #1C1C1C;
+            transition: background 0.5s ease;
         }
 
-        .color-content {
+        .color-header {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .color-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .color-header p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .rd6-corner-logo {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            z-index: 2;
+        }
+
+        .rd6-corner-logo img {
+            height: 60px;
+            transition: all 0.5s ease;
+        }
+
+        .car-showcase {
             position: relative;
             z-index: 2;
             width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .color-text {
-            padding-right: 2rem;
-        }
-
-        .color-heading {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            line-height: 1.1;
-            color: var(--text-dark);
-        }
-
-        .color-description {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-        }
-
-        .color-options {
+            height: 60vh;
             display: flex;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .car-image {
+            max-width: 90%;
+            max-height: 100%;
+            transition: all 0.5s ease;
+        }
+
+        .car-image.transitioning {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .color-selector {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
         .color-option {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
-            position: relative;
         }
 
         .color-option:hover {
@@ -631,61 +704,31 @@
         }
 
         .color-option.active {
-            border-color: var(--primary-color);
+            border-color: white;
             transform: scale(1.1);
         }
 
-        .color-option.active::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            border: 2px solid var(--primary-color);
-        }
-
-        .color-black { background: #1C1C1C; }
-        .color-silver { background: #C0C0C0; }
-        .color-green { background: #3C513C; }
-        .color-blue { background: #1B3F5E; }
-
-        .color-showcase {
+        .navigation-arrows {
             position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .color-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            opacity: 0;
-            transition: opacity 0.5s ease;
+        .nav-arrow {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
         }
 
-        .color-image.active {
-            opacity: 1;
-        }
-
-        .rd6-background {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 25vw;
-            font-weight: 900;
-            color: rgba(90, 116, 72, 0.05);
-            white-space: nowrap;
-            z-index: 1;
-            letter-spacing: -1vw;
-            pointer-events: none;
+        .nav-arrow:hover {
+            transform: scale(1.1);
         }
 
         /* Footer Styles */
@@ -888,6 +931,10 @@
             <div class="hero-content">
                 <img src="images/main1.png" alt="RIDDARA" class="hero-logo">
                 <h2 class="hero-header">The Official Dealership in Thailand</h2>
+                <div class="hero-cta">
+                    <a href="#inventory" class="cta-button primary">Explore Inventory</a>
+                    <a href="#contact" class="cta-button secondary">Schedule a Visit</a>
+                </div>
                 <h1 class="hero-title">RIDDARA RD6</h1>
             </div>
         </div>
@@ -1022,22 +1069,24 @@
         </div>
 
         <!-- Color Section -->
-        <div class="section color-section" data-anchor="colors">
-            <div class="color-background"></div>
-            <div class="color-content">
-                <div class="color-text">
-                    <h2 class="color-heading">Customize Your RD6</h2>
-                    <p class="color-description">Choose from our signature finishes</p>
-                </div>
-                <div class="color-showcase">
-                    <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="color-image active">
-                </div>
-                <div class="color-options">
-                    <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
-                    <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
-                    <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
-                    <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
-                </div>
+        <div class="section color-schemes" data-anchor="colors">
+            <div class="diagonal-block"></div>
+            <div class="color-header">
+                <h2>Customize Your RD6</h2>
+                <p>Choose from our signature finishes</p>
+            </div>
+            <div class="car-showcase">
+                <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
+            </div>
+            <div class="color-selector">
+                <div class="color-option color-black active" data-color="black" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
+                <div class="color-option color-silver" data-color="silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
+                <div class="color-option color-green" data-color="green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
+                <div class="color-option color-blue" data-color="blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
+            </div>
+            <div class="navigation-arrows">
+                <button class="nav-arrow">Previous</button>
+                <button class="nav-arrow">Next</button>
             </div>
         </div>
 
@@ -1167,57 +1216,79 @@
 
             // Color selector functionality
             const colorOptions = document.querySelectorAll('.color-option');
-            const carImage = document.querySelector('.color-image');
+            const carImage = document.querySelector('.car-image');
+            const diagonalBlock = document.querySelector('.diagonal-block');
             let currentColorIndex = 0;
             let isAnimating = false;
 
             const logoMap = {
                 'black': 'Black.png',
-                'blue': 'Blue.png',
+                'silver': 'Silver.png',
                 'green': 'Green.png',
-                'grey': 'Grey.png',
-                'silver': 'light grey.png',
-                'sand': 'Yellow.png'
+                'blue': 'Blue.png'
             };
 
             function updateColor(index, direction = 'next') {
                 if (isAnimating) return;
                 isAnimating = true;
 
-                const selectedOption = colorOptions[index];
+                // Remove active class from all options
+                colorOptions.forEach(option => option.classList.remove('active'));
                 
-                // Update active state
-                colorOptions.forEach(opt => opt.classList.remove('active'));
+                // Add active class to selected option
+                const selectedOption = colorOptions[index];
                 selectedOption.classList.add('active');
                 
                 // Get new image and background color
                 const newImage = selectedOption.dataset.img;
+                const newBg = selectedOption.dataset.bg;
                 
                 // Add transitioning class for smooth exit
                 carImage.classList.add('transitioning');
                 
-                // Update images
-                carImage.src = newImage;
-                
-                // Reset animations after a brief delay
+                // Update diagonal block with smooth transition
+                diagonalBlock.style.background = newBg;
+
                 setTimeout(() => {
-                    carImage.classList.remove('transitioning');
+                    // Update images
+                    carImage.src = newImage;
                     
+                    // Reset animations after a brief delay
                     setTimeout(() => {
+                        carImage.classList.remove('transitioning');
                         isAnimating = false;
                     }, 200);
-                }, 500);
+                }, 400);
             }
 
             // Add click handlers to color options
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', () => {
-                    if (currentColorIndex === index || isAnimating) return;
-                    const direction = index > currentColorIndex ? 'next' : 'prev';
                     currentColorIndex = index;
-                    updateColor(currentColorIndex, direction);
+                    updateColor(currentColorIndex);
                 });
             });
+
+            // Navigation arrows
+            const prevButton = document.querySelector('.nav-arrow:first-child');
+            const nextButton = document.querySelector('.nav-arrow:last-child');
+
+            prevButton.addEventListener('click', () => {
+                if (isAnimating) return;
+                currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
+                updateColor(currentColorIndex, 'prev');
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (isAnimating) return;
+                currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
+                updateColor(currentColorIndex, 'next');
+            });
+
+            // Initialize first color with animation
+            setTimeout(() => {
+                updateColor(currentColorIndex);
+            }, 500);
         });
     </script>
 </body>
