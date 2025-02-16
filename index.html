@@ -923,14 +923,14 @@
         <!-- Hero Section -->
         <div class="section hero" data-anchor="home">
             <div class="video-background">
-                <video autoplay muted loop playsinline id="heroVideo">
+                <video autoplay muted loop playsinline id="heroVideo" preload="auto">
                     <source src="videos/hero.mp4" type="video/mp4">
                 </video>
                 <div class="video-overlay"></div>
             </div>
             <div class="hero-content">
                 <img src="images/main1.png" alt="RIDDARA" class="hero-logo">
-                <h2 class="hero-header">The Official Dealership in Thailand</h2>
+                <h2 class="hero-header">The Official Dealership in Chonburi, Thailand</h2>
                 <div class="hero-cta">
                     <a href="#inventory" class="cta-button primary">Explore Inventory</a>
                     <a href="#contact" class="cta-button secondary">Schedule a Visit</a>
@@ -1199,6 +1199,49 @@
                     heroVideo.currentTime = 0;
                     heroVideo.play();
                 });
+            }
+
+            // Ensure video keeps playing during scroll
+            const video = document.getElementById('heroVideo');
+            let isVideoPlaying = false;
+
+            function playVideo() {
+                if (!isVideoPlaying) {
+                    video.play().then(() => {
+                        isVideoPlaying = true;
+                    }).catch(error => {
+                        console.log("Video play failed:", error);
+                    });
+                }
+            }
+
+            // Play video when it's ready
+            video.addEventListener('loadedmetadata', playVideo);
+            
+            // Handle video visibility changes
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') {
+                    playVideo();
+                }
+            });
+
+            // Ensure video plays after scroll
+            window.addEventListener('scroll', () => {
+                requestAnimationFrame(playVideo);
+            });
+
+            // Ensure video plays after any user interaction
+            document.addEventListener('click', playVideo);
+            document.addEventListener('touchstart', playVideo);
+
+            // Handle fullpage.js transitions
+            if (typeof fullpage_api !== 'undefined') {
+                fullpage_api.setAllowScrolling(true);
+                fullpage_api.setKeyboardScrolling(true);
+                
+                fullpage_api.afterLoad = function() {
+                    playVideo();
+                };
             }
 
             // Initialize fullPage.js
