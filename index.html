@@ -119,6 +119,7 @@
             justify-content: center;
             background: transparent;
             position: relative;
+            overflow: hidden;
         }
 
         .video-background {
@@ -128,11 +129,16 @@
             width: 100%;
             height: 100%;
             z-index: 1;
+            overflow: hidden;
         }
 
         .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             width: 100%;
             height: 100%;
+            transform: translate(-50%, -50%);
             object-fit: cover;
             filter: brightness(0.7);
         }
@@ -143,224 +149,538 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                to bottom,
-                rgba(0, 0, 0, 0.3) 0%,
-                rgba(0, 0, 0, 0.2) 50%,
-                rgba(0, 0, 0, 0.3) 100%
-            );
+            background: rgba(0, 0, 0, 0.5);
             z-index: 2;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 2rem;
+            z-index: 3;
+            height: 100%;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding-bottom: 8rem;
+            color: white;
+            text-align: center;
+            padding: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .hero-logo {
-            max-width: 300px;
-            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-bottom: 3rem;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-text-container {
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out 0.5s forwards;
             opacity: 0;
-            transform: scale(0.9);
-            animation: logoReveal 1.5s ease forwards 0.5s;
         }
 
-        @keyframes logoReveal {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
         }
 
-        .hero-header {
-            font-size: 1.5rem;
-            color: #FFFFFF;
-            margin-bottom: 2rem;
-            font-weight: 400;
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .dealer-info {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--primary-color);
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-bottom: 3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-out 1s forwards;
+            opacity: 0;
         }
 
         .hero-cta {
             display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-top: 2rem;
+            gap: 2rem;
+            animation: fadeInUp 1s ease-out 1.5s forwards;
             opacity: 0;
-            transform: translateY(20px);
-            animation: headerReveal 1.5s ease forwards 1.5s;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
         }
 
         .cta-button {
             padding: 1.2rem 3rem;
-            font-size: 1.1rem;
-            font-weight: 500;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             border-radius: 50px;
+            transition: all 0.3s ease;
             text-decoration: none;
-            transition: var(--transition-smooth);
-            display: inline-flex;
+            border: 2px solid transparent;
+            display: flex;
             align-items: center;
             gap: 0.75rem;
+        }
+
+        .cta-button i {
+            font-size: 1.4rem;
+        }
+
+        .cta-button.primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .cta-button.primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(5px);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Contact Section Styles */
+        .contact-section {
+            background: var(--bg-light);
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-image {
+            position: sticky;
+            top: 100px;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .contact-detail i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(90, 116, 72, 0.1);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
             background: var(--primary-color);
             color: white;
             border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* News Section Styles */
+        .news-section {
+            background: var(--bg-light);
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-container {
+            max-width: 100%;
+            padding: 0 4rem;
+            position: relative;
+        }
+
+        .news-header {
+            text-align: left;
+            margin-bottom: 3rem;
+            padding: 0 4rem;
+        }
+
+        .news-title {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .news-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .news-slider {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 1rem 4rem;
+            cursor: grab;
+        }
+
+        .news-slider::-webkit-scrollbar {
+            display: none;
+        }
+
+        .news-item {
+            min-width: 600px;
+            scroll-snap-align: start;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .news-text {
+            padding: 2rem;
+        }
+
+        .news-headline {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .news-description {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .news-cta {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .cta-button:hover {
-            background-color: var(--hover-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+        .news-cta:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
         }
 
-        .hero-title {
-            font-size: 25rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.08);
-            text-transform: uppercase;
-            animation: slideHeader 20s linear infinite;
-            white-space: nowrap;
+        .scroll-buttons {
             position: absolute;
-            top: 20%;
+            top: 50%;
             transform: translateY(-50%);
-            z-index: 1;
-            letter-spacing: -1rem;
-        }
-
-        @keyframes slideHeader {
-            from {
-                transform: translateX(-100%);
-            }
-            to {
-                transform: translateX(100%);
-            }
-        }
-
-        .moving-text, .background-text {
-            display: none;
-        }
-
-        /* Team Section */
-        .team-section {
-            background: var(--bg-light);
-            position: relative;
-            height: 100vh;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 80px 20px;
+            pointer-events: none;
+            padding: 0 2rem;
         }
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-color) transparent;
-        }
-
-        .team-grid::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .team-grid::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .team-grid::-webkit-scrollbar-thumb {
-            background-color: var(--primary-color);
-            border-radius: 3px;
-        }
-
-        .team-member {
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-        }
-
-        .member-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .member-info {
-            padding: 1.5rem;
-        }
-
-        .member-name {
+            border: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            pointer-events: auto;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.5rem;
             color: var(--text-dark);
-            margin-bottom: 0.5rem;
         }
 
-        .member-position {
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-bottom: 1rem;
+        .scroll-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
         }
 
-        .member-bio {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            line-height: 1.6;
+        .scroll-btn.prev {
+            left: 2rem;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: var(--text-light);
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
+        .scroll-btn.next {
+            right: 2rem;
         }
 
         @media (max-width: 768px) {
-            .team-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            .news-item {
+                min-width: 300px;
             }
+            
+            .news-header {
+                padding: 0 2rem;
+            }
+
+            .news-container {
+                padding: 0 2rem;
+            }
+
+            .news-slider {
+                padding: 1rem 2rem;
+            }
+
+            .scroll-buttons {
+                display: none;
+            }
+        }
+
+        /* RD6 Section Styles */
+        .rd6-description {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            color: var(--text-dark);
+        }
+
+        .rd6-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .spec-item {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .spec-item h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-item p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .rd6-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rd6-text h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .rd6-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .rd6-cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .rd6-cta:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
         }
 
         /* Services Section */
@@ -406,115 +726,6 @@
         .service-card p {
             color: var(--text-light);
             line-height: 1.6;
-        }
-
-        /* Color Section */
-        .color-schemes {
-            position: relative;
-            min-height: 100vh;
-            background: var(--bg-dark);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .diagonal-block {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #1C1C1C;
-            transform: skewY(-12deg);
-            transform-origin: 0;
-            transition: all 0.5s ease;
-            z-index: 1;
-        }
-
-        .color-content {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .car-showcase {
-            width: 100%;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .car-image {
-            max-width: 90%;
-            max-height: 100%;
-            transition: var(--transition-smooth);
-        }
-
-        .car-image.fade {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        .color-selector {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .color-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: var(--transition-smooth);
-        }
-
-        .color-option:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(255, 107, 0, 0.3);
-        }
-
-        .color-option.active {
-            border-color: white;
-            transform: scale(1.1);
-        }
-
-        .color-black { background: #1C1C1C; }
-        .color-silver { background: #C0C0C0; }
-        .color-green { background: #3C513C; }
-        .color-blue { background: #1B3F5E; }
-        .color-grey { background: #808080; }
-        .color-white { background: #FFFFFF; border: 1px solid #E0E0E0; }
-        .color-yellow { background: #FFD700; }
-
-        .navigation-arrows {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-arrow {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 1rem;
-            transition: var(--transition-smooth);
-        }
-
-        .nav-arrow:hover {
-            color: var(--hover-color);
-            transform: scale(1.1);
         }
 
         /* Footer Section Styles */
@@ -616,9 +827,10 @@
             </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
-                <a href="#team">Team</a>
+                <a href="#news">News</a>
+                <a href="#rd6">RD6</a>
                 <a href="#services">Services</a>
-                <a href="#colors">Colors</a>
+                <a href="#contact">Contact</a>
             </div>
         </nav>
 
@@ -629,61 +841,137 @@
                     <video autoplay muted loop playsinline id="heroVideo" preload="auto">
                         <source src="videos/hero.mp4" type="video/mp4">
                     </video>
-                    <div class="video-overlay"></div>
                 </div>
+                <div class="video-overlay"></div>
                 <div class="hero-content">
                     <img src="images/main1.png" alt="RIDDARA" class="hero-logo">
-                    <h2 class="hero-header">Pinpat Auto - The Official Dealership in Chonburi, Thailand</h2>
-                    <div class="cta-buttons">
-                        <a href="#team" class="cta-button">Meet Our Team</a>
-                        <a href="#contact" class="cta-button">Schedule a Visit</a>
+                    <div class="hero-text-container">
+                        <h2 class="hero-subtitle">Welcome to</h2>
+                        <h1 class="hero-title">RIDDARA Chonburi</h1>
+                        <p class="dealer-info">By Pinpat Auto - Official RIDDARA Dealership</p>
+                    </div>
+                    <div class="hero-cta">
+                        <a href="#services" class="cta-button primary">
+                            <i class="fas fa-car"></i>
+                            Book Test Drive
+                        </a>
+                        <a href="tel:097-102-0110" class="cta-button secondary">
+                            <i class="fas fa-phone"></i>
+                            Contact Us
+                        </a>
                     </div>
                 </div>
-                <h1 class="hero-title">OFFICIAL RIDDARA CHONBURI</h1>
             </div>
 
-            <!-- Team Section -->
-            <div class="section team-section" data-anchor="team">
-                <div class="section-header">
-                    <h2>Our Team</h2>
-                    <p>Meet the Passionate People Behind RIDDARA</p>
+            <!-- News Section -->
+            <div class="section news-section" data-anchor="news">
+                <div class="news-container">
+                    <div class="news-header">
+                        <h2 class="news-title">Latest News</h2>
+                        <p class="news-subtitle">Stay updated with RIDDARA</p>
+                    </div>
+                    <div class="news-slider">
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img src="images/news1.jpg" alt="Electric Pickup Truck">
+                            </div>
+                            <div class="news-text">
+                                <h3 class="news-headline">100% ELECTRIC PICKUP TRUCK WITH VERSATILE TRUCK BED</h3>
+                                <p class="news-description">Experience the future of transportation with our revolutionary electric pickup truck. Featuring a versatile truck bed designed for both work and leisure.</p>
+                                <a href="#" class="news-cta">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img src="images/news2.jpg" alt="Interior Comfort">
+                            </div>
+                            <div class="news-text">
+                                <h3 class="news-headline">INTELLIGENT COMFORT FOR EVERY JOURNEY</h3>
+                                <p class="news-description">Discover the perfect blend of technology and comfort in our spacious interior, designed for both driver and passengers.</p>
+                                <a href="#" class="news-cta">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img src="images/news3.jpg" alt="Performance Features">
+                            </div>
+                            <div class="news-text">
+                                <h3 class="news-headline">UNMATCHED PERFORMANCE AND RANGE</h3>
+                                <p class="news-description">Leading the industry with exceptional range and performance, setting new standards for electric vehicles.</p>
+                                <a href="#" class="news-cta">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img src="images/news4.jpg" alt="Sustainability">
+                            </div>
+                            <div class="news-text">
+                                <h3 class="news-headline">COMMITMENT TO SUSTAINABILITY</h3>
+                                <p class="news-description">Our dedication to environmental responsibility drives innovation in sustainable transportation solutions.</p>
+                                <a href="#" class="news-cta">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-image">
+                                <img src="images/team2.jpg" alt="Our Team">
+                            </div>
+                            <div class="news-text">
+                                <h3 class="news-headline">MEET OUR DEDICATED TEAM</h3>
+                                <p class="news-description">Our experienced team of professionals is committed to providing you with exceptional service and expertise in electric vehicles.</p>
+                                <a href="#contact" class="news-cta">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-buttons">
+                        <button class="scroll-btn prev">←</button>
+                        <button class="scroll-btn next">→</button>
+                    </div>
                 </div>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <img src="images/team/member1.jpg" alt="Team Member 1" class="member-image">
-                        <div class="member-info">
-                            <h3 class="member-name">John Smith</h3>
-                            <p class="member-position">CEO & Founder</p>
-                            <p class="member-bio">Visionary leader with 15+ years in the automotive industry, passionate about electric mobility.</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                            </div>
+            </div>
+
+            <!-- RD6 Section -->
+            <div class="section colors-section" data-anchor="rd6">
+                <div class="section-header">
+                    <h2>RD6</h2>
+                    <p>Choose your style</p>
+                </div>
+                <div class="colors-container">
+                    <div class="car-display">
+                        <img src="images/Riddara EV Pickup Car 1 White 1.png" alt="RIDDARA RD6" class="car-image">
+                    </div>
+                    <div class="color-options">
+                        <div class="color-option active" style="background-color: #FFFFFF;" data-color="white"></div>
+                        <div class="color-option" style="background-color: #000000;" data-color="black"></div>
+                        <div class="color-option" style="background-color: #0066CC;" data-color="blue"></div>
+                        <div class="color-option" style="background-color: #4A613C;" data-color="green"></div>
+                        <div class="color-option" style="background-color: #808080;" data-color="grey"></div>
+                        <div class="color-option" style="background-color: #C0C0C0;" data-color="silver"></div>
+                        <div class="color-option" style="background-color: #FFD700;" data-color="yellow"></div>
+                    </div>
+                </div>
+                <div class="rd6-description">
+                    <div class="rd6-specs">
+                        <div class="spec-item">
+                            <h3>500+ km</h3>
+                            <p>Range</p>
+                        </div>
+                        <div class="spec-item">
+                            <h3>4x4</h3>
+                            <p>Drive System</p>
+                        </div>
+                        <div class="spec-item">
+                            <h3>5.9s</h3>
+                            <p>0-100 km/h</p>
+                        </div>
+                        <div class="spec-item">
+                            <h3>1,000kg</h3>
+                            <p>Payload</p>
                         </div>
                     </div>
-                    <div class="team-member">
-                        <img src="images/team/member2.jpg" alt="Team Member 2" class="member-image">
-                        <div class="member-info">
-                            <h3 class="member-name">Sarah Johnson</h3>
-                            <p class="member-position">Head of Design</p>
-                            <p class="member-bio">Award-winning automotive designer bringing innovation to electric vehicles.</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="images/team/member3.jpg" alt="Team Member 3" class="member-image">
-                        <div class="member-info">
-                            <h3 class="member-name">David Chen</h3>
-                            <p class="member-position">Technical Director</p>
-                            <p class="member-bio">Expert in EV technology with a focus on performance and sustainability.</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
+                    <div class="rd6-text">
+                        <h3>The Future of Electric 4x4</h3>
+                        <p>Experience unparalleled versatility with the RIDDARA RD6, a revolutionary electric pickup that combines rugged 4x4 capability with zero-emission performance. Featuring advanced dual-motor technology, intelligent torque vectoring, and exceptional ground clearance, the RD6 is engineered to conquer any terrain while maintaining the comfort of a luxury vehicle.</p>
+                        <a href="#" class="rd6-cta">Configure Your RD6</a>
                     </div>
                 </div>
             </div>
@@ -713,26 +1001,56 @@
                 </div>
             </div>
 
-            <!-- Color Section -->
-            <div class="section color-schemes" id="colors">
-                <div class="diagonal-block"></div>
-                <div class="rd6-text">RD6</div>
-                <div class="color-content">
-                    <div class="car-showcase">
-                        <img src="images/Black EV Pickup 1.png" alt="RIDDARA RD6" class="car-image">
+            <!-- Contact Section -->
+            <div class="section contact-section" data-anchor="contact">
+                <div class="section-header">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch with our team</p>
+                </div>
+                <div class="contact-container">
+                    <div class="contact-image">
+                        <img src="images/team1.jpg" alt="RIDDARA Team">
                     </div>
-                    <div class="color-selector">
-                        <div class="color-option color-black active" data-img="images/Black EV Pickup 1.png" data-bg="#1C1C1C"></div>
-                        <div class="color-option color-silver" data-img="images/Silver EV Pickup 1.png" data-bg="#C0C0C0"></div>
-                        <div class="color-option color-green" data-img="images/Green EV Pickup 1.png" data-bg="#3C513C"></div>
-                        <div class="color-option color-blue" data-img="images/Blue EV Pickup 2.png" data-bg="#1B3F5E"></div>
-                        <div class="color-option color-grey" data-img="images/Riddara EV Pickup Grey 1.png" data-bg="#808080"></div>
-                        <div class="color-option color-white" data-img="images/Riddara EV Pickup Car 1 White 1.png" data-bg="#FFFFFF"></div>
-                        <div class="color-option color-yellow" data-img="images/Yellow EV Pickup 1.png" data-bg="#FFD700"></div>
-                    </div>
-                    <div class="navigation-arrows">
-                        <button class="nav-arrow" aria-label="Previous color">&#8592;</button>
-                        <button class="nav-arrow" aria-label="Next color">&#8594;</button>
+                    <div class="contact-content">
+                        <div class="contact-form">
+                            <div class="contact-info">
+                                <h3>Let's Talk</h3>
+                                <p>Have questions about the RIDDARA RD6 or want to schedule a test drive? We're here to help.</p>
+                            </div>
+                            <div class="contact-details">
+                                <div class="contact-detail">
+                                    <i class="fas fa-phone"></i>
+                                    <span>097-102-0110</span>
+                                </div>
+                                <div class="contact-detail">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>contact@riddara.com</span>
+                                </div>
+                                <div class="contact-detail">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Chonburi, Thailand</span>
+                                </div>
+                            </div>
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" required></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">Send Message</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -747,9 +1065,10 @@
                     <div class="footer-block">
                         <h3>Quick Links</h3>
                         <a href="#home">Home</a>
-                        <a href="#team">Team</a>
+                        <a href="#news">News</a>
+                        <a href="#rd6">RD6</a>
                         <a href="#services">Services</a>
-                        <a href="#colors">Colors</a>
+                        <a href="#contact">Contact</a>
                     </div>
                     <div class="footer-block">
                         <h3>Hours</h3>
@@ -781,12 +1100,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.getElementById('heroVideo');
 
-            // Function to ensure video is playing
             function ensureVideoPlaying() {
-                if (video.paused || video.ended) {
-                    video.currentTime = 0; // Reset video if it ended
+                if (video.paused) {
                     video.play().catch(function(error) {
-                        console.log("Video play prevented:", error);
+                        console.log("Video play failed:", error);
                     });
                 }
             }
@@ -796,133 +1113,71 @@
                 console.log("Initial video play prevented:", error);
             });
 
-            // Handle video events
-            video.addEventListener('pause', ensureVideoPlaying);
-            video.addEventListener('ended', ensureVideoPlaying);
-            video.addEventListener('timeupdate', function() {
-                if (video.currentTime >= video.duration - 0.1) {
-                    video.currentTime = 0;
-                }
-            });
-
-            // Handle page visibility
-            document.addEventListener('visibilitychange', function() {
-                if (!document.hidden) {
-                    ensureVideoPlaying();
-                }
-            });
-
-            // Handle window events
-            window.addEventListener('focus', ensureVideoPlaying);
-            window.addEventListener('scroll', ensureVideoPlaying);
-            window.addEventListener('resize', ensureVideoPlaying);
-            
-            // Periodic check to ensure video is playing
-            setInterval(ensureVideoPlaying, 1000);
-
-            // Initialize fullPage.js with video handling
+            // Initialize fullPage.js
             new fullpage('#fullpage', {
-                licenseKey: 'YOUR_KEY_HERE',
                 navigation: true,
-                navigationPosition: 'right',
-                scrollingSpeed: 700,
-                scrollOverflow: true,
-                fitToSection: true,
-                css3: true,
-                autoScrolling: true,
-                verticalCentered: true,
-                responsiveWidth: 900,
-                paddingTop: '0px',
+                paddingTop: '80px',
                 paddingBottom: '0px',
                 fixedElements: '.navbar',
-                normalScrollElements: '.team-grid',
-                anchors: ['home', 'team', 'services', 'colors', 'footer'],
-                navigationTooltips: ['Home', 'Team', 'Services', 'Colors', 'Footer'],
+                normalScrollElements: '.news-slider',
+                anchors: ['home', 'news', 'rd6', 'services', 'contact'],
+                navigationTooltips: ['Home', 'News', 'RD6', 'Services', 'Contact'],
+                scrollOverflow: true,
                 afterRender: function() {
                     ensureVideoPlaying();
-                    fullpage_api.reBuild();
-                },
-                afterResize: function() {
-                    ensureVideoPlaying();
-                    fullpage_api.reBuild();
-                },
-                afterLoad: function(origin, destination, direction) {
-                    ensureVideoPlaying();
-                    if (destination.anchor === 'team') {
-                        document.querySelector('.team-grid').style.height = 
-                            window.innerHeight - document.querySelector('.section-header').offsetHeight - 160 + 'px';
-                    }
-                },
-                onLeave: function(origin, destination, direction) {
-                    ensureVideoPlaying();
-                },
-                credits: { enabled: false }
+                }
             });
 
-            // Color section functionality
-            const colorSection = document.querySelector('.color-schemes');
-            const diagonalBlock = document.querySelector('.diagonal-block');
-            const rd6Logo = document.querySelector('.rd6-text');
-            const colorOptions = document.querySelectorAll('.color-option');
-            const carImage = document.querySelector('.car-image');
-            let currentIndex = 0;
-            let isChanging = false;
+            // Horizontal scroll buttons for news section
+            const slider = document.querySelector('.news-slider');
+            const prevBtn = document.querySelector('.scroll-btn.prev');
+            const nextBtn = document.querySelector('.scroll-btn.next');
+            
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    slider.scrollBy({
+                        left: -650,
+                        behavior: 'smooth'
+                    });
+                });
 
-            function changeColor(newIndex) {
-                if (isChanging) return;
-                isChanging = true;
-
-                const newOption = colorOptions[newIndex];
-                const newBg = newOption.dataset.bg;
-                const newImg = newOption.dataset.img;
-
-                // Update active state
-                colorOptions[currentIndex].classList.remove('active');
-                newOption.classList.add('active');
-
-                // Fade out image
-                carImage.classList.add('fade');
-
-                // Update background and RD6 logo
-                diagonalBlock.style.background = newBg;
-                rd6Logo.style.color = `${newBg}15`; // More subtle logo
-
-                // After fade out, change image and fade in
-                setTimeout(() => {
-                    carImage.src = newImg;
-                    carImage.classList.remove('fade');
-                    currentIndex = newIndex;
-                    isChanging = false;
-                }, 300);
+                nextBtn.addEventListener('click', () => {
+                    slider.scrollBy({
+                        left: 650,
+                        behavior: 'smooth'
+                    });
+                });
             }
 
-            // Color dots click handlers
-            colorOptions.forEach((option, index) => {
-                option.addEventListener('click', () => {
-                    if (index !== currentIndex) {
-                        changeColor(index);
-                    }
-                });
+            // Add drag scrolling functionality
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.style.cursor = 'grabbing';
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
             });
 
-            // Arrow navigation
-            const prevArrow = document.querySelector('.nav-arrow:first-child');
-            const nextArrow = document.querySelector('.nav-arrow:last-child');
-
-            prevArrow.addEventListener('click', () => {
-                const newIndex = (currentIndex - 1 + colorOptions.length) % colorOptions.length;
-                changeColor(newIndex);
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.style.cursor = 'grab';
             });
 
-            nextArrow.addEventListener('click', () => {
-                const newIndex = (currentIndex + 1) % colorOptions.length;
-                changeColor(newIndex);
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.style.cursor = 'grab';
             });
 
-            // Initialize first color
-            colorOptions[0].classList.add('active');
-            diagonalBlock.style.background = colorOptions[0].dataset.bg;
-            rd6Logo.style.color = `${colorOptions[0].dataset.bg}15`;
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2;
+                slider.scrollLeft = scrollLeft - walk;
+            });
         });
     </script>
 </body>
