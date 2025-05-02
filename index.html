@@ -14,6 +14,12 @@
             box-sizing: border-box;
         }
 
+        body, html {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
         :root {
             --primary-color: #5A7448;
             --primary-hover: #4a613c;
@@ -35,6 +41,15 @@
             font-family: 'Inter', sans-serif;
             color: var(--text-dark);
             background: var(--bg-light);
+        }
+
+        /* Section Styles */
+        .section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 100vh;
+            overflow: hidden;
         }
 
         /* Glassmorphism Card Style */
@@ -321,17 +336,41 @@
         /* Team Section Styles */
         .team-section {
             background: var(--bg-light);
-            padding: 2rem;
-            text-align: center;
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 80px 20px;
         }
 
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
+            width: 100%;
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) transparent;
+        }
+
+        .team-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .team-grid::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .team-grid::-webkit-scrollbar-thumb {
+            background-color: var(--primary-color);
+            border-radius: 3px;
         }
 
         .team-member {
@@ -1081,31 +1120,39 @@
 
             // Initialize fullPage.js with video handling
             new fullpage('#fullpage', {
+                licenseKey: 'YOUR_KEY_HERE',
                 navigation: true,
                 navigationPosition: 'right',
-                scrollingSpeed: 1000,
-                showActiveTooltip: true,
-                anchors: ['home', 'news', 'team', 'services', 'colors', 'contact', 'footer'],
-                navigationTooltips: ['Home', 'News', 'Team', 'Services', 'Colors', 'Contact', 'Footer'],
+                scrollingSpeed: 700,
                 scrollOverflow: true,
                 fitToSection: true,
                 css3: true,
                 autoScrolling: true,
                 verticalCentered: true,
                 responsiveWidth: 900,
-                normalScrollElements: '.footer-section',
-                onLeave: function(origin, destination, direction) {
-                    ensureVideoPlaying();
-                },
-                afterLoad: function(origin, destination, direction) {
-                    ensureVideoPlaying();
-                },
+                paddingTop: '0px',
+                paddingBottom: '0px',
+                fixedElements: '.navbar',
+                normalScrollElements: '.team-grid',
+                anchors: ['home', 'news', 'team', 'services', 'colors', 'contact', 'footer'],
+                navigationTooltips: ['Home', 'News', 'Team', 'Services', 'Colors', 'Contact', 'Footer'],
                 afterRender: function() {
                     ensureVideoPlaying();
+                    fullpage_api.reBuild();
                 },
                 afterResize: function() {
                     ensureVideoPlaying();
                     fullpage_api.reBuild();
+                },
+                afterLoad: function(origin, destination, direction) {
+                    ensureVideoPlaying();
+                    if (destination.anchor === 'team') {
+                        document.querySelector('.team-grid').style.height = 
+                            window.innerHeight - document.querySelector('.section-header').offsetHeight - 160 + 'px';
+                    }
+                },
+                onLeave: function(origin, destination, direction) {
+                    ensureVideoPlaying();
                 },
                 credits: { enabled: false }
             });
