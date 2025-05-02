@@ -111,7 +111,7 @@
         }
 
         /* Hero Section */
-        .hero {
+        .hero-section {
             height: 100vh;
             width: 100%;
             display: flex;
@@ -122,7 +122,7 @@
             overflow: hidden;
         }
 
-        .video-background {
+        .video-container {
             position: absolute;
             top: 0;
             left: 0;
@@ -132,7 +132,7 @@
             overflow: hidden;
         }
 
-        .video-background video {
+        .video-container video {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -316,9 +316,7 @@
             position: sticky;
             top: 100px;
             width: 100%;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 800px;
         }
 
         .contact-image img {
@@ -545,45 +543,32 @@
 
         .scroll-buttons {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-            pointer-events: none;
-            padding: 0 2rem;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
         }
 
         .scroll-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
+            background: var(--primary-color);
+            color: white;
             border: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             cursor: pointer;
-            pointer-events: auto;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: var(--text-dark);
         }
 
         .scroll-btn:hover {
             background: var(--secondary-color);
-            color: white;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .scroll-btn.prev {
-            left: 2rem;
-        }
-
-        .scroll-btn.next {
-            right: 2rem;
+            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -609,6 +594,64 @@
         }
 
         /* RD6 Section Styles */
+        .colors-section {
+            padding: 4rem 2rem;
+            transition: background-color 0.5s ease;
+        }
+
+        .colors-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .car-display {
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+
+        .car-image {
+            width: 100%;
+            height: auto;
+            transition: opacity 0.3s ease;
+        }
+
+        .color-options {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .color-option {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+        }
+
+        .color-option:hover {
+            transform: scale(1.2);
+        }
+
+        .color-option.active {
+            border-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* White color button specific style */
+        .color-option[style*="background-color: #FFFFFF"] {
+            border: 3px solid #ddd;
+        }
+
+        .color-option[style*="background-color: #FFFFFF"].active {
+            border-color: var(--primary-color);
+        }
+
         .rd6-description {
             max-width: 1200px;
             margin: 2rem auto;
@@ -683,6 +726,61 @@
             box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
         }
 
+        /* Color Picker Styles */
+        .color-picker {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .color-picker h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .color-options {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .color-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .color-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .color-btn:after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .color-btn.active:after {
+            opacity: 1;
+        }
+
+        /* White color button specific style */
+        .color-btn[style*="background-color: #FFFFFF"] {
+            border: 1px solid #ddd;
+        }
+
         /* Services Section */
         .services-section {
             background: var(--bg-light);
@@ -691,30 +789,40 @@
         }
 
         .services-container {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
             padding: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            align-items: center;
+        }
+
+        .services-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
         .service-card {
-            flex: 1;
-            max-width: 350px;
+            background: rgba(255, 255, 255, 0.9);
             padding: 2rem;
+            border-radius: 15px;
             text-align: center;
             transition: var(--transition-smooth);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
         }
 
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .service-card i {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: var(--primary-color);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .service-card h3 {
@@ -726,6 +834,39 @@
         .service-card p {
             color: var(--text-light);
             line-height: 1.6;
+        }
+
+        .service-image-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .service-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .service-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 1024px) {
+            .services-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-content {
+                grid-template-columns: 1fr;
+            }
+
+            .service-image-container {
+                height: 400px;
+            }
         }
 
         /* Footer Section Styles */
@@ -836,29 +977,23 @@
 
         <div id="fullpage">
             <!-- Hero Section -->
-            <div class="section hero" data-anchor="home">
-                <div class="video-background">
-                    <video autoplay muted loop playsinline id="heroVideo" preload="auto">
+            <div class="section hero-section" data-anchor="home">
+                <div class="video-container">
+                    <video id="heroVideo" autoplay muted playsinline loop>
                         <source src="videos/hero.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
                     </video>
                 </div>
                 <div class="video-overlay"></div>
                 <div class="hero-content">
                     <img src="images/main1.png" alt="RIDDARA" class="hero-logo">
                     <div class="hero-text-container">
-                        <h2 class="hero-subtitle">Welcome to</h2>
-                        <h1 class="hero-title">RIDDARA Chonburi</h1>
-                        <p class="dealer-info">By Pinpat Auto - Official RIDDARA Dealership</p>
+                        <h1>RIDDARA</h1>
+                        <p>Discover the Future of Electric Mobility</p>
                     </div>
-                    <div class="hero-cta">
-                        <a href="#services" class="cta-button primary">
-                            <i class="fas fa-car"></i>
-                            Book Test Drive
-                        </a>
-                        <a href="tel:097-102-0110" class="cta-button secondary">
-                            <i class="fas fa-phone"></i>
-                            Contact Us
-                        </a>
+                    <div class="hero-buttons">
+                        <a href="#rd6" class="cta-button">Explore RD6</a>
+                        <a href="#contact" class="cta-button secondary">Contact Us</a>
                     </div>
                 </div>
             </div>
@@ -937,23 +1072,23 @@
                 </div>
                 <div class="colors-container">
                     <div class="car-display">
-                        <img src="images/Riddara EV Pickup Car 1 White 1.png" alt="RIDDARA RD6" class="car-image">
+                        <img src="images/Riddara EV Pickup Car 1 White 1.png" alt="RIDDARA RD6" class="car-image" id="carImage">
                     </div>
                     <div class="color-options">
-                        <div class="color-option active" style="background-color: #FFFFFF;" data-color="white"></div>
-                        <div class="color-option" style="background-color: #000000;" data-color="black"></div>
-                        <div class="color-option" style="background-color: #0066CC;" data-color="blue"></div>
-                        <div class="color-option" style="background-color: #4A613C;" data-color="green"></div>
-                        <div class="color-option" style="background-color: #808080;" data-color="grey"></div>
-                        <div class="color-option" style="background-color: #C0C0C0;" data-color="silver"></div>
-                        <div class="color-option" style="background-color: #FFD700;" data-color="yellow"></div>
+                        <div class="color-option active" style="background-color: #FFFFFF;" data-image="images/Riddara EV Pickup Car 1 White 1.png"></div>
+                        <div class="color-option" style="background-color: #000000;" data-image="images/Black EV Pickup 1.png"></div>
+                        <div class="color-option" style="background-color: #0066CC;" data-image="images/Blue EV Pickup 2.png"></div>
+                        <div class="color-option" style="background-color: #4A613C;" data-image="images/Green EV Pickup 1.png"></div>
+                        <div class="color-option" style="background-color: #808080;" data-image="images/Riddara EV Pickup Grey 1.png"></div>
+                        <div class="color-option" style="background-color: #C0C0C0;" data-image="images/Silver EV Pickup 1.png"></div>
+                        <div class="color-option" style="background-color: #FFD700;" data-image="images/Yellow EV Pickup 1.png"></div>
                     </div>
                 </div>
                 <div class="rd6-description">
                     <div class="rd6-specs">
                         <div class="spec-item">
-                            <h3>500+ km</h3>
-                            <p>Range</p>
+                            <h3>500+</h3>
+                            <p>KM Range</p>
                         </div>
                         <div class="spec-item">
                             <h3>4x4</h3>
@@ -964,14 +1099,14 @@
                             <p>0-100 km/h</p>
                         </div>
                         <div class="spec-item">
-                            <h3>1,000kg</h3>
-                            <p>Payload</p>
+                            <h3>1000</h3>
+                            <p>KG Payload</p>
                         </div>
                     </div>
                     <div class="rd6-text">
                         <h3>The Future of Electric 4x4</h3>
                         <p>Experience unparalleled versatility with the RIDDARA RD6, a revolutionary electric pickup that combines rugged 4x4 capability with zero-emission performance. Featuring advanced dual-motor technology, intelligent torque vectoring, and exceptional ground clearance, the RD6 is engineered to conquer any terrain while maintaining the comfort of a luxury vehicle.</p>
-                        <a href="#" class="rd6-cta">Configure Your RD6</a>
+                        <a href="#contact" class="rd6-cta">Configure Your RD6</a>
                     </div>
                 </div>
             </div>
@@ -983,20 +1118,30 @@
                     <p>Experience Premium Electric Vehicle Services</p>
                 </div>
                 <div class="services-container">
-                    <div class="service-card glass-effect">
-                        <i class="fas fa-car-battery"></i>
-                        <h3>Test Drive</h3>
-                        <p>Experience the thrill of driving RIDDARA RD6 with our comprehensive test drive program.</p>
+                    <div class="services-content">
+                        <div class="service-card glass-effect">
+                            <i class="fas fa-car-battery"></i>
+                            <h3>Test Drive</h3>
+                            <p>Experience the thrill of driving RIDDARA RD6 with our comprehensive test drive program.</p>
+                        </div>
+                        <div class="service-card glass-effect">
+                            <i class="fas fa-tools"></i>
+                            <h3>Maintenance</h3>
+                            <p>Professional maintenance services to keep your RIDDARA in perfect condition.</p>
+                        </div>
+                        <div class="service-card glass-effect">
+                            <i class="fas fa-charging-station"></i>
+                            <h3>Charging Solutions</h3>
+                            <p>Expert guidance on home charging installation and access to our charging network.</p>
+                        </div>
+                        <div class="service-card glass-effect">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Warranty</h3>
+                            <p>Comprehensive warranty coverage and dedicated support for your peace of mind.</p>
+                        </div>
                     </div>
-                    <div class="service-card glass-effect">
-                        <i class="fas fa-tools"></i>
-                        <h3>Maintenance</h3>
-                        <p>Professional maintenance services to keep your RIDDARA in perfect condition.</p>
-                    </div>
-                    <div class="service-card glass-effect">
-                        <i class="fas fa-charging-station"></i>
-                        <h3>Charging Solutions</h3>
-                        <p>Expert guidance on home charging installation and access to our charging network.</p>
+                    <div class="service-image-container">
+                        <img src="images/service.png" alt="RIDDARA Service">
                     </div>
                 </div>
             </div>
@@ -1009,7 +1154,7 @@
                 </div>
                 <div class="contact-container">
                     <div class="contact-image">
-                        <img src="images/team1.jpg" alt="RIDDARA Team">
+                        <img src="images/Team 1 .png" alt="RIDDARA Team">
                     </div>
                     <div class="contact-content">
                         <div class="contact-form">
@@ -1098,22 +1243,90 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Video functionality
             const video = document.getElementById('heroVideo');
+            
+            function playVideo() {
+                video.play().catch(function(error) {
+                    console.log("Video play failed:", error);
+                });
+            }
 
-            function ensureVideoPlaying() {
+            // Play video when loaded
+            video.addEventListener('loadeddata', playVideo);
+            
+            // Ensure video loops
+            video.addEventListener('ended', playVideo);
+
+            // Check video status every 5 seconds
+            setInterval(function() {
                 if (video.paused) {
-                    video.play().catch(function(error) {
-                        console.log("Video play failed:", error);
-                    });
+                    playVideo();
+                }
+            }, 5000);
+
+            // Color picker functionality
+            const colorOptions = document.querySelectorAll('.color-option');
+            const carImage = document.getElementById('carImage');
+            const colorsSection = document.querySelector('.colors-section');
+
+            function updateCarImage(newImageSrc, backgroundColor) {
+                if (carImage && newImageSrc) {
+                    // Fade out
+                    carImage.style.opacity = '0';
+                    
+                    // Change background color with transition
+                    if (backgroundColor) {
+                        colorsSection.style.backgroundColor = backgroundColor;
+                    }
+                    
+                    // Change image and fade in after a short delay
+                    setTimeout(() => {
+                        carImage.src = newImageSrc;
+                        carImage.style.opacity = '1';
+                    }, 300);
                 }
             }
 
-            // Play video initially
-            video.play().catch(function(error) {
-                console.log("Initial video play prevented:", error);
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    
+                    // Get the image path and background color
+                    const newImageSrc = this.getAttribute('data-image');
+                    const backgroundColor = this.style.backgroundColor;
+                    
+                    // Update car image and background
+                    updateCarImage(newImageSrc, backgroundColor);
+                });
             });
 
-            // Initialize fullPage.js
+            // News slider functionality
+            const slider = document.querySelector('.news-items');
+            const prevBtn = document.querySelector('.scroll-btn.prev');
+            const nextBtn = document.querySelector('.scroll-btn.next');
+            
+            if (prevBtn && nextBtn && slider) {
+                prevBtn.addEventListener('click', () => {
+                    slider.scrollBy({
+                        left: -300,
+                        behavior: 'smooth'
+                    });
+                });
+
+                nextBtn.addEventListener('click', () => {
+                    slider.scrollBy({
+                        left: 300,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // Initialize fullpage.js
             new fullpage('#fullpage', {
                 navigation: true,
                 paddingTop: '80px',
@@ -1124,59 +1337,8 @@
                 navigationTooltips: ['Home', 'News', 'RD6', 'Services', 'Contact'],
                 scrollOverflow: true,
                 afterRender: function() {
-                    ensureVideoPlaying();
+                    playVideo();
                 }
-            });
-
-            // Horizontal scroll buttons for news section
-            const slider = document.querySelector('.news-slider');
-            const prevBtn = document.querySelector('.scroll-btn.prev');
-            const nextBtn = document.querySelector('.scroll-btn.next');
-            
-            if (prevBtn && nextBtn) {
-                prevBtn.addEventListener('click', () => {
-                    slider.scrollBy({
-                        left: -650,
-                        behavior: 'smooth'
-                    });
-                });
-
-                nextBtn.addEventListener('click', () => {
-                    slider.scrollBy({
-                        left: 650,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-
-            // Add drag scrolling functionality
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            slider.addEventListener('mousedown', (e) => {
-                isDown = true;
-                slider.style.cursor = 'grabbing';
-                startX = e.pageX - slider.offsetLeft;
-                scrollLeft = slider.scrollLeft;
-            });
-
-            slider.addEventListener('mouseleave', () => {
-                isDown = false;
-                slider.style.cursor = 'grab';
-            });
-
-            slider.addEventListener('mouseup', () => {
-                isDown = false;
-                slider.style.cursor = 'grab';
-            });
-
-            slider.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - slider.offsetLeft;
-                const walk = (x - startX) * 2;
-                slider.scrollLeft = scrollLeft - walk;
             });
         });
     </script>
