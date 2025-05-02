@@ -97,16 +97,17 @@
 
         /* Hero Section */
         .hero {
-            position: relative;
             height: 100vh;
-            overflow: hidden;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: transparent;
+            position: relative;
         }
 
         .video-background {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -122,7 +123,7 @@
         }
 
         .video-overlay {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -751,8 +752,10 @@
 
         /* Ensure proper section heights */
         .section {
-            min-height: 100vh;
+            height: 100vh;
             width: 100%;
+            position: relative;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -1066,9 +1069,13 @@
                 showActiveTooltip: true,
                 anchors: ['home', 'news', 'inventory', 'services', 'colors', 'contact', 'footer'],
                 navigationTooltips: ['Home', 'News', 'Inventory', 'Services', 'Colors', 'Contact', 'Footer'],
-                scrollOverflow: false,
+                scrollOverflow: true,
                 fitToSection: true,
                 css3: true,
+                autoScrolling: true,
+                verticalCentered: true,
+                responsiveWidth: 900,
+                normalScrollElements: '.footer-section',
                 onLeave: function(origin, destination, direction) {
                     ensureVideoPlaying();
                 },
@@ -1080,6 +1087,7 @@
                 },
                 afterResize: function() {
                     ensureVideoPlaying();
+                    fullpage_api.reBuild();
                 },
                 credits: { enabled: false }
             });
