@@ -6,6 +6,8 @@
     <title>RIDDARA RD6</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* Essential Styles */
         * {
@@ -245,7 +247,7 @@
         }
 
         .cta-button.primary:hover {
-            background: var(--secondary-color);
+            background: #FF6B00;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
         }
@@ -258,9 +260,9 @@
         }
 
         .cta-button.secondary:hover {
-            background: var(--secondary-color);
+            background: #FF6B00;
             color: white;
-            border-color: var(--secondary-color);
+            border-color: #FF6B00;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
         }
@@ -298,78 +300,99 @@
 
         /* Contact Section Styles */
         .contact-section {
-            background: var(--bg-light);
             padding: 4rem 2rem;
-            position: relative;
+            background: var(--bg-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
         }
 
         .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 4rem;
-            align-items: start;
+            flex: 1;
         }
 
         .contact-image {
-            position: sticky;
-            top: 100px;
+            position: relative;
             width: 100%;
-            height: 800px;
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
 
         .contact-image img {
             width: 100%;
-            height: 100%;
+            height: 800px;
             object-fit: cover;
-            display: block;
-        }
-
-        .contact-content {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
         }
 
         .contact-info {
-            margin-bottom: 2rem;
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
         }
 
-        .contact-info h3 {
-            font-size: 1.8rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-
-        .contact-info p {
-            color: var(--text-light);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-details {
-            margin-bottom: 2rem;
-        }
-
-        .contact-detail {
+        .info-item {
             display: flex;
             align-items: center;
             gap: 1rem;
             margin-bottom: 1rem;
+        }
+
+        .info-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        .info-item i {
+            font-size: 24px;
+            width: 24px;
+            color: var(--primary-color);
+        }
+
+        .info-item.qr-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .info-item.qr-item img {
+            margin: 0 auto;
+        }
+
+        .info-item.qr-item p {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .info-item p {
+            margin: 0;
             color: var(--text-dark);
         }
 
-        .contact-detail i {
-            color: var(--primary-color);
-            font-size: 1.2rem;
+        .contact-form {
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .form-group {
@@ -390,14 +413,6 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(90, 116, 72, 0.1);
         }
 
         .form-group textarea {
@@ -408,28 +423,31 @@
         .submit-btn {
             background: var(--primary-color);
             color: white;
-            border: none;
             padding: 1rem 2rem;
-            border-radius: 50px;
+            border: none;
+            border-radius: 8px;
             font-size: 1rem;
-            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: background 0.3s ease;
             width: 100%;
         }
 
         .submit-btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+            background: #FF6B00;
         }
 
-        @media (max-width: 768px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         /* News Section Styles */
@@ -536,7 +554,7 @@
         }
 
         .news-cta:hover {
-            background: var(--secondary-color);
+            background: #FF6B00;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
         }
@@ -567,7 +585,7 @@
         }
 
         .scroll-btn:hover {
-            background: var(--secondary-color);
+            background: #FF6B00;
             transform: scale(1.1);
         }
 
@@ -595,66 +613,133 @@
 
         /* RD6 Section Styles */
         .colors-section {
-            padding: 4rem 2rem;
-            transition: background-color 0.5s ease;
+            position: relative;
+            padding: 0;
+            overflow: hidden;
         }
 
-        .colors-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 2rem;
+        .rd6-header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #f5f5f5;
+        }
+
+        .rd6-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 65%;
+            height: 100%;
+            background: #4A613C;
+            transform: skewX(-25deg) translateX(-10%);
+            transform-origin: top;
+            transition: background 0.5s ease;
+            z-index: 0;
+        }
+
+        .rd6-logo {
+            position: absolute;
+            top: 80px;
+            left: 8%;
+            font-size: 180px;
+            font-weight: 900;
+            color: white;
+            z-index: 2;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: -5px;
+            margin: 0;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .rd6-subtitle {
+            position: absolute;
+            top: 30px;
+            left: 8%;
+            color: white;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .explore-more {
+            position: absolute;
+            top: 240px;
+            left: 8%;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .explore-more:hover {
+            transform: translateX(10px);
+        }
+
+        .explore-more::after {
+            content: '→';
+            font-size: 20px;
         }
 
         .car-display {
-            margin: 2rem auto;
-            max-width: 800px;
+            position: relative;
+            width: 75%;
+            height: auto;
+            z-index: 1;
+            margin-left: 10%;
         }
 
-        .car-image {
+        .car-display img {
             width: 100%;
             height: auto;
-            transition: opacity 0.3s ease;
+            object-fit: contain;
+            transition: all 0.5s ease;
         }
 
         .color-options {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
+            gap: 1rem;
+            z-index: 2;
         }
 
         .color-option {
-            width: 50px;
-            height: 50px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             cursor: pointer;
-            transition: transform 0.3s ease;
-            border: 3px solid transparent;
-            position: relative;
-        }
-
-        .color-option:hover {
-            transform: scale(1.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
         }
 
         .color-option.active {
-            border-color: var(--primary-color);
             transform: scale(1.2);
+            border-color: white;
         }
 
-        /* White color button specific style */
-        .color-option[style*="background-color: #FFFFFF"] {
-            border: 3px solid #ddd;
-        }
-
-        .color-option[style*="background-color: #FFFFFF"].active {
-            border-color: var(--primary-color);
+        .rd6-content {
+            padding: 4rem 2rem;
         }
 
         .rd6-description {
             max-width: 1200px;
-            margin: 2rem auto;
+            margin: 0 auto;
             padding: 0 2rem;
             color: var(--text-dark);
         }
@@ -714,16 +799,223 @@
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 600;
             transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .rd6-cta:hover {
-            background: var(--secondary-color);
+            background: #FF6B00;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        .pickup-views {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+            position: relative;
+            background: linear-gradient(180deg, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.85) 100%);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .pickup-view {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .pickup-view:hover {
+            transform: scale(1.02);
+        }
+
+        .pickup-view:hover .measurement-line {
+            background: #FF8533;
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+        }
+
+        .pickup-view:hover .measurement-arrow {
+            border-color: #FF8533;
+            box-shadow: 0 0 10px rgba(255, 107, 0, 0.5);
+        }
+
+        .pickup-view:hover .measurement-label {
+            background: rgba(26,26,26,0.95);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+
+        .pickup-view:hover .measurement-label[style*="bottom"] {
+            transform: translateX(-50%) scale(1.1) !important;
+        }
+
+        .pickup-view img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+            transition: filter 0.3s ease;
+        }
+
+        .pickup-view:hover img {
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.3));
+        }
+
+        .measurement {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            color: #FF6B00;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .pickup-view:hover .measurement {
+            opacity: 1;
+        }
+
+        .measurement-line {
+            position: absolute;
+            background: #FF6B00;
+            transition: all 0.3s ease;
+        }
+
+        .measurement-horizontal {
+            height: 2px;
+            width: 100%;
+            transform-origin: left;
+            animation: expandHorizontal 1s ease-out forwards;
+        }
+
+        .measurement-vertical {
+            width: 2px;
+            height: 100%;
+            transform-origin: top;
+            animation: expandVertical 1s ease-out forwards;
+        }
+
+        @keyframes expandHorizontal {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes expandVertical {
+            from {
+                transform: scaleY(0);
+            }
+            to {
+                transform: scaleY(1);
+            }
+        }
+
+        .measurement-arrow {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border: solid #FF6B00;
+            border-width: 0 2px 2px 0;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-delay: 0.8s;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5) rotate(45deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(45deg);
+            }
+        }
+
+        .measurement-label {
+            position: absolute;
+            background: rgba(26,26,26,0.9);
+            padding: 8px 12px;
+            border-radius: 8px;
+            white-space: nowrap;
+            z-index: 2;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease-out forwards;
+            animation-delay: 1s;
+            opacity: 0;
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .unit-label {
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeInTop 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInTop {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .arrow-left {
+            left: -4px;
+            top: 50%;
+            transform: translateY(-50%) rotate(135deg);
+        }
+
+        .arrow-right {
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-45deg);
+        }
+
+        .arrow-top {
+            left: 50%;
+            top: -4px;
+            transform: translateX(-50%) rotate(-135deg);
+        }
+
+        .arrow-bottom {
+            left: 50%;
+            bottom: -4px;
+            transform: translateX(-50%) rotate(45deg);
         }
 
         /* Color Picker Styles */
@@ -783,180 +1075,362 @@
 
         /* Services Section */
         .services-section {
-            background: var(--bg-light);
+            background: #4A613C;
+            color: white;
+            padding: 4rem 2rem 8rem;
             position: relative;
-            padding: 4rem 2rem;
+        }
+
+        .services-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .services-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .services-header p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .services-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            padding: 2rem;
             max-width: 1400px;
             margin: 0 auto;
             align-items: center;
         }
 
-        .services-content {
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.1);
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 20px;
             text-align: center;
-            transition: var(--transition-smooth);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.15);
         }
 
-        .service-card i {
+        .service-icon {
             font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
+            color: #FF6B00;
+            margin-bottom: 1.5rem;
         }
 
         .service-card h3 {
+            font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        .services-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .service-img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* Form Input Hover Effects */
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:hover,
+        .form-group textarea:hover {
+            border-color: #FF6B00;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FF6B00;
+            box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.2);
+        }
+
+        /* Cards Section */
+        .cards-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(to bottom, var(--bg-light) 0%, #f8f9fa 100%);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 2.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-content h3 {
+            font-size: 1.8rem;
             margin-bottom: 1rem;
             color: var(--text-dark);
         }
 
-        .service-card p {
+        .card-content p {
             color: var(--text-light);
-            line-height: 1.6;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
 
-        .service-image-container {
-            position: relative;
+        .card-cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-cta:hover {
+            background: #FF6B00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            height: 600px;
-            overflow: hidden;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
         }
 
-        .service-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 30px;
-            transition: transform 0.3s ease;
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
         }
 
-        .service-image-container:hover img {
-            transform: scale(1.05);
+        .submit-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
         }
 
-        @media (max-width: 1024px) {
-            .services-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .services-content {
-                grid-template-columns: 1fr;
-            }
-
-            .service-image-container {
-                height: 400px;
-            }
+        .submit-btn:hover {
+            background: #FF6B00;
         }
 
         /* Footer Section Styles */
         .footer-section {
-            background-color: var(--bg-light);
-            height: 300px !important;
-            min-height: 300px !important;
-            max-height: 300px !important;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 100vw !important;
-            margin: 0 !important;
-            padding: 1rem 0 !important;
-            box-sizing: border-box !important;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 2rem;
         }
 
         .footer-content {
-            width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 4rem;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            box-sizing: border-box;
+            gap: 3rem;
         }
 
-        .footer-block {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
         }
 
-        .footer-block h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-block p,
-        .footer-block a {
-            font-size: 0.9rem;
-            color: var(--text-dark);
+        .footer-column p,
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+            display: block;
             text-decoration: none;
-            transition: var(--transition-smooth);
-            line-height: 1.4;
-            margin: 0;
+            transition: color 0.3s ease;
         }
 
-        .footer-block a:hover {
-            color: var(--hover-color);
-            transform: translateX(5px);
+        .footer-column a:hover {
+            color: white;
         }
 
         .footer-bottom {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-dark);
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        @media (max-width: 1024px) {
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 0 2rem;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .footer-section {
-                padding: 1rem 0;
-            }
-        }
-
-        /* Ensure proper section heights */
-        .section {
-            height: 100vh;
-            width: 100%;
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
             position: relative;
-            overflow: hidden;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-item i {
+            font-size: 24px;
+            width: 24px;
+            color: #FF6B00;
+        }
+
+        .info-item.qr-item {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .info-item.qr-item img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            margin: 0 auto;
+        }
+
+        .info-item.qr-item p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        /* Update all button hovers to orange */
+        .btn:hover,
+        .nav-btn:hover,
+        button:hover {
+            background: #FF6B00;
         }
     </style>
 </head>
@@ -968,10 +1442,11 @@
             </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
+                <a href="#team">Team</a>
+                <a href="#services">Services</a>
                 <a href="#news">News</a>
                 <a href="#rd6">RD6</a>
-                <a href="#services">Services</a>
-                <a href="#contact">Contact</a>
+                <a href="#contact" class="nav-btn">Contact Us</a>
             </div>
         </nav>
 
@@ -991,9 +1466,9 @@
                         <h1>RIDDARA</h1>
                         <p>Discover the Future of Electric Mobility</p>
                     </div>
-                    <div class="hero-buttons">
-                        <a href="#rd6" class="cta-button">Explore RD6</a>
-                        <a href="#contact" class="cta-button secondary">Contact Us</a>
+                    <div class="hero-cta">
+                        <a href="#contact" class="cta-button primary">Contact Us</a>
+                        <a href="#services" class="cta-button secondary">Our Services</a>
                     </div>
                 </div>
             </div>
@@ -1066,11 +1541,11 @@
 
             <!-- RD6 Section -->
             <div class="section colors-section" data-anchor="rd6">
-                <div class="section-header">
-                    <h2>RD6</h2>
-                    <p>Choose your style</p>
-                </div>
-                <div class="colors-container">
+                <div class="rd6-header">
+                    <div class="rd6-background"></div>
+                    <div class="rd6-subtitle">COLOR SCHEMES</div>
+                    <div class="rd6-logo">RD6</div>
+                    <a href="#rd6-content" class="explore-more">Explore More</a>
                     <div class="car-display">
                         <img src="images/Riddara EV Pickup Car 1 White 1.png" alt="RIDDARA RD6" class="car-image" id="carImage">
                     </div>
@@ -1084,25 +1559,75 @@
                         <div class="color-option" style="background-color: #FFD700;" data-image="images/Yellow EV Pickup 1.png"></div>
                     </div>
                 </div>
-                <div class="rd6-description">
-                    <div class="rd6-specs">
-                        <div class="spec-item">
-                            <h3>500+</h3>
-                            <p>KM Range</p>
-                        </div>
-                        <div class="spec-item">
-                            <h3>4x4</h3>
-                            <p>Drive System</p>
-                        </div>
-                        <div class="spec-item">
-                            <h3>5.9s</h3>
-                            <p>0-100 km/h</p>
-                        </div>
-                        <div class="spec-item">
-                            <h3>1000</h3>
-                            <p>KG Payload</p>
+                
+                <div class="rd6-content">
+                    <div class="rd6-description">
+                        <h3>RIDDARA RD6</h3>
+                        <p>Experience the future of electric pickup trucks</p>
+                        <div class="rd6-specs">
+                            <div class="spec-item">
+                                <h3>500+</h3>
+                                <p>KM Range</p>
+                            </div>
+                            <div class="spec-item">
+                                <h3>4x4</h3>
+                                <p>Drive System</p>
+                            </div>
+                            <div class="spec-item">
+                                <h3>5.9s</h3>
+                                <p>0-100 km/h</p>
+                            </div>
+                            <div class="spec-item">
+                                <h3>1000</h3>
+                                <p>KG Payload</p>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="pickup-views">
+                        <div class="unit-label">Unit: mm</div>
+                        
+                        <!-- Front View -->
+                        <div class="pickup-view">
+                            <img src="images/front.png" alt="Front View RD6">
+                            
+                            <!-- Height Measurement -->
+                            <div class="measurement" style="left: 15%; height: 70%; top: 15%;">
+                                <div class="measurement-line measurement-vertical"></div>
+                                <div class="measurement-arrow arrow-top"></div>
+                                <div class="measurement-arrow arrow-bottom"></div>
+                                <div class="measurement-label" style="left: -100px; top: 50%; transform: translateY(-50%);">
+                                    Vehicle height<br><span style="color: #FF6B00; font-weight: bold;">1,865</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Width Measurement -->
+                            <div class="measurement" style="left: 15%; bottom: 25%; width: 70%;">
+                                <div class="measurement-line measurement-horizontal"></div>
+                                <div class="measurement-arrow arrow-left"></div>
+                                <div class="measurement-arrow arrow-right"></div>
+                                <div class="measurement-label" style="bottom: -40px; left: 50%; transform: translateX(-50%);">
+                                    Vehicle width<br><span style="color: #FF6B00; font-weight: bold;">1,900</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Back View -->
+                        <div class="pickup-view">
+                            <img src="images/back.png" alt="Back View RD6">
+                            
+                            <!-- Wheel Track Measurement -->
+                            <div class="measurement" style="left: 15%; bottom: 25%; width: 70%;">
+                                <div class="measurement-line measurement-horizontal"></div>
+                                <div class="measurement-arrow arrow-left"></div>
+                                <div class="measurement-arrow arrow-right"></div>
+                                <div class="measurement-label" style="bottom: -40px; left: 50%; transform: translateX(-50%);">
+                                    Front/Rear wheel track<br><span style="color: #FF6B00; font-weight: bold;">1,600/1,620</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="rd6-text">
                         <h3>The Future of Electric 4x4</h3>
                         <p>Experience unparalleled versatility with the RIDDARA RD6, a revolutionary electric pickup that combines rugged 4x4 capability with zero-emission performance. Featuring advanced dual-motor technology, intelligent torque vectoring, and exceptional ground clearance, the RD6 is engineered to conquer any terrain while maintaining the comfort of a luxury vehicle.</p>
@@ -1111,37 +1636,73 @@
                 </div>
             </div>
 
+            <!-- Cards Section -->
+            <div class="section cards-section">
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/car1.png" alt="RIDDARA Innovation">
+                        </div>
+                        <div class="card-content">
+                            <h3>Revolutionary Design</h3>
+                            <p>Experience the perfect blend of form and function with our innovative design philosophy. Every curve and line serves a purpose.</p>
+                            <a href="#contact" class="card-cta">Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/car2.png" alt="RIDDARA Performance">
+                        </div>
+                        <div class="card-content">
+                            <h3>Unmatched Performance</h3>
+                            <p>Discover the power of electric mobility with industry-leading range and acceleration that sets new standards.</p>
+                            <a href="#contact" class="card-cta">Contact Us</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="images/car3.png" alt="RIDDARA Luxury">
+                        </div>
+                        <div class="card-content">
+                            <h3>Premium Comfort</h3>
+                            <p>Step into a cabin that redefines luxury with premium materials and cutting-edge technology at your fingertips.</p>
+                            <a href="#contact" class="card-cta">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Services Section -->
             <div class="section services-section" data-anchor="services">
-                <div class="section-header">
-                    <h2>Our Services</h2>
-                    <p>Experience Premium Electric Vehicle Services</p>
+                <div class="services-header">
+                    <h2>Premium Service Experience</h2>
+                    <p>At RIDDARA, we believe in delivering excellence through every interaction. Our comprehensive service solutions are designed to ensure your vehicle maintains peak performance throughout its lifetime. From cutting-edge battery technology to professional maintenance, we've got you covered with our expert team and state-of-the-art facilities.</p>
                 </div>
                 <div class="services-container">
-                    <div class="services-content">
-                        <div class="service-card glass-effect">
-                            <i class="fas fa-car-battery"></i>
-                            <h3>Test Drive</h3>
-                            <p>Experience the thrill of driving RIDDARA RD6 with our comprehensive test drive program.</p>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <i class="fas fa-battery-full service-icon"></i>
+                            <h3>Battery Solutions</h3>
+                            <p>Advanced battery technology with fast charging capabilities and long-lasting performance.</p>
                         </div>
-                        <div class="service-card glass-effect">
-                            <i class="fas fa-tools"></i>
+                        <div class="service-card">
+                            <i class="fas fa-wrench service-icon"></i>
                             <h3>Maintenance</h3>
-                            <p>Professional maintenance services to keep your RIDDARA in perfect condition.</p>
+                            <p>Professional maintenance services to keep your vehicle in optimal condition.</p>
                         </div>
-                        <div class="service-card glass-effect">
-                            <i class="fas fa-charging-station"></i>
-                            <h3>Charging Solutions</h3>
-                            <p>Expert guidance on home charging installation and access to our charging network.</p>
+                        <div class="service-card">
+                            <i class="fas fa-cogs service-icon"></i>
+                            <h3>Parts & Accessories</h3>
+                            <p>Genuine parts and accessories designed specifically for your RIDDARA vehicle.</p>
                         </div>
-                        <div class="service-card glass-effect">
-                            <i class="fas fa-shield-alt"></i>
-                            <h3>Warranty</h3>
+                        <div class="service-card">
+                            <i class="fas fa-shield-alt service-icon"></i>
+                            <h3>Warranty & Support</h3>
                             <p>Comprehensive warranty coverage and dedicated support for your peace of mind.</p>
                         </div>
                     </div>
-                    <div class="service-image-container">
-                        <img src="images/service.png" alt="RIDDARA Service">
+                    <div class="services-image">
+                        <img src="images/SERVICE.png" alt="RIDDARA Service" class="service-img">
                     </div>
                 </div>
             </div>
@@ -1150,7 +1711,7 @@
             <div class="section contact-section" data-anchor="contact">
                 <div class="section-header">
                     <h2>Contact Us</h2>
-                    <p>Get in touch with our team</p>
+                    <p>Get in Touch with Our Team</p>
                 </div>
                 <div class="contact-container">
                     <div class="contact-image">
@@ -1158,25 +1719,7 @@
                     </div>
                     <div class="contact-content">
                         <div class="contact-form">
-                            <div class="contact-info">
-                                <h3>Let's Talk</h3>
-                                <p>Have questions about the RIDDARA RD6 or want to schedule a test drive? We're here to help.</p>
-                            </div>
-                            <div class="contact-details">
-                                <div class="contact-detail">
-                                    <i class="fas fa-phone"></i>
-                                    <span>097-102-0110</span>
-                                </div>
-                                <div class="contact-detail">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>contact@riddara.com</span>
-                                </div>
-                                <div class="contact-detail">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span>Chonburi, Thailand</span>
-                                </div>
-                            </div>
-                            <form id="contactForm">
+                            <form id="contactForm" action="https://formspree.io/f/xpzvjwvp" method="POST">
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" id="name" name="name" required>
@@ -1195,152 +1738,169 @@
                                 </div>
                                 <button type="submit" class="submit-btn">Send Message</button>
                             </form>
+                            <div class="contact-info">
+                                <div class="contact-details">
+                                    <div class="info-item">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <p>123 RIDDARA Street, Bangkok, Thailand</p>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-phone"></i>
+                                        <p>+66 123 456 789</p>
+                                    </div>
+                                    <div class="info-item">
+                                        <i class="fas fa-envelope"></i>
+                                        <p>info@riddara.com</p>
+                                    </div>
+                                </div>
+                                <div class="info-item qr-item">
+                                    <img src="images/Line.png" alt="Line QR Code">
+                                    <p>@riddaraofficial</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Footer Section -->
-            <div class="section footer-section" data-anchor="footer">
+            <div class="section footer-section">
                 <div class="footer-content">
-                    <div class="footer-block">
-                        <h3>About Us</h3>
-                        <p>Experience the future of electric mobility with Pinpat Auto. Your premier RIDDARA electric vehicle dealership in Chonburi, Thailand.</p>
+                    <div class="footer-column">
+                        <h4>About RIDDARA</h4>
+                        <p>Leading the future of sustainable mobility with innovative electric vehicles.</p>
                     </div>
-                    <div class="footer-block">
-                        <h3>Quick Links</h3>
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
                         <a href="#home">Home</a>
-                        <a href="#news">News</a>
                         <a href="#rd6">RD6</a>
                         <a href="#services">Services</a>
                         <a href="#contact">Contact</a>
                     </div>
-                    <div class="footer-block">
-                        <h3>Hours</h3>
-                        <p>Mon-Sat: 9:00 AM - 6:00 PM</p>
-                        <p>Sunday: 10:00 AM - 4:00 PM</p>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <p>123 RIDDARA Street</p>
+                        <p>Bangkok, Thailand</p>
+                        <p>+66 123 456 789</p>
+                        <p>info@riddara.com</p>
                     </div>
-                    <div class="footer-block">
-                        <h3>Contact</h3>
-                        <p><i class="fas fa-envelope"></i> pinpat.auto@gmail.com</p>
-                        <p><i class="fas fa-phone"></i> 097-102-0110</p>
-                        <p><i class="fab fa-line"></i> riddarachonburi</p>
-                        <div class="social-links">
-                            <a href="mailto:pinpat.auto@gmail.com"><i class="fas fa-envelope"></i></a>
-                            <a href="tel:0971020110"><i class="fas fa-phone"></i></a>
-                            <a href="https://line.me/ti/p/~riddarachonburi"><i class="fab fa-line"></i></a>
-                        </div>
+                    <div class="footer-column">
+                        <h4>Follow Us</h4>
+                        <a href="#">Facebook</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Twitter</a>
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2025 Pinpat Auto. All rights reserved.</p>
+                    <p>&copy; 2025 RIDDARA. All rights reserved.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Video functionality
-            const video = document.getElementById('heroVideo');
-            
-            function playVideo() {
-                video.play().catch(function(error) {
-                    console.log("Video play failed:", error);
-                });
-            }
-
-            // Play video when loaded
-            video.addEventListener('loadeddata', playVideo);
-            
-            // Ensure video loops
-            video.addEventListener('ended', playVideo);
-
-            // Check video status every 5 seconds
-            setInterval(function() {
-                if (video.paused) {
-                    playVideo();
-                }
-            }, 5000);
+            // Initialize fullpage.js
+            new fullpage('#fullpage', {
+                navigation: true,
+                scrollOverflow: true,
+                autoScrolling: true,
+                anchors: ['home', 'team', 'services', 'colors', 'news', 'rd6', 'contact'],
+                navigationTooltips: ['Home', 'Team', 'Services', 'Colors', 'News', 'RD6', 'Contact'],
+            });
 
             // Color picker functionality
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.getElementById('carImage');
-            const colorsSection = document.querySelector('.colors-section');
-
-            function updateCarImage(newImageSrc, backgroundColor) {
-                if (carImage && newImageSrc) {
-                    // Fade out
-                    carImage.style.opacity = '0';
-                    
-                    // Change background color with transition
-                    if (backgroundColor) {
-                        colorsSection.style.backgroundColor = backgroundColor;
-                    }
-                    
-                    // Change image and fade in after a short delay
-                    setTimeout(() => {
-                        carImage.src = newImageSrc;
-                        carImage.style.opacity = '1';
-                    }, 300);
-                }
-            }
+            const rdBackground = document.querySelector('.rd6-background');
+            const rdTitle = document.querySelector('.rd6-logo');
+            const rdSubtitle = document.querySelector('.rd6-subtitle');
+            const exploreMore = document.querySelector('.explore-more');
 
             colorOptions.forEach(option => {
                 option.addEventListener('click', function() {
-                    // Remove active class from all options
-                    colorOptions.forEach(opt => opt.classList.remove('active'));
-                    
-                    // Add active class to clicked option
+                    // Update active state
+                    document.querySelector('.color-option.active').classList.remove('active');
                     this.classList.add('active');
-                    
-                    // Get the image path and background color
-                    const newImageSrc = this.getAttribute('data-image');
-                    const backgroundColor = this.style.backgroundColor;
-                    
-                    // Update car image and background
-                    updateCarImage(newImageSrc, backgroundColor);
+
+                    // Update car image
+                    const newImage = this.getAttribute('data-image');
+                    carImage.src = newImage;
+
+                    // Update background color
+                    const bgColor = this.style.backgroundColor;
+                    rdBackground.style.background = bgColor;
+
+                    // Update text color based on background
+                    const color = bgColor.toLowerCase();
+                    const shouldBeWhite = color.includes('rgb(0, 0, 0)') || // black
+                                        color.includes('#000000') ||
+                                        color.includes('rgb(74, 97, 60)') || // green
+                                        color.includes('#4a613c');
+
+                    const textColor = shouldBeWhite ? '#FFFFFF' : '#000000';
+                    rdTitle.style.color = textColor;
+                    rdSubtitle.style.color = textColor;
+                    exploreMore.style.color = textColor;
                 });
             });
 
-            // News slider functionality
-            const slider = document.querySelector('.news-items');
-            const prevBtn = document.querySelector('.scroll-btn.prev');
-            const nextBtn = document.querySelector('.scroll-btn.next');
-            
-            if (prevBtn && nextBtn && slider) {
-                prevBtn.addEventListener('click', () => {
-                    slider.scrollBy({
-                        left: -300,
-                        behavior: 'smooth'
+            // Video playback
+            function playVideo() {
+                const video = document.querySelector('.hero-video');
+                if (video) {
+                    video.play().catch(function(error) {
+                        console.log("Video play failed:", error);
                     });
-                });
-
-                nextBtn.addEventListener('click', () => {
-                    slider.scrollBy({
-                        left: 300,
-                        behavior: 'smooth'
-                    });
-                });
-            }
-
-            // Initialize fullpage.js
-            new fullpage('#fullpage', {
-                navigation: true,
-                paddingTop: '80px',
-                paddingBottom: '0px',
-                fixedElements: '.navbar',
-                normalScrollElements: '.news-slider',
-                anchors: ['home', 'news', 'rd6', 'services', 'contact'],
-                navigationTooltips: ['Home', 'News', 'RD6', 'Services', 'Contact'],
-                scrollOverflow: true,
-                afterRender: function() {
-                    playVideo();
                 }
-            });
+            }
         });
+    </script>
+
+    <script>
+        // Form submission handler
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value
+            };
+
+            // Show loading state
+            const submitBtn = event.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch('https://formspree.io/f/lisandroalvo2@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    // Show success message
+                    alert('Thank you! Your message has been sent successfully.');
+                    event.target.reset(); // Clear the form
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            } catch (error) {
+                // Show error message
+                alert('Sorry, there was an error sending your message. Please try again.');
+            } finally {
+                // Reset button state
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        }
     </script>
 </body>
 </html>
