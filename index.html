@@ -900,7 +900,10 @@
             margin: 4rem auto;
             padding: 2rem;
             position: relative;
-            background: linear-gradient(180deg, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.85) 100%);
+            background: linear-gradient(180deg, 
+                rgba(26,26,26,0.95) 0%, 
+                rgba(26,26,26,0.85) 100%
+            );
             border-radius: 20px;
             backdrop-filter: blur(10px);
         }
@@ -1410,10 +1413,19 @@
         }
 
         /* Footer Section Styles */
+        .footer-section {
+            background-color: var(--primary-color);
+            height: auto !important;
+            min-height: auto !important;
+        }
+
         .footer {
-            background-color: #1a1a1a;
+            background-color: var(--primary-color);
             color: white;
             padding: 40px 0;
+            position: relative;
+            z-index: 100;
+            min-height: auto !important;
         }
 
         .footer-content {
@@ -1433,7 +1445,7 @@
 
         .footer-column p,
         .footer-column a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 0.8rem;
             display: block;
             text-decoration: none;
@@ -1447,9 +1459,43 @@
         .footer-bottom {
             margin-top: 2rem;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff6b00;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
         }
 
         /* Modal Styles */
@@ -1536,6 +1582,261 @@
             background-color: #ff6b00;
             transform: translateY(-2px);
         }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .section-content {
+                padding: 0 40px;
+            }
+
+            .rd6-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .rd6-specs {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem;
+            }
+
+            .footer-content {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .contact-form {
+                width: 90%;
+            }
+
+            .rd6-header {
+                padding: 2rem;
+            }
+
+            .rd6-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .rd6-logo {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-content {
+                padding: 0 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .cards-container {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rd6-specs {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                width: 100%;
+                padding: 1.5rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 80px 40px;
+            }
+
+            .nav-links.active {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .nav-links ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .nav-links a {
+                font-size: 24px;
+            }
+
+            .nav-links a {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            .nav-links.active a {
+                animation: fadeInUp 0.5s forwards;
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .nav-links a:nth-child(1) { animation-delay: 0.1s; }
+            .nav-links a:nth-child(2) { animation-delay: 0.2s; }
+            .nav-links a:nth-child(3) { animation-delay: 0.3s; }
+            .nav-links a:nth-child(4) { animation-delay: 0.4s; }
+            .nav-links a:nth-child(5) { animation-delay: 0.5s; }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .rd6-logo {
+                font-size: 3rem;
+            }
+
+            .rd6-subtitle {
+                font-size: 1rem;
+            }
+
+            .contact-form {
+                padding: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .modal-content {
+                padding: 15px;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .color-options {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .color-option {
+                margin: 5px;
+            }
+        }
+
+        /* Touch Device Optimizations */
+        @media (hover: none) {
+            .nav-links a::after {
+                display: none;
+            }
+
+            .card:hover {
+                transform: none;
+            }
+
+            .news-card:hover {
+                transform: none;
+            }
+
+            .social-links a:hover {
+                transform: none;
+            }
+        }
+
+        /* Landscape Mode */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-header {
+                margin-bottom: 1rem;
+            }
+
+            .rd6-header {
+                padding: 1rem;
+            }
+
+            .contact-form {
+                padding: 1rem;
+            }
+
+            .footer {
+                padding: 20px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1547,8 +1848,8 @@
             <div class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#news">News</a>
-                <a href="#services">Services</a>
                 <a href="#rd6">RD6</a>
+                <a href="#services">Services</a>
                 <a href="#contact">Contact</a>
             </div>
             <button class="menu-button" id="menu-button">
@@ -1874,39 +2175,41 @@
             </div>
 
             <!-- Footer Section -->
-            <footer class="footer">
-                <div class="footer-content">
-                    <div class="footer-column">
-                        <h4>About RIDDARA</h4>
-                        <p>Leading the future of sustainable mobility with innovative electric vehicles and cutting-edge technology.</p>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Quick Links</h4>
-                        <a href="#home">Home</a>
-                        <a href="#news">News</a>
-                        <a href="#services">Services</a>
-                        <a href="#rd6">RD6</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Contact</h4>
-                        <p>Email: pinpat.auto@gmail.com</p>
-                        <p>LINE: @riddarachonburi</p>
-                        <p>Ratchaburi, Thailand</p>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Follow Us</h4>
-                        <div class="social-links">
-                            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <a href="#" target="_blank"><i class="fab fa-line"></i></a>
+            <div class="section footer-section fp-auto-height" data-anchor="footer">
+                <footer class="footer">
+                    <div class="footer-content">
+                        <div class="footer-column">
+                            <h4>About RIDDARA</h4>
+                            <p>Leading the future of sustainable mobility with innovative electric vehicles and cutting-edge technology.</p>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Quick Links</h4>
+                            <a href="#home">Home</a>
+                            <a href="#news">News</a>
+                            <a href="#services">Services</a>
+                            <a href="#rd6">RD6</a>
+                            <a href="#contact">Contact</a>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Contact</h4>
+                            <p>Email: pinpat.auto@gmail.com</p>
+                            <p>LINE: @riddarachonburi</p>
+                            <p>Ratchaburi, Thailand</p>
+                        </div>
+                        <div class="footer-column">
+                            <h4>Follow Us</h4>
+                            <div class="social-links">
+                                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-line"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2025 RIDDARA. All rights reserved.</p>
-                </div>
-            </footer>
+                    <div class="footer-bottom">
+                        <p>&copy; 2025 RIDDARA. All rights reserved.</p>
+                    </div>
+                </footer>
+            </div>
         </div>
     </div>
 
@@ -2013,7 +2316,7 @@
                 scrollOverflow: true,
                 autoScrolling: true,
                 fitToSection: true,
-                anchors: ['home', 'news', 'services', 'rd6', 'contact'],
+                anchors: ['home', 'news', 'rd6', 'services', 'contact', 'footer'],
                 onLeave: function(origin, destination, direction) {
                     // Update active menu item
                     const navLinks = document.querySelectorAll('.nav-links a');
