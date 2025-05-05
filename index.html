@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/4.0.20/fullpage.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* Essential Styles */
         * {
@@ -37,12 +37,68 @@
             --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
             --hover-color: #FF6B00;
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --title-font: 'Orbitron', sans-serif;
+            --text-font: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: var(--text-font);
             color: var(--text-dark);
             background: var(--bg-light);
+        }
+
+        p, a, button, input, textarea, label {
+            font-family: var(--text-font);
+        }
+
+        h1, h2, h3, h4, h5, h6,
+        .nav-links a,
+        .hero-subtitle,
+        .section-header h2,
+        .rd6-logo,
+        .card-title,
+        .news-card-title,
+        .modal-title {
+            font-family: var(--title-font);
+        }
+
+        p,
+        .card-description,
+        .news-card-description,
+        .rd6-specs-item p,
+        .contact-form input,
+        .contact-form textarea,
+        .footer-column p,
+        .modal-text {
+            font-family: var(--text-font);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        button,
+        .cta-button {
+            font-family: var(--title-font);
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            font-weight: 300;
+        }
+
+        .card-title, .news-card-title, .footer-column h4 {
+            font-weight: 600;
+        }
+
+        .card-description, .news-card-description, .footer p, .modal-text {
+            font-weight: 300;
+        }
+
+        .cta-button, .contact-form label {
+            font-weight: 500;
         }
 
         /* Section Styles */
@@ -96,6 +152,21 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+
+        .nav-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.75rem;
+            margin-bottom: 2px;
+            letter-spacing: 1px;
+            font-weight: 300;
         }
 
         .nav-logo img {
@@ -284,6 +355,15 @@
             padding: 0 20px;
         }
 
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
         .hero-logo {
             max-width: 500px;
             margin-bottom: 3rem;
@@ -306,14 +386,6 @@
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
         .dealer-info {
@@ -422,9 +494,13 @@
 
         .section-header h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
             letter-spacing: 2px;
         }
 
@@ -1557,8 +1633,12 @@
 
         .modal-title {
             font-size: 2rem;
-            margin-bottom: 15px;
-            color: #333;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .modal-text {
@@ -1614,13 +1694,16 @@
                 font-size: 3rem;
             }
 
-            .hero-content p {
-                font-size: 1.1rem;
+            .section-header h2 {
+                font-size: 1.8rem;
             }
 
-            .news-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+            .rd6-logo {
+                font-size: 4rem;
+            }
+
+            .rd6-subtitle {
+                font-size: 1.2rem;
             }
 
             .contact-form {
@@ -1631,12 +1714,9 @@
                 padding: 2rem;
             }
 
-            .rd6-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .rd6-logo {
-                font-size: 4rem;
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
         }
 
@@ -1750,7 +1830,7 @@
             }
 
             .section-header h2 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .rd6-logo {
@@ -1843,6 +1923,7 @@
     <nav>
         <div class="nav-container">
             <a href="#home" class="nav-logo">
+                <span>Pinpat Auto Chonburi</span>
                 <img src="images/main1.png" alt="RIDDARA">
             </a>
             <div class="nav-links">
@@ -1868,6 +1949,7 @@
                     <div class="video-overlay"></div>
                 </div>
                 <div class="hero-content">
+                    <div class="hero-subtitle">Pinpat Auto Chonburi</div>
                     <img src="images/main1.png" alt="RIDDARA" class="hero-logo">
                     <div class="hero-cta">
                         <a href="#contact" class="cta-button primary">Contact Us</a>
