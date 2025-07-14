@@ -2422,6 +2422,7 @@
         </div>
     </div>
 
+    <script src="js/car-viewer.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Video Setup
@@ -2483,7 +2484,6 @@
                 }
             });
 
-            // Color picker functionality
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.getElementById('carImage');
             let currentColorIndex = 0;
@@ -2493,32 +2493,23 @@
                 const newImage = document.createElement('img');
                 newImage.src = newImageSrc;
                 newImage.className = `car-image-instance enter-${direction}`;
-
                 if (oldImage) {
                     oldImage.className = `car-image-instance exit-${direction === 'right' ? 'left' : 'right'}`;
-                    oldImage.addEventListener('transitionend', () => {
-                        oldImage.remove();
-                    });
+                    oldImage.addEventListener('transitionend', () => oldImage.remove());
                 }
-
                 carImage.appendChild(newImage);
             }
 
             function updateColorSelection(option, direction = 'right') {
                 const newImageSrc = option.dataset.image;
                 const newIndex = parseInt(option.dataset.index, 10);
-
                 if (newIndex === currentColorIndex) return;
-
                 changeCarImage(newImageSrc, direction);
-
-                // Update active state
                 colorOptions.forEach(opt => opt.classList.remove('active'));
                 option.classList.add('active');
                 currentColorIndex = newIndex;
             }
 
-            // Click handlers for color options
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', function() {
                     const direction = index > currentColorIndex ? 'right' : 'left';
@@ -2526,44 +2517,35 @@
                 });
             });
 
-            <!-- Arrow navigation -->
-            function prevColor() {
+            window.prevColor = function() {
                 const newIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
                 updateColorSelection(colorOptions[newIndex], 'left');
-            }
+            };
 
-            function nextColor() {
+            window.nextColor = function() {
                 const newIndex = (currentColorIndex + 1) % colorOptions.length;
                 updateColorSelection(colorOptions[newIndex], 'right');
-            }
+            };
 
-            // Keyboard navigation
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft') {
-                    prevColor();
-                } else if (e.key === 'ArrowRight') {
-                    nextColor();
-                }
+                if (e.key === 'ArrowLeft') prevColor();
+                if (e.key === 'ArrowRight') nextColor();
             });
 
-            // Initialize with the default color
-            updateColorSelection(colorOptions[0]);
+            if (colorOptions.length > 0) {
+                updateColorSelection(colorOptions[0]);
+            }
 
-            // Navigation menu functionality
             const menuButton = document.getElementById('menu-button');
             const navMenu = document.getElementById('nav-menu');
             const navLinks = document.querySelectorAll('.nav-links a, .nav-logo');
 
-            // Toggle mobile menu
             menuButton.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
                 const isOpen = navMenu.classList.contains('active');
-                menuButton.innerHTML = isOpen ? 
-                    '<i class="fas fa-times"></i>' : 
-                    '<i class="fas fa-bars"></i>';
+                menuButton.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
             });
 
-            // Close menu when clicking outside
             document.addEventListener('click', (e) => {
                 if (!navMenu.contains(e.target) && !menuButton.contains(e.target)) {
                     navMenu.classList.remove('active');
@@ -2571,20 +2553,18 @@
                 }
             });
 
-            // Handle navigation clicks
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = link.getAttribute('href').replace('#', '');
-                    fullpage_api.moveTo(targetId);
-                    
-                    // Close mobile menu if open
+                    if (fullpage_api.moveTo) {
+                        fullpage_api.moveTo(targetId);
+                    }
                     navMenu.classList.remove('active');
                     menuButton.innerHTML = '<i class="fas fa-bars"></i>';
                 });
             });
 
-            // Modal functionality
             window.openModal = function(modalId) {
                 const modal = document.getElementById(modalId);
                 modal.classList.add('show');
@@ -2597,7 +2577,6 @@
                 document.body.style.overflow = '';
             }
 
-            // Close modal when clicking outside
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.addEventListener('click', function(e) {
                     if (e.target === this) {
@@ -2607,7 +2586,6 @@
                 });
             });
 
-            // Close modal with Escape key
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     document.querySelectorAll('.modal.show').forEach(modal => {
@@ -2618,14 +2596,13 @@
             });
         });
     </script>
-    <script src="js/car-viewer.js"></script>
-
     <!-- Google Translate -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'th', includedLanguages: 'en,th', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
         }
     </script>
+    <script src="js/car-viewer.js"></script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
