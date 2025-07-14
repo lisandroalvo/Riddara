@@ -2241,11 +2241,8 @@
                                     const userReplyTemplateID = 'template_o2ocaic'; // Template for email to user
 
                                     try {
-                                        // Send both emails concurrently for efficiency
-                                        await Promise.all([
-                                            emailjs.send(serviceID, adminTemplateID, formData),
-                                            emailjs.send(serviceID, userReplyTemplateID, formData)
-                                        ]);
+                                        // Send only the admin notification email for now to debug
+                                        await emailjs.send(serviceID, adminTemplateID, formData);
 
                                         // Clear form
                                         event.target.reset();
