@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -346,6 +346,43 @@
             margin-bottom: 3rem;
             filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
             animation: fadeInDown 1s ease-out;
+        }
+
+        /* Google Translate Widget Styles */
+        #google_translate_element {
+            margin-left: 20px;
+        }
+        .goog-te-gadget-simple {
+            background-color: transparent !important;
+            border: none !important;
+            font-size: 1rem !important;
+            padding: 0 !important;
+        }
+        .goog-te-gadget-simple .goog-te-menu-value {
+            color: white !important;
+            font-family: var(--title-font);
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 8px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .goog-te-gadget-simple:hover .goog-te-menu-value {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--secondary-color) !important;
+        }
+        .goog-te-gadget-icon {
+            display: none !important;
+        }
+        body > .skiptranslate {
+            display: none !important;
+        }
+        body {
+            top: 0px !important; /* Prevents Google's top bar from pushing page down */
+        }
+        #goog-gt-tt {
+            display: none !important; /* Hides the tooltip */
         }
 
         .hero-text-container {
@@ -1948,6 +1985,7 @@
                 <a href="#rd6">RD6</a>
                 <a href="#services">Services</a>
                 <a href="#contact">Contact</a>
+                <div id="google_translate_element"></div>
             </div>
             <button class="menu-button" id="menu-button">
                 <i class="fas fa-bars"></i>
@@ -2601,5 +2639,11 @@
             });
         });
     </script>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'th', includedLanguages: 'en,th', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
