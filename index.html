@@ -2468,106 +2468,74 @@
 
             // Initialize fullpage.js
             new fullpage('#fullpage', {
-            licenseKey: 'gplv3-license',
+                licenseKey: 'gplv3-license',
                 navigation: true,
                 scrollingSpeed: 1000,
                 autoScrolling: true,
                 fitToSection: true,
-                fitToSectionDelay: 1000, // Allows fp-auto-height to work correctly
-                anchors: ['home', 'news', 'rd6', 'services', 'contact', 'footer'],
-                onLeave: function(origin, destination, direction) {
-                    // Update active menu item
-                    const navLinks = document.querySelectorAll('.nav-links a');
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${destination.anchor}`) {
-                            link.classList.add('active');
-                        }
-                    });
+                fitToSectionDelay: 1000,
+                easing: 'easeInOutCubic',
+                anchors: ['home', 'rd6', 'services', 'contact'],
+                onLeave: onLeave,
+                afterRender: function(){
+                    // Initialize the car viewer after fullPage.js has rendered
+                    new CarViewer('car-viewer');
                 }
             });
 
             // Color picker functionality
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.getElementById('carImage');
-            const rdBackground = document.querySelector('.rd6-background');
-            const rdTitle = document.querySelector('.rd6-logo');
-            const rdSubtitle = document.querySelector('.rd6-subtitle');
-            const exploreMore = document.querySelector('.explore-more');
-
             let currentColorIndex = 0;
 
             function changeCarImage(newImageSrc, direction) {
-                // Exit animation
-                carImage.classList.add(direction === 'right' ? 'exit-left' : 'exit-right');
-                
-                setTimeout(() => {
-                    // Change image and prepare for entrance
-                    carImage.src = newImageSrc;
-                    carImage.classList.remove('exit-left', 'exit-right');
-                    carImage.classList.add(direction === 'right' ? 'enter-from-right' : 'enter-from-left');
-                    
-                    // Force reflow
-                    carImage.offsetHeight;
-                    
-                    // Enter animation
-                    requestAnimationFrame(() => {
-                        carImage.classList.remove('enter-from-right', 'enter-from-left');
+                const oldImage = carImage.querySelector('img');
+                const newImage = document.createElement('img');
+                newImage.src = newImageSrc;
+                newImage.className = `car-image-instance enter-${direction}`;
+
+                if (oldImage) {
+                    oldImage.className = `car-image-instance exit-${direction === 'right' ? 'left' : 'right'}`;
+                    oldImage.addEventListener('transitionend', () => {
+                        oldImage.remove();
                     });
-                }, 400);
+                }
+
+                carImage.appendChild(newImage);
             }
 
             function updateColorSelection(option, direction = 'right') {
-                // Remove active class from all options
+                const newImageSrc = option.dataset.image;
+                const newIndex = parseInt(option.dataset.index, 10);
+
+                if (newIndex === currentColorIndex) return;
+
+                changeCarImage(newImageSrc, direction);
+
+                // Update active state
                 colorOptions.forEach(opt => opt.classList.remove('active'));
-                // Add active class to clicked option
                 option.classList.add('active');
-
-                // Change car image with animation
-                changeCarImage(option.getAttribute('data-image'), direction);
-
-                // Update background color
-                const newColor = option.style.backgroundColor;
-                rdBackground.style.transition = 'background-color 0.8s ease-in-out';
-                rdBackground.style.backgroundColor = newColor;
-
-                // Update text colors
-                const color = newColor.toLowerCase();
-                const shouldBeWhite = color.includes('rgb(0, 0, 0)') || // black
-                                    color.includes('#000000') ||
-                                    color.includes('rgb(74, 97, 60)') || // green
-                                    color.includes('#0066cc') || // blue
-                                    color.includes('rgb(0, 102, 204)');
-
-                const textColor = shouldBeWhite ? '#FFFFFF' : '#000000';
-                rdTitle.style.transition = 'color 0.8s ease-in-out';
-                rdSubtitle.style.transition = 'color 0.8s ease-in-out';
-                exploreMore.style.transition = 'color 0.8s ease-in-out';
-                
-                rdTitle.style.color = textColor;
-                rdSubtitle.style.color = textColor;
-                exploreMore.style.color = textColor;
+                currentColorIndex = newIndex;
             }
 
             // Click handlers for color options
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', function() {
                     const direction = index > currentColorIndex ? 'right' : 'left';
-                    currentColorIndex = index;
                     updateColorSelection(this, direction);
                 });
             });
 
-            // Arrow navigation
-            window.prevColor = function() {
-                currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
-                updateColorSelection(colorOptions[currentColorIndex], 'left');
-            };
+            <!-- Arrow navigation -->
+            function prevColor() {
+                const newIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
+                updateColorSelection(colorOptions[newIndex], 'left');
+            }
 
-            window.nextColor = function() {
-                currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
-                updateColorSelection(colorOptions[currentColorIndex], 'right');
-            };
+            function nextColor() {
+                const newIndex = (currentColorIndex + 1) % colorOptions.length;
+                updateColorSelection(colorOptions[newIndex], 'right');
+            }
 
             // Keyboard navigation
             document.addEventListener('keydown', function(e) {
@@ -2577,6 +2545,9 @@
                     nextColor();
                 }
             });
+
+            // Initialize with the default color
+            updateColorSelection(colorOptions[0]);
 
             // Navigation menu functionality
             const menuButton = document.getElementById('menu-button');
