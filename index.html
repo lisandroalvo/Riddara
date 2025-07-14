@@ -2371,9 +2371,9 @@
             new fullpage('#fullpage', {
                 navigation: true,
                 scrollingSpeed: 1000,
-                scrollOverflow: true,
                 autoScrolling: true,
                 fitToSection: true,
+                fitToSectionDelay: 1000, // Allows fp-auto-height to work correctly
                 anchors: ['home', 'news', 'rd6', 'services', 'contact', 'footer'],
                 onLeave: function(origin, destination, direction) {
                     // Update active menu item
