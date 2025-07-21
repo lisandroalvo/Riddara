@@ -985,6 +985,13 @@
             padding: 4rem 2rem;
         }
 
+        .rd6-content img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 2rem;
+            will-change: transform;
+        }
+
         .rd6-description {
             max-width: 1200px;
             margin: 0 auto;
@@ -2159,6 +2166,9 @@
                         <h3>RIDDARA RD6</h3>
                         <p>Experience the future of electric pickup trucks</p>
                         <div class="rd6-specs">
+                            <div class="car-image-wrapper">
+                                <img id="carImage" src="images/colors/white.png" alt="RIDDARA RD6">
+                            </div>
                             <div class="spec-item">
                                 <h3>500+</h3>
                                 <p>KM Range</p>
@@ -2235,7 +2245,9 @@
                 <div class="cards-container">
                     <div class="card">
                         <div class="card-image">
-                            <img src="images/car1.png" alt="RIDDARA Innovation">
+                            <div class="car-image-wrapper">
+                            <img id="carImage" src="images/colors/white.png" alt="RIDDARA RD6">
+                        </div>
                         </div>
                         <div class="card-content">
                             <h3>Revolutionary Design</h3>
@@ -2732,17 +2744,36 @@
             }
 
             function changeCarImage(newImageSrc, direction) {
+                const wrapper = carImage.parentElement;
+                wrapper.style.position = 'relative';
+                wrapper.style.overflow = 'hidden';
+
                 const oldImage = carImage.cloneNode(true);
                 oldImage.style.position = 'absolute';
-                carImage.parentNode.appendChild(oldImage);
-                
-                carImage.style.opacity = '0';
+                oldImage.style.top = '0';
+                oldImage.style.left = '0';
+                oldImage.style.transition = 'transform 0.5s ease-in-out';
+                wrapper.appendChild(oldImage);
+
+                // Set initial position for new image
+                carImage.style.position = 'absolute';
+                carImage.style.top = '0';
                 carImage.src = newImageSrc;
-                
+                carImage.style.transform = `translateX(${direction === 'right' ? '100%' : '-100%'})`;
+                carImage.style.transition = 'transform 0.5s ease-in-out';
+
+                // Trigger animation
                 setTimeout(() => {
-                    carImage.style.opacity = '1';
-                    oldImage.style.opacity = '0';
-                    setTimeout(() => oldImage.remove(), 500);
+                    oldImage.style.transform = `translateX(${direction === 'right' ? '-100%' : '100%'})`;
+                    carImage.style.transform = 'translateX(0)';
+                    
+                    // Clean up
+                    setTimeout(() => {
+                        oldImage.remove();
+                        carImage.style.position = 'relative';
+                        carImage.style.transform = '';
+                        carImage.style.transition = '';
+                    }, 500);
                 }, 50);
             }
 
