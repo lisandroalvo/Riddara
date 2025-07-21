@@ -2054,6 +2054,7 @@
         <div class="nav-container">
             <a href="#home" class="nav-logo">
                 <span>Pinpat Auto Chonburi</span>
+                <img src="images/main1.png" alt="RIDDARA">
             </a>
             <div class="nav-links">
                 <a href="#home">Home</a>
@@ -2665,6 +2666,37 @@
         });
     </script>
     <script src="js/car-viewer.js"></script>
-    <script src="js/main.js"></script>
+    <script>
+        new fullpage('#fullpage', {
+            navigation: true,
+            navigationPosition: 'right',
+            scrollingSpeed: 1000,
+            easing: 'easeInOutCubic',
+            css3: true,
+            scrollBar: false,
+            autoScrolling: true,
+            fitToSection: true,
+            onLeave: function(origin, destination, direction) {
+                // Handle video pause/play
+                const video = document.getElementById('heroVideo');
+                if (origin.index === 0 && direction === 'down') {
+                    video.pause();
+                } else if (destination.index === 0) {
+                    video.play();
+                }
+            },
+            afterLoad: function(origin, destination, direction) {
+                if (destination.index === 0) {
+                    document.querySelector('.hero-video').play();
+                }
+            }
+        });
+
+        // Play video when ready
+        const video = document.getElementById('heroVideo');
+        video.play().catch(function(error) {
+            console.log("Video play failed:", error);
+        });
+    </script>
 </body>
 </html>
