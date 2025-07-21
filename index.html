@@ -2667,6 +2667,7 @@
     </script>
     <script src="js/car-viewer.js"></script>
     <script>
+        // Initialize fullpage.js
         new fullpage('#fullpage', {
             navigation: true,
             navigationPosition: 'right',
@@ -2676,6 +2677,8 @@
             scrollBar: false,
             autoScrolling: true,
             fitToSection: true,
+            anchors: ['home', 'news', 'rd6', 'services', 'contact'],
+            menu: '.nav-links',
             onLeave: function(origin, destination, direction) {
                 // Handle video pause/play
                 const video = document.getElementById('heroVideo');
@@ -2689,6 +2692,71 @@
                 if (destination.index === 0) {
                     document.querySelector('.hero-video').play();
                 }
+            }
+        });
+
+        // Initialize color switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const colorOptions = document.querySelectorAll('.color-option');
+            const carImage = document.getElementById('carImage');
+            let currentColorIndex = 0;
+
+            function updateColorSelection(option, direction = 'right') {
+                // Remove active class from all options
+                colorOptions.forEach(opt => opt.classList.remove('active'));
+                
+                // Add active class to selected option
+                option.classList.add('active');
+                
+                // Update car image
+                const newImageSrc = option.getAttribute('data-image');
+                changeCarImage(newImageSrc, direction);
+                
+                // Update current index
+                currentColorIndex = Array.from(colorOptions).indexOf(option);
+                
+                // Update text colors based on background
+                const backgroundColor = window.getComputedStyle(option).backgroundColor;
+                const rdTitle = document.querySelector('.rd6-logo');
+                const rdSubtitle = document.querySelector('.rd6-subtitle');
+                const exploreMore = document.querySelector('.explore-more');
+                
+                const shouldBeWhite = backgroundColor.includes('rgb(0, 0, 0)') || 
+                                    backgroundColor.includes('rgb(51, 51, 51)') || 
+                                    backgroundColor.includes('rgb(0, 102, 204)');
+
+                const textColor = shouldBeWhite ? '#FFFFFF' : '#000000';
+                rdTitle.style.color = textColor;
+                rdSubtitle.style.color = textColor;
+                exploreMore.style.color = textColor;
+            }
+
+            function changeCarImage(newImageSrc, direction) {
+                const oldImage = carImage.cloneNode(true);
+                oldImage.style.position = 'absolute';
+                carImage.parentNode.appendChild(oldImage);
+                
+                carImage.style.opacity = '0';
+                carImage.src = newImageSrc;
+                
+                setTimeout(() => {
+                    carImage.style.opacity = '1';
+                    oldImage.style.opacity = '0';
+                    setTimeout(() => oldImage.remove(), 500);
+                }, 50);
+            }
+
+            // Click handlers for color options
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const direction = Array.from(colorOptions).indexOf(this) > currentColorIndex ? 'right' : 'left';
+                    updateColorSelection(this, direction);
+                });
+            });
+
+            // Initialize first color
+            if (colorOptions.length > 0) {
+                updateColorSelection(colorOptions[0]);
             }
         });
 
