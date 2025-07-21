@@ -211,6 +211,48 @@
             width: 100%;
         }
 
+        /* Google Translate Widget Styles */
+        #google_translate_element {
+            margin-left: 20px;
+            align-self: center;
+        }
+        .goog-te-gadget-simple {
+            background-color: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            border-radius: 20px;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .goog-te-gadget-simple:hover {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        .goog-te-gadget-simple span {
+            color: white !important;
+            font-family: var(--title-font);
+            font-size: 0.9rem !important;
+            font-weight: 500;
+            text-shadow: none !important;
+        }
+        .goog-te-gadget-icon {
+            display: none !important;
+        }
+        body {
+            top: 0px !important; 
+        }
+        .skiptranslate {
+            display: none !important;
+        }
+        iframe.goog-te-menu-frame {
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+            border-radius: 10px !important;
+            border: 1px solid var(--glass-border) !important;
+        }
+
+
+
+
+
         .nav-links a:hover,
         .nav-links a.active {
             color: #ff6b00;
@@ -2018,13 +2060,10 @@
                 <a href="#home">Home</a>
                 <a href="#rd6">RD6</a>
                 <a href="#contact">Contact</a>
-                <div class="language-switcher">
-                    <button class="lang-btn" onclick="toggleLanguage()">
-                        <i class="fas fa-globe"></i>
-                        <span id="currentLang">TH</span>
-                    </button>
-                </div>
+                
+
             </div>
+            <div id="google_translate_element"></div>
             <button class="menu-button" id="menu-button">
                 <i class="fas fa-bars"></i>
             </button>
@@ -2453,6 +2492,7 @@
         </div>
     </div>
 
+    <script src="js/car-viewer.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Video Setup
@@ -2499,130 +2539,83 @@
 
             // Initialize fullpage.js
             new fullpage('#fullpage', {
+                licenseKey: 'gplv3-license',
                 navigation: true,
                 scrollingSpeed: 1000,
                 autoScrolling: true,
                 fitToSection: true,
-                fitToSectionDelay: 1000, // Allows fp-auto-height to work correctly
-                anchors: ['home', 'news', 'rd6', 'services', 'contact', 'footer'],
-                onLeave: function(origin, destination, direction) {
-                    // Update active menu item
-                    const navLinks = document.querySelectorAll('.nav-links a');
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${destination.anchor}`) {
-                            link.classList.add('active');
-                        }
-                    });
+                fitToSectionDelay: 1000,
+                easing: 'easeInOutCubic',
+                anchors: ['home', 'rd6', 'services', 'contact'],
+                onLeave: onLeave,
+                afterRender: function(){
+                    // Initialize the car viewer after fullPage.js has rendered
+                    new CarViewer('car-viewer');
                 }
             });
 
-            // Color picker functionality
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.getElementById('carImage');
-            const rdBackground = document.querySelector('.rd6-background');
-            const rdTitle = document.querySelector('.rd6-logo');
-            const rdSubtitle = document.querySelector('.rd6-subtitle');
-            const exploreMore = document.querySelector('.explore-more');
-
             let currentColorIndex = 0;
 
             function changeCarImage(newImageSrc, direction) {
-                // Exit animation
-                carImage.classList.add(direction === 'right' ? 'exit-left' : 'exit-right');
-                
-                setTimeout(() => {
-                    // Change image and prepare for entrance
-                    carImage.src = newImageSrc;
-                    carImage.classList.remove('exit-left', 'exit-right');
-                    carImage.classList.add(direction === 'right' ? 'enter-from-right' : 'enter-from-left');
-                    
-                    // Force reflow
-                    carImage.offsetHeight;
-                    
-                    // Enter animation
-                    requestAnimationFrame(() => {
-                        carImage.classList.remove('enter-from-right', 'enter-from-left');
-                    });
-                }, 400);
+                const oldImage = carImage.querySelector('img');
+                const newImage = document.createElement('img');
+                newImage.src = newImageSrc;
+                newImage.className = `car-image-instance enter-${direction}`;
+                if (oldImage) {
+                    oldImage.className = `car-image-instance exit-${direction === 'right' ? 'left' : 'right'}`;
+                    oldImage.addEventListener('transitionend', () => oldImage.remove());
+                }
+                carImage.appendChild(newImage);
             }
 
             function updateColorSelection(option, direction = 'right') {
-                // Remove active class from all options
+                const newImageSrc = option.dataset.image;
+                const newIndex = parseInt(option.dataset.index, 10);
+                if (newIndex === currentColorIndex) return;
+                changeCarImage(newImageSrc, direction);
                 colorOptions.forEach(opt => opt.classList.remove('active'));
-                // Add active class to clicked option
                 option.classList.add('active');
-
-                // Change car image with animation
-                changeCarImage(option.getAttribute('data-image'), direction);
-
-                // Update background color
-                const newColor = option.style.backgroundColor;
-                rdBackground.style.transition = 'background-color 0.8s ease-in-out';
-                rdBackground.style.backgroundColor = newColor;
-
-                // Update text colors
-                const color = newColor.toLowerCase();
-                const shouldBeWhite = color.includes('rgb(0, 0, 0)') || // black
-                                    color.includes('#000000') ||
-                                    color.includes('rgb(74, 97, 60)') || // green
-                                    color.includes('#0066cc') || // blue
-                                    color.includes('rgb(0, 102, 204)');
-
-                const textColor = shouldBeWhite ? '#FFFFFF' : '#000000';
-                rdTitle.style.transition = 'color 0.8s ease';
-                rdSubtitle.style.transition = 'color 0.8s ease';
-                exploreMore.style.transition = 'color 0.8s ease';
-                
-                rdTitle.style.color = textColor;
-                rdSubtitle.style.color = textColor;
-                exploreMore.style.color = textColor;
+                currentColorIndex = newIndex;
             }
 
-            // Click handlers for color options
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', function() {
                     const direction = index > currentColorIndex ? 'right' : 'left';
-                    currentColorIndex = index;
                     updateColorSelection(this, direction);
                 });
             });
 
-            // Arrow navigation
             window.prevColor = function() {
-                currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
-                updateColorSelection(colorOptions[currentColorIndex], 'left');
+                const newIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
+                updateColorSelection(colorOptions[newIndex], 'left');
             };
 
             window.nextColor = function() {
-                currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
-                updateColorSelection(colorOptions[currentColorIndex], 'right');
+                const newIndex = (currentColorIndex + 1) % colorOptions.length;
+                updateColorSelection(colorOptions[newIndex], 'right');
             };
 
-            // Keyboard navigation
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft') {
-                    prevColor();
-                } else if (e.key === 'ArrowRight') {
-                    nextColor();
-                }
+                if (e.key === 'ArrowLeft') prevColor();
+                if (e.key === 'ArrowRight') nextColor();
             });
 
-            // Navigation menu functionality
+            if (colorOptions.length > 0) {
+                updateColorSelection(colorOptions[0]);
+            }
+
             const menuButton = document.getElementById('menu-button');
             const navMenu = document.getElementById('nav-menu');
             const navLinks = document.querySelectorAll('.nav-links a, .nav-logo');
 
-            // Toggle mobile menu
             menuButton.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
                 const isOpen = navMenu.classList.contains('active');
-                menuButton.innerHTML = isOpen ? 
-                    '<i class="fas fa-times"></i>' : 
-                    '<i class="fas fa-bars"></i>';
+                menuButton.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
             });
 
-            // Close menu when clicking outside
             document.addEventListener('click', (e) => {
                 if (!navMenu.contains(e.target) && !menuButton.contains(e.target)) {
                     navMenu.classList.remove('active');
@@ -2630,20 +2623,18 @@
                 }
             });
 
-            // Handle navigation clicks
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = link.getAttribute('href').replace('#', '');
-                    fullpage_api.moveTo(targetId);
-                    
-                    // Close mobile menu if open
+                    if (fullpage_api.moveTo) {
+                        fullpage_api.moveTo(targetId);
+                    }
                     navMenu.classList.remove('active');
                     menuButton.innerHTML = '<i class="fas fa-bars"></i>';
                 });
             });
 
-            // Modal functionality
             window.openModal = function(modalId) {
                 const modal = document.getElementById(modalId);
                 modal.classList.add('show');
@@ -2656,7 +2647,6 @@
                 document.body.style.overflow = '';
             }
 
-            // Close modal when clicking outside
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.addEventListener('click', function(e) {
                     if (e.target === this) {
@@ -2666,7 +2656,6 @@
                 });
             });
 
-            // Close modal with Escape key
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     document.querySelectorAll('.modal.show').forEach(modal => {
@@ -2677,26 +2666,13 @@
             });
         });
     </script>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'th'}, 'google_translate_element');
-}
-
-            function toggleLanguage() {
-                const currentLang = document.getElementById('currentLang');
-                const newLang = currentLang.textContent === 'TH' ? 'en' : 'th';
-                
-                // Update button text
-                currentLang.textContent = newLang.toUpperCase();
-                
-                // Change Google Translate language
-                const select = document.querySelector('.goog-te-combo');
-                if (select) {
-                    select.value = newLang;
-                    select.dispatchEvent(new Event('change'));
-                }
-            }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <!-- Google Translate -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'th', includedLanguages: 'en,th', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+        }
+    </script>
+    <script src="js/car-viewer.js"></script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
