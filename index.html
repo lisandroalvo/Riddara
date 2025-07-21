@@ -624,6 +624,41 @@
             resize: vertical;
         }
 
+        .language-switcher {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        .lang-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            background: var(--secondary-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            background: var(--secondary-hover);
+            transform: translateY(-1px);
+        }
+
+        .lang-btn i {
+            color: white;
+            font-size: 14px;
+        }
+
+        .lang-btn span {
+            color: white;
+            font-family: var(--title-font);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
         .submit-btn {
             background: var(--primary-color);
             color: white;
@@ -1984,14 +2019,10 @@
                 <a href="#rd6">RD6</a>
                 <a href="#contact">Contact</a>
                 <div class="language-switcher">
-                    <div class="lang-select" onclick="toggleLangDropdown()">
-                        <span id="currentLang">TH</span>
+                    <button class="lang-btn" onclick="toggleLanguage()">
                         <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="lang-dropdown" id="langDropdown">
-                        <div class="lang-option" onclick="selectLanguage('th')">ไทย</div>
-                        <div class="lang-option" onclick="selectLanguage('en')">English</div>
-                    </div>
+                        <span id="currentLang">TH</span>
+                    </button>
                 </div>
             </div>
             <button class="menu-button" id="menu-button">
@@ -2651,35 +2682,20 @@ function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'th'}, 'google_translate_element');
 }
 
-function toggleLangDropdown() {
-                const dropdown = document.getElementById('langDropdown');
-                dropdown.classList.toggle('show');
-            }
-
-            function selectLanguage(lang) {
+            function toggleLanguage() {
                 const currentLang = document.getElementById('currentLang');
-                currentLang.textContent = lang.toUpperCase();
+                const newLang = currentLang.textContent === 'TH' ? 'en' : 'th';
                 
-                // Close dropdown
-                document.getElementById('langDropdown').classList.remove('show');
+                // Update button text
+                currentLang.textContent = newLang.toUpperCase();
                 
                 // Change Google Translate language
                 const select = document.querySelector('.goog-te-combo');
                 if (select) {
-                    select.value = lang;
+                    select.value = newLang;
                     select.dispatchEvent(new Event('change'));
                 }
             }
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                const langSwitcher = document.querySelector('.language-switcher');
-                const dropdown = document.getElementById('langDropdown');
-                
-                if (!langSwitcher.contains(e.target) && dropdown.classList.contains('show')) {
-                    dropdown.classList.remove('show');
-                }
-            });
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
