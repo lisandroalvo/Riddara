@@ -48,6 +48,66 @@
             background: var(--bg-light);
         }
 
+        .language-toggle {
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-switch {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .lang-label {
+            display: flex;
+            width: 80px;
+            height: 34px;
+            border: 1px solid var(--border-color);
+            border-radius: 17px;
+            position: relative;
+            cursor: pointer;
+            background: transparent;
+            transition: var(--transition-smooth);
+        }
+
+        .lang-option {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .lang-label:before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 32px;
+            border-radius: 16px;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .lang-switch input:checked + .lang-label:before {
+            transform: translateX(40px);
+        }
+
+        .lang-switch input:checked ~ .lang-label {
+            border-color: var(--border-color);
+        }
+
         p, a, button, input, textarea, label {
             font-family: var(--text-font);
         }
@@ -207,51 +267,9 @@
         }
 
         .nav-links a:hover::after,
-        .nav-links a:hover::after {
+        .nav-links a.active::after {
             width: 100%;
         }
-
-        /* Google Translate Widget Styles */
-        #google_translate_element {
-            margin-left: 20px;
-            align-self: center;
-        }
-        .goog-te-gadget-simple {
-            background-color: transparent !important;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            border-radius: 20px;
-            padding: 6px 12px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .goog-te-gadget-simple:hover {
-            background-color: rgba(255, 255, 255, 0.1) !important;
-        }
-        .goog-te-gadget-simple span {
-            color: white !important;
-            font-family: var(--title-font);
-            font-size: 0.9rem !important;
-            font-weight: 500;
-            text-shadow: none !important;
-        }
-        .goog-te-gadget-icon {
-            display: none !important;
-        }
-        body {
-            top: 0px !important; 
-        }
-        .skiptranslate {
-            display: none !important;
-        }
-        iframe.goog-te-menu-frame {
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
-            border-radius: 10px !important;
-            border: 1px solid var(--glass-border) !important;
-        }
-
-
-
-
 
         .nav-links a:hover,
         .nav-links a.active {
@@ -666,41 +684,6 @@
             resize: vertical;
         }
 
-        .language-switcher {
-            display: inline-block;
-            margin-left: 20px;
-        }
-
-        .lang-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            background: var(--secondary-color);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn:hover {
-            background: var(--secondary-hover);
-            transform: translateY(-1px);
-        }
-
-        .lang-btn i {
-            color: white;
-            font-size: 14px;
-        }
-
-        .lang-btn span {
-            color: white;
-            font-family: var(--title-font);
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
         .submit-btn {
             background: var(--primary-color);
             color: white;
@@ -983,13 +966,6 @@
 
         .rd6-content {
             padding: 4rem 2rem;
-        }
-
-        .rd6-content img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 2rem;
-            will-change: transform;
         }
 
         .rd6-description {
@@ -2070,11 +2046,21 @@
                 <a href="#services">Services</a>
                 <a href="#contact">Contact</a>
             </div>
+            <div class="language-toggle">
+                <div class="lang-switch">
+                    <input type="checkbox" id="langToggle" onchange="toggleLanguage()">
+                    <label for="langToggle" class="lang-label">
+                        <span class="lang-option th">TH</span>
+                        <span class="lang-option en">EN</span>
+                    </label>
+                </div>
+            </div>
             <button class="menu-button" id="menu-button">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
+    <div id="google_translate_element" style="display: none;"></div>
     <div id="main-container">
         <div id="fullpage">
             <!-- Hero Section -->
@@ -2166,9 +2152,6 @@
                         <h3>RIDDARA RD6</h3>
                         <p>Experience the future of electric pickup trucks</p>
                         <div class="rd6-specs">
-                            <div class="car-image-wrapper">
-                                <img id="carImage" src="images/colors/white.png" alt="RIDDARA RD6">
-                            </div>
                             <div class="spec-item">
                                 <h3>500+</h3>
                                 <p>KM Range</p>
@@ -2245,9 +2228,7 @@
                 <div class="cards-container">
                     <div class="card">
                         <div class="card-image">
-                            <div class="car-image-wrapper">
-                            <img id="carImage" src="images/colors/white.png" alt="RIDDARA RD6">
-                        </div>
+                            <img src="images/car1.png" alt="RIDDARA Innovation">
                         </div>
                         <div class="card-content">
                             <h3>Revolutionary Design</h3>
@@ -2503,7 +2484,6 @@
         </div>
     </div>
 
-    <script src="js/car-viewer.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Video Setup
@@ -2550,83 +2530,130 @@
 
             // Initialize fullpage.js
             new fullpage('#fullpage', {
-                licenseKey: 'gplv3-license',
                 navigation: true,
                 scrollingSpeed: 1000,
                 autoScrolling: true,
                 fitToSection: true,
-                fitToSectionDelay: 1000,
-                easing: 'easeInOutCubic',
-                anchors: ['home', 'rd6', 'services', 'contact'],
-                onLeave: onLeave,
-                afterRender: function(){
-                    // Initialize the car viewer after fullPage.js has rendered
-                    new CarViewer('car-viewer');
+                fitToSectionDelay: 1000, // Allows fp-auto-height to work correctly
+                anchors: ['home', 'news', 'rd6', 'services', 'contact', 'footer'],
+                onLeave: function(origin, destination, direction) {
+                    // Update active menu item
+                    const navLinks = document.querySelectorAll('.nav-links a');
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${destination.anchor}`) {
+                            link.classList.add('active');
+                        }
+                    });
                 }
             });
 
+            // Color picker functionality
             const colorOptions = document.querySelectorAll('.color-option');
             const carImage = document.getElementById('carImage');
+            const rdBackground = document.querySelector('.rd6-background');
+            const rdTitle = document.querySelector('.rd6-logo');
+            const rdSubtitle = document.querySelector('.rd6-subtitle');
+            const exploreMore = document.querySelector('.explore-more');
+
             let currentColorIndex = 0;
 
             function changeCarImage(newImageSrc, direction) {
-                const oldImage = carImage.querySelector('img');
-                const newImage = document.createElement('img');
-                newImage.src = newImageSrc;
-                newImage.className = `car-image-instance enter-${direction}`;
-                if (oldImage) {
-                    oldImage.className = `car-image-instance exit-${direction === 'right' ? 'left' : 'right'}`;
-                    oldImage.addEventListener('transitionend', () => oldImage.remove());
-                }
-                carImage.appendChild(newImage);
+                // Exit animation
+                carImage.classList.add(direction === 'right' ? 'exit-left' : 'exit-right');
+                
+                setTimeout(() => {
+                    // Change image and prepare for entrance
+                    carImage.src = newImageSrc;
+                    carImage.classList.remove('exit-left', 'exit-right');
+                    carImage.classList.add(direction === 'right' ? 'enter-from-right' : 'enter-from-left');
+                    
+                    // Force reflow
+                    carImage.offsetHeight;
+                    
+                    // Enter animation
+                    requestAnimationFrame(() => {
+                        carImage.classList.remove('enter-from-right', 'enter-from-left');
+                    });
+                }, 400);
             }
 
             function updateColorSelection(option, direction = 'right') {
-                const newImageSrc = option.dataset.image;
-                const newIndex = parseInt(option.dataset.index, 10);
-                if (newIndex === currentColorIndex) return;
-                changeCarImage(newImageSrc, direction);
+                // Remove active class from all options
                 colorOptions.forEach(opt => opt.classList.remove('active'));
+                // Add active class to clicked option
                 option.classList.add('active');
-                currentColorIndex = newIndex;
+
+                // Change car image with animation
+                changeCarImage(option.getAttribute('data-image'), direction);
+
+                // Update background color
+                const newColor = option.style.backgroundColor;
+                rdBackground.style.transition = 'background-color 0.8s ease-in-out';
+                rdBackground.style.backgroundColor = newColor;
+
+                // Update text colors
+                const color = newColor.toLowerCase();
+                const shouldBeWhite = color.includes('rgb(0, 0, 0)') || // black
+                                    color.includes('#000000') ||
+                                    color.includes('rgb(74, 97, 60)') || // green
+                                    color.includes('#0066cc') || // blue
+                                    color.includes('rgb(0, 102, 204)');
+
+                const textColor = shouldBeWhite ? '#FFFFFF' : '#000000';
+                rdTitle.style.transition = 'color 0.8s ease-in-out';
+                rdSubtitle.style.transition = 'color 0.8s ease-in-out';
+                exploreMore.style.transition = 'color 0.8s ease-in-out';
+                
+                rdTitle.style.color = textColor;
+                rdSubtitle.style.color = textColor;
+                exploreMore.style.color = textColor;
             }
 
+            // Click handlers for color options
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', function() {
                     const direction = index > currentColorIndex ? 'right' : 'left';
+                    currentColorIndex = index;
                     updateColorSelection(this, direction);
                 });
             });
 
+            // Arrow navigation
             window.prevColor = function() {
-                const newIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
-                updateColorSelection(colorOptions[newIndex], 'left');
+                currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
+                updateColorSelection(colorOptions[currentColorIndex], 'left');
             };
 
             window.nextColor = function() {
-                const newIndex = (currentColorIndex + 1) % colorOptions.length;
-                updateColorSelection(colorOptions[newIndex], 'right');
+                currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
+                updateColorSelection(colorOptions[currentColorIndex], 'right');
             };
 
+            // Keyboard navigation
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft') prevColor();
-                if (e.key === 'ArrowRight') nextColor();
+                if (e.key === 'ArrowLeft') {
+                    prevColor();
+                } else if (e.key === 'ArrowRight') {
+                    nextColor();
+                }
             });
 
-            if (colorOptions.length > 0) {
-                updateColorSelection(colorOptions[0]);
-            }
-
+            // Navigation menu functionality
             const menuButton = document.getElementById('menu-button');
             const navMenu = document.getElementById('nav-menu');
             const navLinks = document.querySelectorAll('.nav-links a, .nav-logo');
 
+            // Toggle mobile menu
             menuButton.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
                 const isOpen = navMenu.classList.contains('active');
-                menuButton.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                menuButton.innerHTML = isOpen ? 
+                    '<i class="fas fa-times"></i>' : 
+                    '<i class="fas fa-bars"></i>';
             });
 
+            // Close menu when clicking outside
             document.addEventListener('click', (e) => {
                 if (!navMenu.contains(e.target) && !menuButton.contains(e.target)) {
                     navMenu.classList.remove('active');
@@ -2634,18 +2661,20 @@
                 }
             });
 
+            // Handle navigation clicks
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = link.getAttribute('href').replace('#', '');
-                    if (fullpage_api.moveTo) {
-                        fullpage_api.moveTo(targetId);
-                    }
+                    fullpage_api.moveTo(targetId);
+                    
+                    // Close mobile menu if open
                     navMenu.classList.remove('active');
                     menuButton.innerHTML = '<i class="fas fa-bars"></i>';
                 });
             });
 
+            // Modal functionality
             window.openModal = function(modalId) {
                 const modal = document.getElementById(modalId);
                 modal.classList.add('show');
@@ -2658,6 +2687,7 @@
                 document.body.style.overflow = '';
             }
 
+            // Close modal when clicking outside
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.addEventListener('click', function(e) {
                     if (e.target === this) {
@@ -2667,6 +2697,7 @@
                 });
             });
 
+            // Close modal with Escape key
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     document.querySelectorAll('.modal.show').forEach(modal => {
@@ -2675,127 +2706,38 @@
                     });
                 }
             });
-        });
-    </script>
-    <script src="js/car-viewer.js"></script>
-    <script>
-        // Initialize fullpage.js
-        new fullpage('#fullpage', {
-            navigation: true,
-            navigationPosition: 'right',
-            scrollingSpeed: 1000,
-            easing: 'easeInOutCubic',
-            css3: true,
-            scrollBar: false,
-            autoScrolling: true,
-            fitToSection: true,
-            anchors: ['home', 'news', 'rd6', 'services', 'contact'],
-            menu: '.nav-links',
-            onLeave: function(origin, destination, direction) {
-                // Handle video pause/play
-                const video = document.getElementById('heroVideo');
-                if (origin.index === 0 && direction === 'down') {
-                    video.pause();
-                } else if (destination.index === 0) {
-                    video.play();
-                }
-            },
-            afterLoad: function(origin, destination, direction) {
-                if (destination.index === 0) {
-                    document.querySelector('.hero-video').play();
+
+            // Language toggle functionality
+            function toggleLanguage() {
+                const langToggle = document.getElementById('langToggle');
+                const isEnglish = langToggle.checked;
+                
+                // Change the language using Google Translate
+                const frame = document.querySelector('.goog-te-menu-frame:first');
+                if (frame) {
+                    const items = frame.contentDocument.querySelectorAll('.goog-te-menu2-item');
+                    items.forEach(item => {
+                        if (item.textContent.includes(isEnglish ? 'English' : 'Thai')) {
+                            item.click();
+                        }
+                    });
                 }
             }
-        });
 
-        // Initialize color switching functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const colorOptions = document.querySelectorAll('.color-option');
-            const carImage = document.getElementById('carImage');
-            let currentColorIndex = 0;
-
-            function updateColorSelection(option, direction = 'right') {
-                // Remove active class from all options
-                colorOptions.forEach(opt => opt.classList.remove('active'));
-                
-                // Add active class to selected option
-                option.classList.add('active');
-                
-                // Update car image
-                const newImageSrc = option.getAttribute('data-image');
-                changeCarImage(newImageSrc, direction);
-                
-                // Update current index
-                currentColorIndex = Array.from(colorOptions).indexOf(option);
-                
-                // Update text colors based on background
-                const backgroundColor = window.getComputedStyle(option).backgroundColor;
-                const rdTitle = document.querySelector('.rd6-logo');
-                const rdSubtitle = document.querySelector('.rd6-subtitle');
-                const exploreMore = document.querySelector('.explore-more');
-                
-                const shouldBeWhite = backgroundColor.includes('rgb(0, 0, 0)') || 
-                                    backgroundColor.includes('rgb(51, 51, 51)') || 
-                                    backgroundColor.includes('rgb(0, 102, 204)');
-
-                const textColor = shouldBeWhite ? '#FFFFFF' : '#000000';
-                rdTitle.style.color = textColor;
-                rdSubtitle.style.color = textColor;
-                exploreMore.style.color = textColor;
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'th',
+                    includedLanguages: 'en,th',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                }, 'google_translate_element');
             }
-
-            function changeCarImage(newImageSrc, direction) {
-                const wrapper = carImage.parentElement;
-                wrapper.style.position = 'relative';
-                wrapper.style.overflow = 'hidden';
-
-                const oldImage = carImage.cloneNode(true);
-                oldImage.style.position = 'absolute';
-                oldImage.style.top = '0';
-                oldImage.style.left = '0';
-                oldImage.style.transition = 'transform 0.5s ease-in-out';
-                wrapper.appendChild(oldImage);
-
-                // Set initial position for new image
-                carImage.style.position = 'absolute';
-                carImage.style.top = '0';
-                carImage.src = newImageSrc;
-                carImage.style.transform = `translateX(${direction === 'right' ? '100%' : '-100%'})`;
-                carImage.style.transition = 'transform 0.5s ease-in-out';
-
-                // Trigger animation
-                setTimeout(() => {
-                    oldImage.style.transform = `translateX(${direction === 'right' ? '-100%' : '100%'})`;
-                    carImage.style.transform = 'translateX(0)';
-                    
-                    // Clean up
-                    setTimeout(() => {
-                        oldImage.remove();
-                        carImage.style.position = 'relative';
-                        carImage.style.transform = '';
-                        carImage.style.transition = '';
-                    }, 500);
-                }, 50);
-            }
-
-            // Click handlers for color options
-            colorOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const direction = Array.from(colorOptions).indexOf(this) > currentColorIndex ? 'right' : 'left';
-                    updateColorSelection(this, direction);
-                });
-            });
-
-            // Initialize first color
-            if (colorOptions.length > 0) {
-                updateColorSelection(colorOptions[0]);
-            }
-        });
-
-        // Play video when ready
-        const video = document.getElementById('heroVideo');
-        video.play().catch(function(error) {
-            console.log("Video play failed:", error);
         });
     </script>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'th', includedLanguages: 'en,th', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

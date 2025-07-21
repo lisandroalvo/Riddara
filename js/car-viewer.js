@@ -98,6 +98,15 @@ class CarViewer {
         objLoader.load(
             './models/canter.obj',
             (object) => {
+                // Set initial position off-screen to the left
+                object.position.x = -20;
+                
+                // Add smooth entrance animation
+                gsap.to(object.position, {
+                    x: 0,
+                    duration: 1.5,
+                    ease: 'power2.out'
+                });
                 // Center the model
                 const box = new THREE.Box3().setFromObject(object);
                 const center = box.getCenter(new THREE.Vector3());
