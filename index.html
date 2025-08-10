@@ -48,58 +48,6 @@
             background: var(--bg-light);
         }
 
-        .language-toggle {
-            margin-left: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .lang-switch {
-            position: relative;
-            display: inline-block;
-        }
-
-        .lang-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .lang-label {
-            display: flex;
-            width: 80px;
-            height: 34px;
-            border: 1px solid var(--border-color);
-            border-radius: 17px;
-            position: relative;
-            cursor: pointer;
-            background: transparent;
-            transition: var(--transition-smooth);
-        }
-
-        .lang-option {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-            font-weight: 500;
-            z-index: 1;
-        }
-
-        .lang-label:before {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 32px;
-            border-radius: 16px;
-            top: 0;
-            left: 0;
-            background: rgba(255, 255, 255, 0.1);
-            transition: var(--transition-smooth);
-        }
-
         .lang-switch input:checked + .lang-label:before {
             transform: translateX(40px);
         }
@@ -112,6 +60,27 @@
             font-family: var(--text-font);
         }
 
+        /* Language switch styles */
+        .nav-links a {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-links .th,
+        .nav-links .en {
+            transition: opacity 0.3s ease;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        html[lang="th"] .nav-links .th { opacity: 1; pointer-events: auto; }
+        html[lang="th"] .nav-links .en { opacity: 0; pointer-events: none; }
+        html[lang="en"] .nav-links .th { opacity: 0; pointer-events: none; }
+        html[lang="en"] .nav-links .en { opacity: 1; pointer-events: auto; }
+
         h1, h2, h3, h4, h5, h6,
         .nav-links a,
         .hero-subtitle,
@@ -120,6 +89,12 @@
         .card-title,
         .news-card-title,
         .modal-title {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+            word-spacing: 0.1em;
+            max-width: 100%;
+            overflow-wrap: break-word;
             font-family: var(--title-font);
         }
 
@@ -144,6 +119,9 @@
 
         .nav-links a {
             font-weight: 400;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
         }
 
         .hero-content p {
@@ -250,18 +228,20 @@
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: 500;
+            text-transform: uppercase;
             transition: all 0.3s ease;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             position: relative;
+            letter-spacing: 0.5px;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -3px;
             left: 0;
             width: 0;
-            height: 2px;
+            height: 1.5px;
             background-color: #ff6b00;
             transition: width 0.3s ease;
         }
@@ -501,14 +481,15 @@
         }
 
         .cta-button.primary {
-            background: var(--primary-color);
+            background-color: var(--primary-color);
             color: white;
+            box-shadow: 0 4px 15px rgba(90, 116, 72, 0.3);
         }
 
         .cta-button.primary:hover {
-            background: #FF6B00;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(90, 116, 72, 0.4);
         }
 
         .cta-button.secondary {
@@ -524,6 +505,27 @@
             border-color: #FF6B00;
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(255, 107, 0, 0.2);
+        }
+
+        .cta-button.learn-more {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: var(--title-font);
+            margin: 0 10px;
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(90, 116, 72, 0.3);
+        }
+
+        .cta-button.learn-more:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(90, 116, 72, 0.4);
         }
 
         @keyframes fadeIn {
@@ -976,31 +978,54 @@
         }
 
         .rd6-specs {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
             margin-bottom: 3rem;
-            flex-wrap: wrap;
+            width: 100%;
             gap: 2rem;
         }
 
         .spec-item {
             text-align: center;
-            flex: 1;
-            min-width: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            min-width: 0;
         }
 
         .spec-item h3 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--primary-color);
             margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            white-space: nowrap;
+            width: 100%;
+            text-align: center;
+        }
+
+        .location-item h3 {
+            font-size: 1.2rem;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0;
+        }
+
+        .location-item p {
+            font-size: 0.7rem;
+            line-height: 1;
+            letter-spacing: 0;
         }
 
         .spec-item p {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            width: 100%;
+            text-align: center;
+            white-space: normal;
+            word-wrap: break-word;
         }
 
         .rd6-text {
@@ -1591,6 +1616,44 @@
         .footer-column h4 {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 20px;
+        }
+
+        .elevate-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+            transition: var(--transition-smooth);
+            font-weight: 500;
+        }
+
+        .elevate-link:hover {
+            color: var(--secondary-color);
+            opacity: 0.9;
+        }
+
+        .elevate-link img {
+            height: 19px;
+            width: auto;
+            transition: var(--transition-smooth);
+        }
+
+        .elevate-link:hover img {
+            transform: scale(1.1);
+        
             color: white;
         }
 
@@ -1653,49 +1716,73 @@
         .modal {
             display: none;
             position: fixed;
-            top: 0;
+            z-index: 1000;
             left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         .modal.show {
-            display: flex;
             opacity: 1;
         }
 
         .modal-content {
             position: relative;
-            background-color: #fff;
-            margin: auto;
+            background-color: var(--bg-light);
+            margin: 5vh auto;
             padding: 30px;
             width: 90%;
             max-width: 800px;
             border-radius: 15px;
-            transform: scale(0.7);
-            transition: transform 0.3s ease;
+            box-shadow: var(--glass-shadow);
+            transform: scale(0.7) translateY(20px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .modal.show .modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
             transform: scale(1);
         }
 
         .modal-close {
             position: absolute;
             right: 20px;
-            top: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #333;
+            top: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #fff;
             transition: color 0.3s ease;
         }
 
         .modal-close:hover {
-            color: #ff6b00;
+            color: var(--hover-color);
+            cursor: pointer;
+        }
+
+        .modal-close-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: var(--title-font);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-close-btn:hover {
+            background-color: var(--primary-hover);
         }
 
         /* Success Modal Specific Styles */
@@ -1749,6 +1836,48 @@
             font-weight: 700;
             margin-bottom: 1.5rem;
             color: var(--primary-color);
+        }
+
+        /* Hide fullPage.js watermark */
+        body > div[style*="position: fixed; z-index: 9999;"],
+        .fp-watermark,
+        #watermark {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
+        /* Made by Elevate styles */
+        .made-by-elevate {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .made-by-elevate:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: translateY(-2px);
+        }
+
+        .made-by-elevate img {
+            height: 32px;
+            width: auto;
+        }
+
+        .modal-title {
             font-family: 'Orbitron', sans-serif;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -1834,8 +1963,21 @@
         }
 
         @media (max-width: 768px) {
-            .section-content {
-                padding: 0 20px;
+            .rd6-content {
+                padding: 2rem;
+            }
+
+            .rd6-specs {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .spec-item h3 {
+                font-size: 1.75rem;
+            }
+
+            .spec-item p {
+                font-size: 0.85rem;
             }
 
             .hero-content h1 {
@@ -1938,6 +2080,19 @@
         }
 
         @media (max-width: 480px) {
+            .rd6-specs {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .spec-item h3 {
+                font-size: 1.5rem;
+            }
+
+            .spec-item p {
+                font-size: 0.8rem;
+            }
+
             .hero-content h1 {
                 font-size: 2rem;
             }
@@ -2037,30 +2192,26 @@
         <div class="nav-container">
             <a href="#home" class="nav-logo">
                 <span>Pinpat Auto Chonburi</span>
-                <img src="images/main1.png" alt="RIDDARA">
+                <img src="images/main1.png" alt="RIDDARA" style="height: 40px; width: auto;">
             </a>
             <div class="nav-links">
                 <a href="#home">หน้าแรก</a>
                 <a href="#news">ข่าวสาร</a>
                 <a href="#rd6">RD6</a>
-                <a href="#services">บริการ</a>
+                <a href="#service">บริการ</a>
                 <a href="#contact">ติดต่อ</a>
-            </div>
-            <div class="language-toggle">
-                <div class="lang-switch">
-                    <input type="checkbox" id="langToggle" onchange="toggleLanguage()">
-                    <label for="langToggle" class="lang-label">
-                        <span class="lang-option th">TH</span>
-                        <span class="lang-option en">EN</span>
-                    </label>
-                </div>
             </div>
             <button class="menu-button" id="menu-button">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
-    <div id="google_translate_element" style="display: none;"></div>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <a href="https://www.elevatemade.com" target="_blank" rel="noopener" class="made-by-elevate">
+        <span>Made by</span>
+        <img src="images/ELEVATE-LOGO4.svg" alt="Elevate" />
+    </a>
     <div id="main-container">
         <div id="fullpage">
             <!-- Hero Section -->
@@ -2156,9 +2307,9 @@
                                 <h3>500+</h3>
                                 <p>ระยะทางขับขี่</p>
                             </div>
-                            <div class="spec-item">
-                                <h3>ที่ตั้งของเรา</h3>
-                                <p>เยี่ยมชมโชว์รูม</p>
+                            <div class="spec-item location-item">
+                                <h3 class="location-title">OUR LOCATION</h3>
+                                <p>VISIT SHOWROOM</p>
                             </div>
                             <div class="spec-item">
                                 <h3>5.9s</h3>
@@ -2260,7 +2411,7 @@
             </div>
 
             <!-- Services Section -->
-            <div class="section services-section" data-anchor="services">
+            <div class="section services-section" data-anchor="service">
                 <div class="services-header">
                     <h2>สัมผัสประสบการณ์แห่งอนาคต</h2>
                     <p>ยินดีต้อนรับสู่ RIDDARA ที่ซึ่งนวัตกรรมพบกับความยั่งยืน</p>
@@ -2326,7 +2477,7 @@
                                     <input type="tel" id="phone" name="phone" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="message">ข้อความ</label>
+                                    <label for="message">ข่าวสาร</label>
                                     <textarea id="message" name="message" required></textarea>
                                 </div>
                                 <button type="submit" class="submit-btn">ส่งข้อความ</button>
@@ -2426,6 +2577,10 @@
                     </div>
                     <div class="footer-bottom">
                         <p>&copy; 2025 RIDDARA. All rights reserved.</p>
+                        <a href="https://www.elevatemade.com" target="_blank" rel="noopener" class="elevate-link">
+                            <span>Made by</span>
+                            <img src="images/ELEVATE-LOGO4.svg" alt="Elevate" />
+                        </a>
                     </div>
                 </footer>
             </div>
@@ -2443,6 +2598,7 @@
                 <p>ทีมงานของเรามีประสบการณ์และความเชี่ยวชาญในด้านต่างๆ</p>
                 <p>เราทำงานร่วมกันเพื่อนำความสำเร็จมาสู่ RIDDARA</p>
             </div>
+            <button class="modal-close-btn" onclick="closeModal('modal1')">Close</button>
         </div>
     </div>
 
@@ -2456,6 +2612,7 @@
                 <p>กิจกรรมนี้ช่วยให้เราสามารถทำงานร่วมกันอย่างมีประสิทธิภาพและบรรลุเป้าหมายของเรา</p>
                 <p>เรายินดีต้อนรับทุกคนเข้าร่วมงานกับเรา</p>
             </div>
+            <button class="modal-close-btn" onclick="closeModal('modal2')">Close</button>
         </div>
     </div>
 
@@ -2468,6 +2625,7 @@
                 <p>Stay tuned for upcoming announcements about new features, services, and initiatives that will further demonstrate our commitment to excellence in the automotive industry.</p>
                 <p>Follow our news section for the latest updates and announcements from RIDDARA.</p>
             </div>
+            <button class="modal-close-btn" onclick="closeModal('modal3')">Close</button>
         </div>
     </div>
 
@@ -2530,6 +2688,7 @@
 
             // Initialize fullpage.js
             new fullpage('#fullpage', {
+                credits: { enabled: false },
                 navigation: true,
                 scrollingSpeed: 1000,
                 autoScrolling: true,
@@ -2607,28 +2766,37 @@
                 
                 rdTitle.style.color = textColor;
                 rdSubtitle.style.color = textColor;
-                exploreMore.style.color = textColor;
             }
 
             // Click handlers for color options
             colorOptions.forEach((option, index) => {
                 option.addEventListener('click', function() {
                     const direction = index > currentColorIndex ? 'right' : 'left';
-                    currentColorIndex = index;
                     updateColorSelection(this, direction);
                 });
             });
 
             // Arrow navigation
-            window.prevColor = function() {
+            function prevColor() {
                 currentColorIndex = (currentColorIndex - 1 + colorOptions.length) % colorOptions.length;
                 updateColorSelection(colorOptions[currentColorIndex], 'left');
-            };
+            }
 
-            window.nextColor = function() {
+            function nextColor() {
                 currentColorIndex = (currentColorIndex + 1) % colorOptions.length;
                 updateColorSelection(colorOptions[currentColorIndex], 'right');
-            };
+            }
+
+            // Add click event listeners for arrow navigation
+            document.querySelector('.prev-car').addEventListener('click', prevColor);
+            document.querySelector('.next-car').addEventListener('click', nextColor);
+
+            // Update currentColorIndex when clicking color options
+            colorOptions.forEach((option, index) => {
+                option.addEventListener('click', function() {
+                    currentColorIndex = index;
+                });
+            });
 
             // Keyboard navigation
             document.addEventListener('keydown', function(e) {
@@ -2639,103 +2807,133 @@
                 }
             });
 
-            // Navigation menu functionality
-            const menuButton = document.getElementById('menu-button');
-            const navMenu = document.getElementById('nav-menu');
-            const navLinks = document.querySelectorAll('.nav-links a, .nav-logo');
-
-            // Toggle mobile menu
-            menuButton.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                const isOpen = navMenu.classList.contains('active');
-                menuButton.innerHTML = isOpen ? 
-                    '<i class="fas fa-times"></i>' : 
-                    '<i class="fas fa-bars"></i>';
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!navMenu.contains(e.target) && !menuButton.contains(e.target)) {
-                    navMenu.classList.remove('active');
-                    menuButton.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            });
-
-            // Handle navigation clicks
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href').replace('#', '');
-                    fullpage_api.moveTo(targetId);
-                    
-                    // Close mobile menu if open
-                    navMenu.classList.remove('active');
-                    menuButton.innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
+            // Set initial active color
+            if (colorOptions.length > 0) {
+                updateColorSelection(colorOptions[0]);
+            }
 
             // Modal functionality
-            window.openModal = function(modalId) {
+            function openModal(modalId) {
+                console.log('Opening modal:', modalId); // Debug log
                 const modal = document.getElementById(modalId);
-                modal.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }
+                if (!modal) {
+                    console.error('Modal not found:', modalId);
+                    return;
+                }
 
-            window.closeModal = function(modalId) {
-                const modal = document.getElementById(modalId);
-                modal.classList.remove('show');
-                document.body.style.overflow = '';
-            }
+                // Remove any existing handlers
+                if (modal._outsideClickHandler) {
+                    modal.removeEventListener('click', modal._outsideClickHandler);
+                }
+                const existingCloseBtn = modal.querySelector('.modal-close');
+                if (existingCloseBtn && modal._closeBtnHandler) {
+                    existingCloseBtn.removeEventListener('click', modal._closeBtnHandler);
+                }
 
-            // Close modal when clicking outside
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        this.classList.remove('show');
-                        document.body.style.overflow = '';
+                // Create new handlers
+                const outsideClickHandler = function(e) {
+                    if (e.target === modal) {
+                        closeModal(modalId);
                     }
-                });
-            });
-
-            // Close modal with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    document.querySelectorAll('.modal.show').forEach(modal => {
-                        modal.classList.remove('show');
-                        document.body.style.overflow = '';
-                    });
-                }
-            });
-
-            // Language toggle functionality
-            function toggleLanguage() {
-                const langToggle = document.getElementById('langToggle');
-                const isEnglish = langToggle.checked;
+                };
                 
-                // Change the language using Google Translate
-                const frame = document.querySelector('.goog-te-menu-frame:first');
-                if (frame) {
-                    const items = frame.contentDocument.querySelectorAll('.goog-te-menu2-item');
-                    items.forEach(item => {
-                        if (item.textContent.includes(isEnglish ? 'English' : 'Thai')) {
-                            item.click();
-                        }
-                    });
+                const closeBtnHandler = function() {
+                    closeModal(modalId);
+                };
+                
+                // Store handlers on the modal element
+                modal._outsideClickHandler = outsideClickHandler;
+                modal._closeBtnHandler = closeBtnHandler;
+                
+                // Add event listeners
+                modal.addEventListener('click', outsideClickHandler);
+                const closeBtn = modal.querySelector('.modal-close');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', closeBtnHandler);
+                }
+                
+                // Show modal with animation
+                modal.style.display = 'flex';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                document.body.style.overflow = 'hidden';
+                
+                // Force a reflow before adding the show class
+                modal.offsetHeight;
+                
+                requestAnimationFrame(() => {
+                    modal.classList.add('show');
+                });
+            }
+
+            // Modal functions
+            function openModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.style.display = 'flex';
+                    modal.style.alignItems = 'center';
+                    modal.style.justifyContent = 'center';
+                    document.body.style.overflow = 'hidden';
+                    setTimeout(() => modal.classList.add('show'), 10);
                 }
             }
 
-            function googleTranslateElementInit() {
-                new google.translate.TranslateElement({
-                    pageLanguage: 'th',
-                    includedLanguages: 'en,th',
-                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-                }, 'google_translate_element');
+            function closeModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.remove('show');
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
             }
+
+            // Make modal functions globally accessible
+            window.openModal = openModal;
+            window.closeModal = closeModal;
         });
     </script>
 <script type="text/javascript">
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'th', includedLanguages: 'en,th', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+    new google.translate.TranslateElement({
+        pageLanguage: 'th',
+        includedLanguages: 'en,th',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+}
+
+function translateTo(toEnglish) {
+    if (!window.google || !google.translate) return false;
+    
+    var currentLang = document.documentElement.lang || 'th';
+    var targetLang = toEnglish ? 'en' : 'th';
+    
+    if (currentLang === targetLang) return false;
+    
+    // Custom translations for navigation
+    const navLinks = document.querySelectorAll('.nav-links a');
+    if (toEnglish) {
+        navLinks.forEach(link => {
+            if (link.textContent === 'ข่าวสาร') link.textContent = 'NEWS';
+            else if (link.textContent === 'บริการ') link.textContent = 'SERVICE';
+            else if (link.textContent === 'หน้าแรก') link.textContent = 'HOME PAGE';
+            else if (link.textContent === 'ติดต่อ') link.textContent = 'CONTACT';
+        });
+    } else {
+        navLinks.forEach(link => {
+            if (link.textContent === 'NEWS') link.textContent = 'ข่าวสาร';
+            else if (link.textContent === 'SERVICE') link.textContent = 'บริการ';
+            else if (link.textContent === 'HOME PAGE') link.textContent = 'หน้าแรก';
+            else if (link.textContent === 'CONTACT') link.textContent = 'ติดต่อ';
+        });
+    }
+    
+    var translateElement = google.translate.TranslateElement.getInstance();
+    if (translateElement) {
+        translateElement.translate('', targetLang);
+    }
+    return true;
 }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
